@@ -3,8 +3,6 @@ bookdown::bs4_book:
   theme:
     primary: "#096B72"
   repo: https://github.com/aranaur/r_econometrics
-  includes:
-    in_header: local_js.html
 
 bookdown::word_document2:
   toc: TRUE

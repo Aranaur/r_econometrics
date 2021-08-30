@@ -1,5 +1,5 @@
 --- 
-title: "Основи економетрики в R"
+title: "<span style='font-size: 14px'>ОСНОВИ ЕКОНОМЕТРИКИ В R</style>"
 author: "Ігор Мірошниченко"
 date: "`r Sys.Date()`"
 documentclass: book
@@ -8,7 +8,6 @@ biblio-style: apalike
 link-citations: yes
 description: "Підручик з основ економетрики з використанням мови програмування R"
 ---
-
 # Основи економетрики в R {.unnumbered}
 
 ## Передмова {.unnumbered}
