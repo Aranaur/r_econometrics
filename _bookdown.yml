@@ -1,7 +1,5 @@
 book_filename: "r_econometrics"
-new_session: true
 delete_merged_file: true
-output_dir: "docs"
 language:
   label:
     fig: 'Рисунок '
@@ -13,4 +11,4 @@ language:
     solution: 'Рішення. '
   ui:
     chapter_name: " "
-
+output_dir: docs

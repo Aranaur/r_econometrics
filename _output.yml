@@ -1,8 +1,8 @@
 bookdown::bs4_book:
-  css: bs4_style.css
+  css: style.css
   theme:
     primary: "#096B72"
-  repo: https://github.com/rstudio/bookdown-demo
+  repo: https://github.com/aranaur/r_econometrics
 
 bookdown::word_document2:
   toc: TRUE
