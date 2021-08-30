@@ -1,5 +1,16 @@
-book_filename: "bookdown-demo"
-language:
-  ui:
-    chapter_name: "Chapter "
+book_filename: "r_econometrics"
+new_session: true
 delete_merged_file: true
+output_dir: "docs"
+language:
+  label:
+    fig: 'Рисунок '
+    tab: 'Таблиця '
+    eq: 'Рівняння '
+    thm: 'Теорема '
+    exm: 'Приклад '
+    exr: 'Вправа '
+    solution: 'Рішення. '
+  ui:
+    chapter_name: " "
+
