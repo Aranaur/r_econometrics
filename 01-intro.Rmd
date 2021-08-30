@@ -42,21 +42,21 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.wid
 
 Перша відноситься до самої мови програмування і не буде використовуватись в роботі, друга відноситься до RStudio і саме вона нам потрібна.
 
-Після першого запуску RStudio ви побачите інтерфейс на рисуноку \@ref(fig:rstudio1)
+Після першого запуску RStudio ви побачите інтерфейс на рисунку \@ref(fig:rstudio1)
 ```{r rstudio1, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Базовий інтерфейс RStudio"}
 knitr::include_graphics("docs/images/rstudio_01.png")
 ```
 
 Як правило код пишуть у скрипті (такий собі аналог текстового редактора), тож для його створення необхідно натиснути зелений хрестик в лівому верхньому куті та обрати пункт **R Script** або натиснути комбінацію клавіш **Ctrl+Shift+N**:
 
-```{r rstudio2, out.width = "75%", fig.align='center', echo = FALSE, fig.cap = "Базовий інтерфейс RStudio"}
+```{r rstudio2, out.width = "75%", fig.align='center', echo = FALSE, fig.cap = "Створення скрипта в RStudio"}
 knitr::include_graphics("docs/images/rstudio_02.png")
 ```
 
 Після чого, з’явиться додаткове вікно скрипту, де можна писати код, зберігати його та повертатися до нього за потреби.
 
 Давайте розберемо отриманий інтерфейс:
-```{r rstudio3, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Базовий інтерфейс RStudio"}
+```{r rstudio3, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Інтерфейс RStudio"}
 knitr::include_graphics("docs/images/rstudio_03.png")
 ```
 
