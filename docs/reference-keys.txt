@@ -35,5 +35,4 @@ multicollinearity
 heteroskedasticity
 regularization
 time_series
-GLM
-references
+glm
