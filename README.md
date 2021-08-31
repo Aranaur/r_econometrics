@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.com/rstudio/bookdown-demo.svg?branch=master)](https://travis-ci.com/rstudio/bookdown-demo)
+# Основи прогнозування в R
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "[Get Started](https://bookdown.org/yihui/bookdown/get-started.html)" at https://bookdown.org/yihui/bookdown/ for how to compile this example into HTML. You may generate a copy of the book in `bookdown::pdf_book` format by calling `bookdown::render_book('index.Rmd', 'bookdown::pdf_book')`. More detailed instructions are available here https://bookdown.org/yihui/bookdown/build-the-book.html.
+## Передмова
 
-You can find the preview of this example at https://bookdown.org/yihui/bookdown-demo/.
+Наразі підручник в процесі розробки.
+
+Якщо ви помітили неточності або помилки, будь-ласка напишіть мені: ihor.miroshnychenko@kneu.ua
