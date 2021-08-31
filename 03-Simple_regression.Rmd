@@ -1,4 +1,4 @@
-# Проста лінійна регресія
+# Проста лінійна регресія {#Simple_regression}
 
 ```{r setup-03, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)

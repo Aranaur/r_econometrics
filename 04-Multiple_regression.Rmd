@@ -1,4 +1,4 @@
-# Множинна лінійна регресія
+# Множинна лінійна регресія {#Multiple_regression}
 
 ```{r setup-04, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)

@@ -1,4 +1,4 @@
-# Регресійний аналіз часових рядів
+# Регресійний аналіз часових рядів {#Time_series}
 
 ```{r setup-08, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)

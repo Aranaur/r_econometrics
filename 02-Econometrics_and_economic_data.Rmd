@@ -1,4 +1,4 @@
-# Економетрика та економічні дані
+# Економетрика та економічні дані {#Econometrics_and_economic_data}
 ***
 ```{r setup-02, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)

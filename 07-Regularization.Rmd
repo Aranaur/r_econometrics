@@ -1,4 +1,4 @@
-# Регуляризація
+# Регуляризація {#Regularization}
 
 ```{r setup-07, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
