@@ -294,6 +294,7 @@ is.character("Ash nazg durbatulûk, ash nazg gimbatul,
 
 
 
+
 Для перевірки типу даних використовується функція `class()`:
 ```{r}
 class(5)
