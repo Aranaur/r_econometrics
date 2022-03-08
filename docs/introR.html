@@ -109,16 +109,16 @@
 <img src="docs/images/r_00.png"> та <img src="docs/images/rstudio_00.png">
 </div>
 <p>Перша відноситься до самої мови програмування і не буде використовуватись в роботі, друга відноситься до RStudio і саме вона нам потрібна.</p>
-Після першого запуску RStudio ви побачите інтерфейс на рисунку <a href="introR.html#fig:rstudio1">1.1</a>
+Після першого запуску RStudio ви побачите інтерфейс на рисунку <a href="introR.html#fig:001">1.1</a>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:rstudio1"></span>
+<span style="display:block;" id="fig:001"></span>
 <img src="docs/images/rstudio_01.png" alt="Базовий інтерфейс RStudio" width="100%"><p class="caption">
 Рисунок 1.1: Базовий інтерфейс RStudio
 </p>
 </div>
 <p>Як правило код пишуть у скрипті (такий собі аналог текстового редактора), тож для його створення необхідно натиснути зелений хрестик в лівому верхньому куті та обрати пункт <strong>R Script</strong> або натиснути комбінацію клавіш <strong>Ctrl+Shift+N</strong>:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:rstudio2"></span>
+<span style="display:block;" id="fig:002"></span>
 <img src="docs/images/rstudio_02.png" alt="Створення скрипта в RStudio" width="75%"><p class="caption">
 Рисунок 1.2: Створення скрипта в RStudio
 </p>
@@ -126,7 +126,7 @@
 <p>Після чого, з’явиться додаткове вікно скрипту, де можна писати код, зберігати його та повертатися до нього за потреби.</p>
 Давайте розберемо отриманий інтерфейс:
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:rstudio3"></span>
+<span style="display:block;" id="fig:003"></span>
 <img src="docs/images/rstudio_03.png" alt="Інтерфейс RStudio" width="100%"><p class="caption">
 Рисунок 1.3: Інтерфейс RStudio
 </p>
@@ -431,9 +431,9 @@
 <h2>
 <span class="header-section-number">1.5</span> Структури даних<a class="anchor" aria-label="anchor" href="#r_str"><i class="fas fa-link"></i></a>
 </h2>
-R працює з багатьма структурами даних: вектори, матриці, масиви, дата фрейми та списки. Вони відрізняються за способом створення, структурою, складністю будови та способом звернення до їх елементів. Схематично ці структури даних зображено на рисунку <a href="introR.html#fig:datastr">1.4</a>
+R працює з багатьма структурами даних: вектори, матриці, масиви, дата фрейми та списки. Вони відрізняються за способом створення, структурою, складністю будови та способом звернення до їх елементів. Схематично ці структури даних зображено на рисунку <a href="introR.html#fig:027">1.4</a>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:datastr"></span>
+<span style="display:block;" id="fig:027"></span>
 <img src="docs/images/001_data_stucture.png" alt="Структури даних R" width="100%"><p class="caption">
 Рисунок 1.4: Структури даних R
 </p>
@@ -819,29 +819,32 @@ R працює з багатьма структурами даних: векто
 <p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## [1] 18895</span></code></pre></div>
+<span class="co">## [1] 18905</span></code></pre></div>
 <p>І з кожним роком їх стає все більше:
 <img src="docs/images/CRAN.png" width="100%">
 Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє звантажувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"vroom"</span><span class="op">)</span></code></pre></div>
-Інший спосіб встановлення пакетів - через окреме меню <strong>Tools -&gt; Install Packages</strong> (рис.@ref(fig:packages_05))
+Інший спосіб встановлення пакетів - через окреме меню <strong>Tools -&gt; Install Packages</strong> (рис.<a href="introR.html#fig:062">1.5</a>)
 <div class="figure">
+<span style="display:block;" id="fig:062"></span>
 <img src="docs/images/002_install_pack.png" alt="Меню встановлення пакетів в RStudio" width="45%"><p class="caption">
-(#fig:packages_05)Меню встановлення пакетів в RStudio
+Рисунок 1.5: Меню встановлення пакетів в RStudio
 </p>
 </div>
-<p>Або через кнопку в розділі <strong>Packages</strong> (рис. @ref(fig:packages_06))</p>
+<p>Або через кнопку в розділі <strong>Packages</strong> (рис. <a href="introR.html#fig:063">1.6</a>)</p>
 <div class="figure">
+<span style="display:block;" id="fig:063"></span>
 <img src="docs/images/003_install_pack.png" alt="Кнопка встановлення пакетів" width="60%"><p class="caption">
-(#fig:packages_06)Кнопка встановлення пакетів
+Рисунок 1.6: Кнопка встановлення пакетів
 </p>
 </div>
-Після чого з’явиться меню (рис. @ref(fig:packages_07)) в якому можна вказати назву потрібного пакету. Бажано залишити галочку <strong>“install dependencies”</strong>, оскільки деякі пакети мають залежність від інших пакетів і їх також слід встановити. Може статися ситуація, коли завантажуючи один пакет разом з ним буде додатково встановлено ще десятки інших.
+Після чого з’явиться меню (рис. <a href="introR.html#fig:064">1.7</a>) в якому можна вказати назву потрібного пакету. Бажано залишити галочку <strong>“install dependencies”</strong>, оскільки деякі пакети мають залежність від інших пакетів і їх також слід встановити. Може статися ситуація, коли завантажуючи один пакет разом з ним буде додатково встановлено ще десятки інших.
 присоювання
 <div class="figure">
+<span style="display:block;" id="fig:064"></span>
 <img src="docs/images/004_install_pack.png" alt="Меню встановлення пакетів" width="50%"><p class="caption">
-(#fig:packages_07)Меню встановлення пакетів
+Рисунок 1.7: Меню встановлення пакетів
 </p>
 </div>
 </div>

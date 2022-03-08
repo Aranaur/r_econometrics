@@ -1,7 +1,10 @@
-fig:rstudio1
-fig:rstudio2
-fig:rstudio3
-fig:datastr
+fig:001
+fig:002
+fig:003
+fig:027
+fig:062
+fig:063
+fig:064
 introR
 встановлення-r
 встановлення-на-компютер.
