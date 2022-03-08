@@ -7,16 +7,16 @@
 <title> 1 Вступ до R | r_econometrics.knit</title>
 <meta name="author" content="Ігор Мірошниченко">
 <meta name="description" content="Мова програмування R — потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з...">
-<meta name="generator" content="bookdown 0.23.4 with bs4_book()">
+<meta name="generator" content="bookdown 0.24.4 with bs4_book()">
 <meta property="og:title" content=" 1 Вступ до R | r_econometrics.knit">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Мова програмування R — потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 1 Вступ до R | r_econometrics.knit">
 <meta name="twitter:description" content="Мова програмування R — потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.12/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -30,7 +30,7 @@
         <a href="index.html" title=""><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
 </span></a>
       </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Показати зміст</span></button>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
     <div id="main-nav" class="collapse-lg">
@@ -38,7 +38,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Table of contents"><h2>Зміст</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Основи економетрики в R</a></li>
 <li><a class="active" href="introR.html"><span class="header-section-number">1</span> Вступ до R</a></li>
@@ -54,7 +54,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/aranaur/r_econometrics">Github книги <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/aranaur/r_econometrics">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -63,7 +63,7 @@
 <span class="header-section-number"> 1</span> Вступ до R<a class="anchor" aria-label="anchor" href="#introR"><i class="fas fa-link"></i></a>
 </h1>
 <hr>
-<p>Мова програмування <strong>R</strong> — потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з відкритим кодом, з широкими можливостями, які досягаються за рахунок різноманіття покатів (<em>packages</em>) доповнень.
+<p>Мова програмування <strong>R</strong> — потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з відкритим кодом, з широкими можливостями, які досягаються за рахунок різноманіття покетів (<em>packages</em>) доповнень.
 <strong>R</strong> повністю безкоштовний та доступний для встановлення на більшість операційних систем. Крім того, є можливість працювати у хмарних додатках.
 В той же час, <strong>R</strong> ідеально підходить для проведення економетричних досліджень.
 Вивчити <strong>R</strong> не складно і цей розділ підготовить Вас до базових операцій.</p>
@@ -147,34 +147,34 @@
 <span class="header-section-number">1.3.1</span> R та арифметика<a class="anchor" aria-label="anchor" href="#r-%D1%82%D0%B0-%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D0%B5%D1%82%D0%B8%D0%BA%D0%B0"><i class="fas fa-link"></i></a>
 </h3>
 <p>Вже з “коробки,” без додаткових пакетів, R надає можливість проводити арифметичні розрахунки. Всі ці операції виконуються за допомогою типових операторів, до яких ми звикли ще з часів навчання в школі або викорситання Excel.</p>
-<p>Так, додавання додавання двох чисел використовується оператор <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>:</p>
+<p>Так, додавання додавання двох чисел використовується оператор <code>+</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span>
 <span class="co">## [1] 4</span></code></pre></div>
-<p>Для віднімання — оператор <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>:</p>
+<p>Для віднімання — оператор <code>-</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">5</span> <span class="op">-</span> <span class="fl">2</span>
 <span class="co">## [1] 3</span></code></pre></div>
-<p>Множення через оператор <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>:</p>
+<p>Множення через оператор <code>*</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">3</span> <span class="op">*</span> <span class="fl">5</span>
 <span class="co">## [1] 15</span></code></pre></div>
-<p>Ділення — <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>:</p>
+<p>Ділення — <code>/</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">25</span> <span class="op">/</span> <span class="fl">5</span>
 <span class="co">## [1] 5</span></code></pre></div>
-<p>Піднесення до степеню через <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code>:</p>
+<p>Піднесення до степеню через <code>^</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">3</span> <span class="op">^</span> <span class="fl">3</span> 
 <span class="co">## [1] 27</span></code></pre></div>
 <p>Як бачимо, нічого складного. Давайте розглянемо, ще два оператори.</p>
-<p>Залишок від ділення — <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code>:</p>
+<p>Залишок від ділення — <code>%%</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">5</span> <span class="op">%%</span> <span class="fl">3</span>
+<code class="sourceCode R"><span class="fl">5</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span>
 <span class="co">## [1] 2</span></code></pre></div>
-<p>Цілочисельне ділення — <code><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></code>:</p>
+<p>Цілочисельне ділення — <code>%/%</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">17</span> <span class="op">%/%</span> <span class="fl">5</span>
+<code class="sourceCode R"><span class="fl">17</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">5</span>
 <span class="co">## [1] 3</span></code></pre></div>
 <p>Узагальнений перелік арифметичних операторів я помістив у наступну таблицю.</p>
 <div class="inline-table"><table class="table table-sm">
@@ -383,7 +383,7 @@
 </tbody>
 </table></div>
 <blockquote>
-<p>Окремо зауважу, що для порівняння двох змінних використовується оператор з подвійним знаком дорівнює <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>, а не з одним <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>. Це досить популярна помилка.</p>
+<p>Окремо зауважу, що для порівняння двох змінних використовується оператор з подвійним знаком дорівнює <code>==</code>, а не з одним <code>=</code>. Це досить популярна помилка.</p>
 </blockquote>
 </div>
 </div>
@@ -418,89 +418,471 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="st">"Ash nazg durbatulûk, ash nazg gimbatul,
              ash nazg thrakatulûk, agh burzum-ishi krimpatul."</span><span class="op">)</span>
 <span class="co">## [1] TRUE</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>
+<strong>Логічні (logical) данні</strong> - це тип даних які приймають лише значення <code>TRUE</code> або <code>FALSE</code>. Ми з ними вже зустрічалися коли використовували оператори порівняння.</li>
+</ol>
 <p>Для перевірки типу даних використовується функція <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
 <span class="co">## [1] "numeric"</span></code></pre></div>
-<div id="вектори" class="section level3" number="1.4.1">
+</div>
+<div id="r_str" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Структури даних<a class="anchor" aria-label="anchor" href="#r_str"><i class="fas fa-link"></i></a>
+</h2>
+R працює з багатьма структурами даних: вектори, матриці, масиви, дата фрейми та списки. Вони відрізняються за способом створення, структурою, складністю будови та способом звернення до їх елементів. Схематично ці структури даних зображено на рисунку <a href="introR.html#fig:datastr">1.4</a>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:datastr"></span>
+<img src="docs/images/001_data_stucture.png" alt="Структури даних R" width="100%"><p class="caption">
+Рисунок 1.4: Структури даних R
+</p>
+</div>
+<div id="r_vec" class="section level3" number="1.5.1">
 <h3>
-<span class="header-section-number">1.4.1</span> Вектори<a class="anchor" aria-label="anchor" href="#%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.1</span> Вектор<a class="anchor" aria-label="anchor" href="#r_vec"><i class="fas fa-link"></i></a>
 </h3>
+<p>Почнемо з найпростішого. <strong>Вектор</strong> - це одновимірна послідовність елементів <strong>одного типу</strong>. Для створення вектору використовується функція <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">6</span>, <span class="fl">0</span><span class="op">)</span>
+<span class="co">## [1]  2  4  8 -2 -6  0</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"два"</span>, <span class="st">"чотири"</span>, <span class="st">"шість"</span><span class="op">)</span>
+<span class="co">## [1] "два"    "чотири" "шість"</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">## [1]  TRUE  TRUE FALSE</span></code></pre></div>
+<p>Для створення послідовностей з кроком 1 зручно використовувати оператор <code>:</code></p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span>
+<span class="co">##  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5</span>
+
+<span class="fl">3</span><span class="op">:</span><span class="op">-</span><span class="fl">2</span>
+<span class="co">## [1]  3  2  1  0 -1 -2</span></code></pre></div>
+<p>Для складніших послідовностей є вбудована функція <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> (не забувайте дивитися довідку по функціях)</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">## [1] 1 3 5 7 9</span></code></pre></div>
+<p>Крім того, можна задати не лише крок послідовності (аргумент <code>by =</code>), а й довжину (аргумент <code>length.out =</code>)</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, length.out <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="co">## [1]  1.0  5.5 10.0</span></code></pre></div>
+<p>Інша корисна функція <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> дозволяє створити вектор з повторюваними значеннями. Перший аргумент - значення яке слід повторювати, другий аргумент - скільки разів повторювати.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="co">## [1] 3 3 3 3 3</span></code></pre></div>
+<p>При цьому і перший і другий аргумент може бути вектором:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="co">##  [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="co">## [1] 1 2 2 3 3 3</span></code></pre></div>
+<p>Крім того, можна об’єднувати вектори:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">v1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Say"</span>, <span class="st">"friend"</span><span class="op">)</span>
+
+<span class="va">v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"and"</span>, <span class="st">"enter"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">v1</span>, <span class="va">v2</span><span class="op">)</span>
+<span class="co">## [1] "Say"    "friend" "and"    "enter"</span></code></pre></div>
+<p>В означенні вектора в мові програмування R сказано, що <strong>всі елементи вектори мають бути одного типу</strong>. Одразу хочеться перевірити, що буде, якщо ця умова не буде виконуватись. В більшості мов програмування ми б отримали помилку. Мова програмування R, при розбіжності типів, буде зводити все до “спільного знаменника,” тобто конвертувати дані за певними правилами - приведення типів (coercion).</p>
+<p>Виділяють два типи:</p>
+<ul>
+<li>
+<strong>неявне приведення типів (implicit coercion)</strong>, коли все відбувається автоматично за вбудованими правилами.</li>
+<li>
+<strong>явне приведення типів (explicit coercion)</strong>, коли ми самі вирішуємо до якого типу перевести дані, якщо це можливо.</li>
+</ul>
+<p>Приклад неявного приведення типів:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">2</span>, <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">## [1] 1 2 0</span>
+
+<span class="fl">3</span> <span class="op">-</span> <span class="cn">TRUE</span>
+<span class="co">## [1] 2</span></code></pre></div>
+<p><code>TRUE</code> перетворився в <code>1</code>, а <code>FALSE</code> в <code>0</code>.
+В цьому випадку всі дані приведено до текстового типу:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">2</span>, <span class="st">"Hello"</span><span class="op">)</span>
+<span class="co">## [1] "TRUE"  "2"     "Hello"</span></code></pre></div>
+<p>В R є своя ієрархія типів:
+<code>NULL &lt; raw &lt; logical &lt; integer &lt; double &lt; complex &lt; character &lt; list &lt; expression</code></p>
+<p>Для явного приведення типів даних використовується сімейство функцій, що починається на <code>as.</code>:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">2</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] 1 2 0 0</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">2</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] "1" "2" "0" "0"</span></code></pre></div>
+<div id="r_vec_oper" class="section level4" number="1.5.1.1">
+<h4>
+<span class="header-section-number">1.5.1.1</span> Операції з векторами<a class="anchor" aria-label="anchor" href="#r_vec_oper"><i class="fas fa-link"></i></a>
+</h4>
+<p>Всі арифметичні операції, що ми розглядали раніше, можна використовувати й <strong>до векторів однакової довжини</strong>:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
+
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">:</span><span class="fl">6</span>
+
+<span class="va">q</span> <span class="op">+</span> <span class="va">w</span>
+<span class="co">## [1]  3  5  7  9 11</span>
+
+<span class="va">q</span> <span class="op">-</span> <span class="va">w</span>
+<span class="co">## [1] -1 -1 -1 -1 -1</span>
+
+<span class="va">q</span> <span class="op">*</span> <span class="va">w</span>
+<span class="co">## [1]  2  6 12 20 30</span>
+
+<span class="va">q</span> <span class="op">/</span> <span class="va">w</span>
+<span class="co">## [1] 0.5000000 0.6666667 0.7500000 0.8000000 0.8333333</span>
+
+<span class="va">w</span> <span class="op">^</span> <span class="va">q</span> <span class="op">+</span> <span class="va">q</span> <span class="op">-</span> <span class="va">w</span> <span class="op">*</span> <span class="va">q</span>
+<span class="co">## [1]    1    5   55  609 7751</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span>
+<span class="co">## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</span></code></pre></div>
 </div>
-<div id="матриці" class="section level3" number="1.4.2">
+<div id="r_rec_rule" class="section level4" number="1.5.1.2">
+<h4>
+<span class="header-section-number">1.5.1.2</span> Правило переписування<a class="anchor" aria-label="anchor" href="#r_rec_rule"><i class="fas fa-link"></i></a>
+</h4>
+<p>Якщо <strong>вектори не однакової довжини</strong> й ми хочемо провести з ними певні операції, то в такому випадку спрацює <strong>правило переписування (recycling rule)</strong>: якщо коротший вектор кратний довжині довшого, короткий буде повторюватися необхідну кількість разів.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>
+<span class="va">q</span> <span class="op">*</span> <span class="va">w</span>
+<span class="co">## [1] 1 4 3 8</span></code></pre></div>
+<p>Операції з вектором та окремим значенням можна вважати окремим випадком рестайлінгу: окреме значення буде повторюватися необхідну кількість разів:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">w</span> <span class="op">*</span> <span class="fl">2</span>
+<span class="co">## [1] 2 4 6 8</span></code></pre></div>
+<p>Якщо коротший вектор не кратний довшому (наприклад, перший довжиною 2, а інший - 3), то R все одно порахує результат, але видасть попередження:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">q</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span>
+<span class="co">## Warning in q + c(1, 5, 7): longer object length is not a multiple of</span>
+<span class="co">## shorter object length</span>
+<span class="co">## [1] 2 7 8</span></code></pre></div>
+</div>
+<div id="r_vec_idx" class="section level4" number="1.5.1.3">
+<h4>
+<span class="header-section-number">1.5.1.3</span> Індексація векторів<a class="anchor" aria-label="anchor" href="#r_vec_idx"><i class="fas fa-link"></i></a>
+</h4>
+<p>Індексація - задача вибору окремого елемента структури даних. Для цього використовуються квадратні дужки <code>[]</code>.</p>
+<p>Найпростіший варіант індексація по номеру, тобто порядкове значення елемента:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="op">-</span><span class="fl">6</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">e</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">## [1] -5</span>
+
+<span class="va">e</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>
+<span class="co">## [1] 7</span></code></pre></div>
+<blockquote>
+<p><strong>Важливий факт - індексація в мові програмування R починається з 1.</strong></p>
+</blockquote>
+<p>За допомогою індексації можна не лише звертатися до окремого елементу, а й заміняти його значення:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">e</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">15</span></code></pre></div>
+<p>Можна використовувати цілі вектори для індексації:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">e</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
+<span class="co">## [1] -4 -3  2 15</span>
+
+<span class="va">e</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">## [1] -6 15  2 -3 -4 -5</span></code></pre></div>
+<p>Індексація зі знаком мінус видасть всі значення вектора крім обраних:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">e</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">## [1] -4 -3  2 15 -6  4  3  2</span>
+
+<span class="va">e</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span>
+<span class="co">## [1] -4 -3  2 -6  4  3  2</span></code></pre></div>
+</div>
+</div>
+<div id="r_matrix" class="section level3" number="1.5.2">
 <h3>
-<span class="header-section-number">1.4.2</span> Матриці<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D1%86%D1%96"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.2</span> Матриці<a class="anchor" aria-label="anchor" href="#r_matrix"><i class="fas fa-link"></i></a>
 </h3>
+<p><strong>Матриця (matrix)</strong> — це двовимірний масив даних, в якому кожен елемент має однаковий тип (числовий, текстовий, логічний). Іншими словами, матриця - це двовимірний вектор, у якого є довжина та ширина.</p>
+<p>Створення матриці відбувається за допомогою функції <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code>, в якій слід вказати кількість рядків та стовпчиків:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="co">##      [,1] [,2] [,3] [,4]</span>
+<span class="co">## [1,]    1    5    9   13</span>
+<span class="co">## [2,]    2    6   10   14</span>
+<span class="co">## [3,]    3    7   11   15</span>
+<span class="co">## [4,]    4    8   12   16</span></code></pre></div>
+<p>За замовчуванням значення матриці заповнюються по стовпчиках. Але це можна змінити за допомогою аргументу <code>byrow = TRUE</code></p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">##      [,1] [,2] [,3] [,4]</span>
+<span class="co">## [1,]    1    2    3    4</span>
+<span class="co">## [2,]    5    6    7    8</span>
+<span class="co">## [3,]    9   10   11   12</span>
+<span class="co">## [4,]   13   14   15   16</span></code></pre></div>
+<p>Оскільки матриця — це двовимірний масив, то для індексації використовуються два індекси, що розділені комою: перший відповідає за рядок, другий за стовпчик.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="va">my_matrix</span>
+<span class="co">##      [,1] [,2] [,3] [,4]</span>
+<span class="co">## [1,]    1    5    9   13</span>
+<span class="co">## [2,]    2    6   10   14</span>
+<span class="co">## [3,]    3    7   11   15</span>
+<span class="co">## [4,]    4    8   12   16</span>
+
+<span class="va">my_matrix</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">]</span>
+<span class="co">## [1] 10</span>
+
+<span class="va">my_matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
+<span class="co">##      [,1] [,2]</span>
+<span class="co">## [1,]    9   13</span>
+<span class="co">## [2,]   10   14</span></code></pre></div>
+<p>Якщо один з індексів залишити пустим — отримаємо всі значення рядка/стовпчика в залежності від того, який індекс ми не вказуємо.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_matrix</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
+<span class="co">##      [,1] [,2]</span>
+<span class="co">## [1,]    1    5</span>
+<span class="co">## [2,]    2    6</span>
+<span class="co">## [3,]    3    7</span>
+<span class="co">## [4,]    4    8</span>
+
+<span class="va">my_matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="op">]</span>
+<span class="co">##      [,1] [,2] [,3] [,4]</span>
+<span class="co">## [1,]    1    5    9   13</span>
+<span class="co">## [2,]    2    6   10   14</span></code></pre></div>
+<p>Аналогічно до вектора, за допомогою індексації можна переписувати частину матриці:</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">my_matrix</span>
+<span class="co">##      [,1] [,2] [,3] [,4]</span>
+<span class="co">## [1,]    1    5    0    0</span>
+<span class="co">## [2,]    2    6    0    0</span>
+<span class="co">## [3,]    3    7   11   15</span>
+<span class="co">## [4,]    4    8   12   16</span></code></pre></div>
 </div>
-<div id="списки" class="section level3" number="1.4.3">
+<div id="r_array" class="section level3" number="1.5.3">
 <h3>
-<span class="header-section-number">1.4.3</span> Списки<a class="anchor" aria-label="anchor" href="#%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.3</span> Масиви<a class="anchor" aria-label="anchor" href="#r_array"><i class="fas fa-link"></i></a>
 </h3>
+<p><strong>Масиви даних (array)</strong> — схожі на матриці, але мають понад два виміри. Створюються вони за допомогою функції <code><a href="https://rdrr.io/r/base/array.html">array()</a></code>, де слід вказати вектор, з якого буде створено масив, і його розмірність:</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">my_array</span>
+<span class="co">## , , 1</span>
+<span class="co">## </span>
+<span class="co">##      [,1] [,2]</span>
+<span class="co">## [1,]    1    5</span>
+<span class="co">## [2,]    2    6</span>
+<span class="co">## [3,]    3    7</span>
+<span class="co">## [4,]    4    8</span>
+<span class="co">## </span>
+<span class="co">## , , 2</span>
+<span class="co">## </span>
+<span class="co">##      [,1] [,2]</span>
+<span class="co">## [1,]    9   13</span>
+<span class="co">## [2,]   10   14</span>
+<span class="co">## [3,]   11   15</span>
+<span class="co">## [4,]   12   16</span></code></pre></div>
 </div>
-<div id="дата-фрейми" class="section level3" number="1.4.4">
+<div id="r_list" class="section level3" number="1.5.4">
 <h3>
-<span class="header-section-number">1.4.4</span> Дата фрейми<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.4</span> Списки<a class="anchor" aria-label="anchor" href="#r_list"><i class="fas fa-link"></i></a>
 </h3>
+<p><strong>Списки</strong> — це впорядкований набір об’єктів. Я представляю собі списки, як блокнот, в якому на кожній сторінці зберігається інформація у певному форматі. Вони можуть зберігати різні дані, в тому числі вектори, матриці, дата фрейми й інші списки.</p>
+<p>Списки створюються за допомогою функції <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,
+                gendalf <span class="op">=</span> <span class="st">"You shall not pass"</span>,
+                my_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">my_list</span>
+<span class="co">## $vec</span>
+<span class="co">## [1] 1 2 3 4 5</span>
+<span class="co">## </span>
+<span class="co">## $gendalf</span>
+<span class="co">## [1] "You shall not pass"</span>
+<span class="co">## </span>
+<span class="co">## $my_matrix</span>
+<span class="co">##      [,1] [,2]</span>
+<span class="co">## [1,]    1    3</span>
+<span class="co">## [2,]    2    4</span></code></pre></div>
+<p>В цьому випадку <code>vec</code>, <code>gendalf</code> та <code>my_matrix</code> — назви елементів списку.</p>
+<p>Для звернення до елементів списку можна використовувати індекси або імена (через символ <code>$</code>). При зверненні через індекс необхідно використовувати подвійні квадратні дужки, наприклад:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>
+<span class="co">## [1] "You shall not pass"</span>
+
+<span class="va">my_list</span><span class="op">$</span><span class="va">gendalf</span>
+<span class="co">## [1] "You shall not pass"</span>
+
+<span class="va">my_list</span><span class="op">[[</span><span class="st">'gendalf'</span><span class="op">]</span><span class="op">]</span>
+<span class="co">## [1] "You shall not pass"</span></code></pre></div>
+<p>Списки досить часто використовуються в R, наприклад результати побудови математичних моделей, статистичних тестів зберігаються у вигляді списків. тож важливо вміти з ними працювати.</p>
 </div>
-<div id="фактори" class="section level3" number="1.4.5">
+<div id="r_dataframe" class="section level3" number="1.5.5">
 <h3>
-<span class="header-section-number">1.4.5</span> Фактори<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80%D0%B8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.5</span> Дата фрейми<a class="anchor" aria-label="anchor" href="#r_dataframe"><i class="fas fa-link"></i></a>
 </h3>
+<p>Нарешті ми перейшли до найголовнішого - <strong>дата фрейми (data frames)</strong>. Саме з такою структурою даних працюють найчастіше. Головною особливістю їх є те, що різні стовпчики можуть містити різний тип даних (але їх довжина має бути однаковою).
+Для створення дата фрейму використовується функція <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Frodo"</span>, <span class="st">"Eowyn"</span>, <span class="st">"Legolas"</span>, <span class="st">"Arwen"</span><span class="op">)</span>,
+                    sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>,
+                    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">51</span>, <span class="fl">24</span>, <span class="fl">2931</span>, <span class="fl">2700</span><span class="op">)</span>,
+                    one_ring <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+<span class="va">my_df</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">sex</th>
+<th align="right">age</th>
+<th align="left">one_ring</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Frodo</td>
+<td align="left">male</td>
+<td align="right">51</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Eowyn</td>
+<td align="left">female</td>
+<td align="right">24</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Legolas</td>
+<td align="left">male</td>
+<td align="right">2931</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Arwen</td>
+<td align="left">female</td>
+<td align="right">2700</td>
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table></div>
+<p>Переглянути структуру дата фрейму можна за допомогою функції <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">my_df</span><span class="op">)</span>
+<span class="co">## 'data.frame':    4 obs. of  4 variables:</span>
+<span class="co">##  $ name    : chr  "Frodo" "Eowyn" "Legolas" "Arwen"</span>
+<span class="co">##  $ sex     : chr  "male" "female" "male" "female"</span>
+<span class="co">##  $ age     : num  51 24 2931 2700</span>
+<span class="co">##  $ one_ring: logi  TRUE FALSE FALSE FALSE</span></code></pre></div>
+<p>В нашому випадку перший та другий стовпчик - <em>текстові</em>, третя - <em>числова</em>, четверта - <em>логічна</em>.</p>
+<p>Переглянути назви стовпців або надати їм нову назву можна за допомогою функції <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_df</span><span class="op">)</span>
+<span class="co">## [1] "name"     "sex"      "age"      "one_ring"</span></code></pre></div>
+<p>Індексація аналогічно до матриці та списків можлива через <code>[]</code> та знак <code>$</code>.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_df</span><span class="op">$</span><span class="va">name</span>
+<span class="co">## [1] "Frodo"   "Eowyn"   "Legolas" "Arwen"</span>
+
+<span class="va">my_df</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>
+<span class="co">## [1] "Eowyn"   "Legolas"</span>
+
+<span class="va">my_df</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span>
+<span class="co">## [1] 24</span>
+
+<span class="va">my_df</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, <span class="st">"name"</span><span class="op">]</span>
+<span class="co">## [1] "Eowyn"   "Legolas"</span></code></pre></div>
+<p>Для перегляду дата фрейму в RStudio використовується функція <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> або можна просто натиснути на назву змінної у розділі Environment. Ви побачите таблицю, дещо схожу на Excel або Google Spreadsheets.</p>
 </div>
-<div id="часові-ряди" class="section level3" number="1.4.6">
+</div>
+<div id="r_packages" class="section level2" number="1.6">
+<h2>
+<span class="header-section-number">1.6</span> Пакети в R<a class="anchor" aria-label="anchor" href="#r_packages"><i class="fas fa-link"></i></a>
+</h2>
+<hr>
+<p>R - мова програмування з дуже широкими можливостями. Однак рано чи пізно ми почнемо стикатися з задачами, які потребуватимуть додаткових можливостей. Ці можливості можна розширити за допомогою додаткових <strong>пакетів (packages)</strong>.</p>
+<p>В більшості випадків основним змістом пакетів є набір додаткових функцій, даних або нових структур даних.</p>
+<p>До найпопулярніших пакетів у сфері науки про дані (data science) можна віднести екосистему пакетів <strong>tidyverse</strong>, пакети <strong>data.table</strong>, <strong>mlr3</strong> та ще багато-багато інших.</p>
+<div id="r_base_packages" class="section level3" number="1.6.1">
 <h3>
-<span class="header-section-number">1.4.6</span> Часові ряди<a class="anchor" aria-label="anchor" href="#%D1%87%D0%B0%D1%81%D0%BE%D0%B2%D1%96-%D1%80%D1%8F%D0%B4%D0%B8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6.1</span> Вбудовані пакети<a class="anchor" aria-label="anchor" href="#r_base_packages"><i class="fas fa-link"></i></a>
 </h3>
+<p>Разом з самою мовою програмування R поставляються пакети, які не потрібно встановлювати: основний <code>base</code> та декілька інших, такі як <code>stats</code>, <code>utils</code>, <code>graphics</code> та інші. Повний перелік можна переглянути за наступним кодом:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">##  [1] "base"      "compiler"  "datasets"  "graphics"  "grDevices"</span>
+<span class="co">##  [6] "grid"      "methods"   "parallel"  "splines"   "stats"    </span>
+<span class="co">## [11] "stats4"    "tcltk"     "tools"     "utils"</span></code></pre></div>
+</div>
+<div id="r_cran" class="section level3" number="1.6.2">
+<h3>
+<span class="header-section-number">1.6.2</span> Встановлення пакетів з CRAN<a class="anchor" aria-label="anchor" href="#r_cran"><i class="fas fa-link"></i></a>
+</h3>
+<p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] 18895</span></code></pre></div>
+<p>І з кожним роком їх стає все більше:
+<img src="docs/images/CRAN.png" width="100%">
+Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє звантажувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"vroom"</span><span class="op">)</span></code></pre></div>
+Інший спосіб встановлення пакетів - через окреме меню <strong>Tools -&gt; Install Packages</strong> (рис.@ref(fig:packages_05))
+<div class="figure">
+<img src="docs/images/002_install_pack.png" alt="Меню встановлення пакетів в RStudio" width="45%"><p class="caption">
+(#fig:packages_05)Меню встановлення пакетів в RStudio
+</p>
+</div>
+<p>Або через кнопку в розділі <strong>Packages</strong> (рис. @ref(fig:packages_06))</p>
+<div class="figure">
+<img src="docs/images/003_install_pack.png" alt="Кнопка встановлення пакетів" width="60%"><p class="caption">
+(#fig:packages_06)Кнопка встановлення пакетів
+</p>
+</div>
+Після чого з’явиться меню (рис. @ref(fig:packages_07)) в якому можна вказати назву потрібного пакету. Бажано залишити галочку <strong>“install dependencies”</strong>, оскільки деякі пакети мають залежність від інших пакетів і їх також слід встановити. Може статися ситуація, коли завантажуючи один пакет разом з ним буде додатково встановлено ще десятки інших.
+присоювання
+<div class="figure">
+<img src="docs/images/004_install_pack.png" alt="Меню встановлення пакетів" width="50%"><p class="caption">
+(#fig:packages_07)Меню встановлення пакетів
+</p>
 </div>
 </div>
-<div id="пакети-в-r" class="section level2" number="1.5">
-<h2>
-<span class="header-section-number">1.5</span> Пакети в R<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8-%D0%B2-r"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
+<div id="r_git" class="section level3" number="1.6.3">
+<h3>
+<span class="header-section-number">1.6.3</span> Встановлення пакетів з GitHub<a class="anchor" aria-label="anchor" href="#r_git"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бувають випадки, коли автори пакетів не пройшли або не захотіли проходити перевірку через CRAN (насправді причин може бути безліч). В таких випадках пакет (який ви напевно знайшли через пошук в Google) скоріш за все буде зберігатися на репозиторію GitHub. Для таких випадків нам необхідно встановити пакет <code>devtools</code> та використати з нього функцію <code>install_github()</code>. Покажу на прикладі пакету <code>xaringan</code>, який я використовую для створення інтерактивних презентацій.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">'yihui/xaringan'</span><span class="op">)</span></code></pre></div>
+<p>Посилання <code>yihui/xaringan</code> — це адреса пакету в <a href="https://github.com/yihui/xaringan">GitHub</a></p>
 </div>
-<div id="імпорт-та-експорт-даних" class="section level2" number="1.6">
-<h2>
-<span class="header-section-number">1.6</span> Імпорт та експорт даних<a class="anchor" aria-label="anchor" href="#%D1%96%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%82%D0%B0-%D0%B5%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
+<div id="r_lib" class="section level3" number="1.6.4">
+<h3>
+<span class="header-section-number">1.6.4</span> Підключення пакетів<a class="anchor" aria-label="anchor" href="#r_lib"><i class="fas fa-link"></i></a>
+</h3>
+<p>Після завантаження пакета, для того щоб почати користуватися його функціоналом необхідно його підключити до поточної сесії. Для цього використовується функція <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Назву пакету можна писати як в лапках так і без них.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vroom.r-lib.org">vroom</a></span><span class="op">)</span></code></pre></div>
+<p>Як правило, підключення пакетів записується на початку скрипта, що дає можливість зрозуміти який інструментарій використовується в ньому.</p>
 </div>
-<div id="умовні-конструкції" class="section level2" number="1.7">
-<h2>
-<span class="header-section-number">1.7</span> Умовні конструкції<a class="anchor" aria-label="anchor" href="#%D1%83%D0%BC%D0%BE%D0%B2%D0%BD%D1%96-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%97"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
+<div id="r_::" class="section level3" number="1.6.5">
+<h3>
+<span class="header-section-number">1.6.5</span> Виклик функції через <code>::</code><a class="anchor" aria-label="anchor" href="#r_::"><i class="fas fa-link"></i></a>
+</h3>
+<p>У випадках, коли функцію з пакету буде використано вcього декілька разів, є сенс не підключати весь пакет, а завантажити тільки окрему його функцію. Для цього використовується спеціальний оператор <code>::</code>, ліворуч від якого вказується назва пакету, а праворуч відповідна функція з обраного пакету.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">vroom</span><span class="fu">::</span><span class="fu"><a href="https://vroom.r-lib.org/reference/vroom_example.html">vroom_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Крім того оператор <code>::</code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Пріоритет надається функціоналу пакету, який був підключений останній.</p>
+
 </div>
-<div id="умовні-конструкції-1" class="section level2" number="1.8">
-<h2>
-<span class="header-section-number">1.8</span> Умовні конструкції<a class="anchor" aria-label="anchor" href="#%D1%83%D0%BC%D0%BE%D0%B2%D0%BD%D1%96-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%97-1"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="створення-функцій-в-r" class="section level2" number="1.9">
-<h2>
-<span class="header-section-number">1.9</span> Створення функцій в R<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%96%D0%B9-%D0%B2-r"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="вступ-у-tidyverse" class="section level2" number="1.10">
-<h2>
-<span class="header-section-number">1.10</span> Вступ у Tidyverse<a class="anchor" aria-label="anchor" href="#%D0%B2%D1%81%D1%82%D1%83%D0%BF-%D1%83-tidyverse"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="створення-звітів-r-markdown" class="section level2" number="1.11">
-<h2>
-<span class="header-section-number">1.11</span> Створення звітів: R Markdown<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B7%D0%B2%D1%96%D1%82%D1%96%D0%B2-r-markdown"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="index.html">Основи економетрики в R</a></div>
 <div class="next"><a href="econometrics_and_economic_data.html"><span class="header-section-number">2</span> Економетрика та економічні дані</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#introR"><span class="header-section-number">1</span> Вступ до R</a></li>
 <li>
@@ -521,29 +903,31 @@
 <li><a class="nav-link" href="#%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8-%D0%BF%D0%BE%D1%80%D1%96%D0%B2%D0%BD%D1%8F%D0%BD%D0%BD%D1%8F"><span class="header-section-number">1.3.7</span> Оператори порівняння</a></li>
 </ul>
 </li>
+<li><a class="nav-link" href="#%D1%82%D0%B8%D0%BF%D0%B8-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">1.4</span> Типи даних</a></li>
 <li>
-<a class="nav-link" href="#%D1%82%D0%B8%D0%BF%D0%B8-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">1.4</span> Типи даних</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8"><span class="header-section-number">1.4.1</span> Вектори</a></li>
-<li><a class="nav-link" href="#%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D1%86%D1%96"><span class="header-section-number">1.4.2</span> Матриці</a></li>
-<li><a class="nav-link" href="#%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B8"><span class="header-section-number">1.4.3</span> Списки</a></li>
-<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B8"><span class="header-section-number">1.4.4</span> Дата фрейми</a></li>
-<li><a class="nav-link" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80%D0%B8"><span class="header-section-number">1.4.5</span> Фактори</a></li>
-<li><a class="nav-link" href="#%D1%87%D0%B0%D1%81%D0%BE%D0%B2%D1%96-%D1%80%D1%8F%D0%B4%D0%B8"><span class="header-section-number">1.4.6</span> Часові ряди</a></li>
+<a class="nav-link" href="#r_str"><span class="header-section-number">1.5</span> Структури даних</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r_vec"><span class="header-section-number">1.5.1</span> Вектор</a></li>
+<li><a class="nav-link" href="#r_matrix"><span class="header-section-number">1.5.2</span> Матриці</a></li>
+<li><a class="nav-link" href="#r_array"><span class="header-section-number">1.5.3</span> Масиви</a></li>
+<li><a class="nav-link" href="#r_list"><span class="header-section-number">1.5.4</span> Списки</a></li>
+<li><a class="nav-link" href="#r_dataframe"><span class="header-section-number">1.5.5</span> Дата фрейми</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8-%D0%B2-r"><span class="header-section-number">1.5</span> Пакети в R</a></li>
-<li><a class="nav-link" href="#%D1%96%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%82%D0%B0-%D0%B5%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">1.6</span> Імпорт та експорт даних</a></li>
-<li><a class="nav-link" href="#%D1%83%D0%BC%D0%BE%D0%B2%D0%BD%D1%96-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%97"><span class="header-section-number">1.7</span> Умовні конструкції</a></li>
-<li><a class="nav-link" href="#%D1%83%D0%BC%D0%BE%D0%B2%D0%BD%D1%96-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%97-1"><span class="header-section-number">1.8</span> Умовні конструкції</a></li>
-<li><a class="nav-link" href="#%D1%81%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%96%D0%B9-%D0%B2-r"><span class="header-section-number">1.9</span> Створення функцій в R</a></li>
-<li><a class="nav-link" href="#%D0%B2%D1%81%D1%82%D1%83%D0%BF-%D1%83-tidyverse"><span class="header-section-number">1.10</span> Вступ у Tidyverse</a></li>
-<li><a class="nav-link" href="#%D1%81%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B7%D0%B2%D1%96%D1%82%D1%96%D0%B2-r-markdown"><span class="header-section-number">1.11</span> Створення звітів: R Markdown</a></li>
+<li>
+<a class="nav-link" href="#r_packages"><span class="header-section-number">1.6</span> Пакети в R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r_base_packages"><span class="header-section-number">1.6.1</span> Вбудовані пакети</a></li>
+<li><a class="nav-link" href="#r_cran"><span class="header-section-number">1.6.2</span> Встановлення пакетів з CRAN</a></li>
+<li><a class="nav-link" href="#r_git"><span class="header-section-number">1.6.3</span> Встановлення пакетів з GitHub</a></li>
+<li><a class="nav-link" href="#r_lib"><span class="header-section-number">1.6.4</span> Підключення пакетів</a></li>
+<li><a class="nav-link" href="#r_::"><span class="header-section-number">1.6.5</span> Виклик функції через ::</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/aranaur/r_econometrics/blob/master/01-intro.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/aranaur/r_econometrics/edit/master/01-intro.Rmd">Редагувати сторінку <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/aranaur/r_econometrics/blob/master/01-intro.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_econometrics/edit/master/01-intro.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -556,11 +940,11 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", Ігор Мірошниченко. <br>Дата останніх змін 2021-08-31.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-    <p>Книга створена за допомогою пакету <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>
