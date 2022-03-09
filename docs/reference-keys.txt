@@ -35,7 +35,12 @@ r_cran
 r_git
 r_lib
 r_fun_call
-econometrics_and_economic_data
+dplyr
+tidy
+tidy_read
+tidy_csv
+tidy_xls
+filter
 simple_regression
 multiple_regression
 multicollinearity
