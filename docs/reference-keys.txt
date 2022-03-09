@@ -40,7 +40,9 @@ tidy
 tidy_read
 tidy_csv
 tidy_xls
+glimpse
 filter
+slice
 simple_regression
 multiple_regression
 multicollinearity

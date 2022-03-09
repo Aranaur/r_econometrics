@@ -63,10 +63,12 @@
 <span class="header-section-number"> 2</span> Маніпуляції з даними за допомогою dplyr<a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
 </h1>
 <hr>
-<p>В минулій главі ми розібрали основні принципи мови програмування R. І тут слід зазначити, що окрім базового синтаксису існують й інші. Загалом, можна виділити три основні діалекти в мові програмування R:
-* base: основний фундамент мови, який ми розібрали (але не повністю) раніше.
-* Tidyverse: окремий напрямок розвитку мови програмування R, що сконцентрований у напрямку науки про дані (data science).
-* data.table: альтернативний напрямок, який дозволяє оброблювати об’ємні масиви даних за рекордний час <span class="citation"><a href="references.html#ref-h2obench" role="doc-biblioref"><span>“Database-Like Ops Benchmark”</span></a> (<a href="references.html#ref-h2obench" role="doc-biblioref">n.d.</a>)</span>.</p>
+<p>В минулій главі ми розібрали основні принципи мови програмування R. І тут слід зазначити, що окрім базового синтаксису існують й інші. Загалом, можна виділити три основні діалекти в мові програмування R:</p>
+<ul>
+<li><p>base: основний фундамент мови, який ми розібрали (але не повністю) раніше.</p></li>
+<li><p>Tidyverse: окремий напрямок розвитку мови програмування R, що сконцентрований у напрямку науки про дані (data science).</p></li>
+<li><p>data.table: альтернативний напрямок, який дозволяє оброблювати об’ємні масиви даних за рекордний час <span class="citation"><a href="references.html#ref-h2obench" role="doc-biblioref"><span>“Database-Like Ops Benchmark”</span></a> (<a href="references.html#ref-h2obench" role="doc-biblioref">n.d.</a>)</span>.</p></li>
+</ul>
 <p>Їх можна сміло поєднувати в своїх проектах, що значним чином підвищує ефективність та швидкість роботи.</p>
 <div id="tidy" class="section level2" number="2.1">
 <h2>
@@ -74,37 +76,44 @@
 </h2>
 <hr>
 <p><a href="https://www.tidyverse.org/"><strong>Tidyverse</strong></a> — це екосистема, набір пакетів, які спеціально створені для науки про дані (data science). В ньому є ключові пакети (ядро tidyverse) та побічні — які додатково розширюють можливості мови програмування R.</p>
-<p><strong>Концепція охайних даних (tidy-data)</strong> передбачає приведення даних до формату, в якому:
-- Кожна змінна міститься в окремому стовпчику
-- Кожне спостереження міститься в окремому рядку
-- Кожне значення міститься в окремій комірці</p>
-<p><strong>Ядро tidyverse:</strong>
-- <em>ggplot2</em>, для візуалізації
-- <em>dplyr</em>, для маніпуляції з даними
-- <em>tidyr</em>, для отримання охайних даних (tidy data)
-- <em>readr</em>, для зчитування та записування файлів в R
-- <em>purrr</em>, для функціонального програмування
-- <em>tibble</em>, для роботи з тібблами (tibble), просунутий варіант дата фреймів
-- <em>stringr</em>, для роботи з текстовими даними
-- <em>forcats</em>, для роботи з факторами (factors)</p>
-<p>Крім того є ще низка допоміжних пакетів, які не входять до ядра tidyverse але вважаються його частиною:
-- <em>vroom</em>, для швидкого завантаження даних
-- <em>DBI</em>, для роботи з базами даних
-- <em>haven</em>, для даних SPSS, Stata та SAS
-- <em>httr</em>, для роботи з API
-- <em>readxl</em> для завантаження .xls та .xlsx файлів
-- <em>googlesheets4</em>, для роботи з Google Sheet
-- <em>googledrive</em>, для роботи з Google Drive
-- <em>rvest</em>, для скрапінгу веб-сторінок
-- <em>jsonlite</em>, для роботи з JSON-файлами
-- <em>xml2</em>, для роботи з XML
-- <em>lubridate</em>, для роботи з датами
-- <em>dbplyr</em>, для перетворення коду <code>dplyr</code> в SQL
-- <em>dtplyr</em>, для перетворення коду на <code>data.table</code>
-- <em>magrittr</em>, для використання конвеєрів <code>%&gt;%</code> (pipe)
-- <em>glue</em>, для поєднання даних та тексту
-- <em>tidymodels</em>, для роботи з моделями машнинного навчання.</p>
+<p><strong>Концепція охайних даних (tidy-data)</strong> передбачає приведення даних до формату, в якому:</p>
+<ul>
+<li><p>Кожна змінна міститься в окремому стовпчику</p></li>
+<li><p>Кожне спостереження міститься в окремому рядку</p></li>
+<li><p>Кожне значення міститься в окремій комірці</p></li>
+</ul>
+<p><strong>Ядро tidyverse:</strong></p>
+<ul>
+<li><p><em>ggplot2</em>, для візуалізації</p></li>
+<li><p><em>dplyr</em>, для маніпуляції з даними</p></li>
+<li><p><em>tidyr</em>, для отримання охайних даних (tidy data)</p></li>
+<li><p><em>readr</em>, для зчитування та записування файлів в R</p></li>
+<li><p><em>purrr</em>, для функціонального програмування</p></li>
+<li><p><em>tibble</em>, для роботи з тібблами (tibble), просунутий варіант дата фреймів</p></li>
+<li><p><em>stringr</em>, для роботи з текстовими даними</p></li>
+<li><p><em>forcats</em>, для роботи з факторами (factors)</p></li>
+</ul>
+<p>Крім того є ще низка допоміжних пакетів, які не входять до ядра tidyverse але вважаються його частиною:</p>
+<ul>
+<li><p><em>vroom</em>, для швидкого завантаження даних</p></li>
+<li><p><em>DBI</em>, для роботи з базами даних</p></li>
+<li><p><em>haven</em>, для даних SPSS, Stata та SAS</p></li>
+<li><p><em>httr</em>, для роботи з API</p></li>
+<li><p><em>readxl</em> для завантаження .xls та .xlsx файлів</p></li>
+<li><p><em>googlesheets4</em>, для роботи з Google Sheet</p></li>
+<li><p><em>googledrive</em>, для роботи з Google Drive</p></li>
+<li><p><em>rvest</em>, для скрапінгу веб-сторінок</p></li>
+<li><p><em>jsonlite</em>, для роботи з JSON-файлами</p></li>
+<li><p><em>xml2</em>, для роботи з XML</p></li>
+<li><p><em>lubridate</em>, для роботи з датами</p></li>
+<li><p><em>dbplyr</em>, для перетворення коду <code>dplyr</code> в SQL</p></li>
+<li><p><em>dtplyr</em>, для перетворення коду на <code>data.table</code></p></li>
+<li><p><em>magrittr</em>, для використання конвеєрів <code>%&gt;%</code> (pipe)</p></li>
+<li><p><em>glue</em>, для поєднання даних та тексту</p></li>
+<li><p><em>tidymodels</em>, для роботи з моделями машнинного навчання.</p></li>
+</ul>
 <p>І це ще не повний список. Крім офіційних пакетів tidyverse є ще низка пакетів, які намагаються відповідати принципам tidyverse і доповнюють його.</p>
+<p>Головним чином, для роботи з даними, я зосереджу свою увагу на роботі з пакетом <code>dplyr</code>.</p>
 <p>Для завантаження tidyverse необхідно виконати наступний код:</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
@@ -141,8 +150,7 @@
 <span class="co">##  9          4.4         2.9          1.4         0.2 setosa </span>
 <span class="co">## 10          4.9         3.1          1.5         0.1 setosa </span>
 <span class="co">## # ... with 140 more rows</span></code></pre></div>
-<p>Вже на цьому етапі</p>
-<p>Головним чином, для роботи з даними, я зосереджу свою увагу на роботі з пакетом <code>dplyr</code>.</p>
+<p>Вже на цьому етапі видні основні відмінності: тіббл відображає одразу перші 10 спостережень і всі ствопчики, які поміщаються на екрані. Крім того до кожного стовпчика вказується його тип. Це дуже зручно, особливо коли працюєте з великим об’ємом даних.</p>
 </div>
 <div id="tidy_read" class="section level2" number="2.2">
 <h2>
@@ -187,14 +195,16 @@
 <span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr<a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
 </h2>
 <hr>
-<p>dplyr - це граматика маніпуляції з даними, яка має низку функцій, які допоможуть легко та зручно маніпулювати даними, наприклад:
-* створювати нові змінні
-* сортувати дані
-* проводити фільтрацію даних
-* агрегування даних і багато іншого.</p>
+<p>dplyr - це граматика маніпуляції з даними, яка має низку функцій, які допоможуть легко та зручно маніпулювати даними, наприклад:</p>
+<ul>
+<li><p>створювати нові змінні</p></li>
+<li><p>сортувати дані</p></li>
+<li><p>проводити фільтрацію даних</p></li>
+<li><p>агрегування даних і багато іншого.</p></li>
+</ul>
 <p>В якості прикладу роботи з пакетом dplyr пропоную використати датасет <code>gapminder</code> з однойменного пакету. В ньому збережена інформація про ВВП, очікувану тривалість життя при народженні та населення для 142 країн світу з 1952 по 2007 роки.</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Підключемо пакет (не забудьте його встановити) та подивимось на датасет</span>
+<code class="sourceCode R"><span class="co"># Підключаємо пакет (не забудьте його встановити) та подивимось на датасет</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 <span class="va">gapminder</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
@@ -211,12 +221,243 @@
 <span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
 <span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
 <span class="co">## # ... with 1,694 more rows</span></code></pre></div>
-<p>Видно, що змінні <code>country</code> та <code>continent</code> — це фактори, а всі інші - числові.</p>
-<div id="filter" class="section level3" number="2.3.1">
+<p>Видно, що змінні <code>country</code> та <code>continent</code> — це фактори, а всі інші — числові.</p>
+<div id="glimpse" class="section level3" number="2.3.1">
 <h3>
-<span class="header-section-number">2.3.1</span> dplyr::filter()<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.1</span> dplyr::glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h3>
-<p>Для фільтрації даних використовується функція <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>:</p>
+<p>Для перегляду структури тібблу використовується функція <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
+<span class="co">## Rows: 1,704</span>
+<span class="co">## Columns: 6</span>
+<span class="co">## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan"~</span>
+<span class="co">## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, A~</span>
+<span class="co">## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1~</span>
+<span class="co">## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.~</span>
+<span class="co">## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079~</span>
+<span class="co">## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739~</span></code></pre></div>
+<p>Це альтернатива базовій функції <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> для дата фреймів.</p>
+</div>
+<div id="filter" class="section level3" number="2.3.2">
+<h3>
+<span class="header-section-number">2.3.2</span> dplyr::filter()<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для фільтрації спостережень за певною умовою використовується функція <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Для прикладу відфільтруємо дані для Ірландії:</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>
+<span class="co">## # A tibble: 12 x 6</span>
+<span class="co">##    country continent  year lifeExp     pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Ireland Europe     1952    66.9 2952156     5210.</span>
+<span class="co">##  2 Ireland Europe     1957    68.9 2878220     5599.</span>
+<span class="co">##  3 Ireland Europe     1962    70.3 2830000     6632.</span>
+<span class="co">##  4 Ireland Europe     1967    71.1 2900100     7656.</span>
+<span class="co">##  5 Ireland Europe     1972    71.3 3024400     9531.</span>
+<span class="co">##  6 Ireland Europe     1977    72.0 3271900    11151.</span>
+<span class="co">##  7 Ireland Europe     1982    73.1 3480000    12618.</span>
+<span class="co">##  8 Ireland Europe     1987    74.4 3539900    13873.</span>
+<span class="co">##  9 Ireland Europe     1992    75.5 3557761    17559.</span>
+<span class="co">## 10 Ireland Europe     1997    76.1 3667233    24522.</span>
+<span class="co">## 11 Ireland Europe     2002    77.8 3879155    34077.</span>
+<span class="co">## 12 Ireland Europe     2007    78.9 4109086    40676.</span></code></pre></div>
+<p>І тут я одразу хочу познайомити вас з альтернативним варіантом запису коду в синтаксисі tidyverse. Справа в тому, що якщо послідовно використовувати низку різноманітних функцій, то читаймість такого коду стає дуже низькою. Покажу на прикладі:</p>
+<ol style="list-style-type: decimal">
+<li><p>До кожного значення вектора від 1 до 10 з кроком 1 розрахуємо сінус.</p></li>
+<li><p>З отриманого на першому кроці візьмемо абсолютні значення.</p></li>
+<li><p>З отриманого результату на 2 кроці візьмемо корінь квадратний</p></li>
+<li><p>Відсортуємо результат.</p></li>
+</ol>
+<p>В класичному вигляді все виглядає наступним чином:</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471</span>
+<span class="co">##  [6] 0.8699440 0.9173173 0.9535709 0.9792468 0.9946649</span></code></pre></div>
+<p>Погодьтесь, що розібрати такий код досить складно. Тому в діалекті tidyverse використовуються пайпи, <code>%&gt;%</code>, (pipe) — вони передають результат попереднього розрахунку першим аргументов наступної функції. Таким чином попередній код можна переписати наступним чином:</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471</span>
+<span class="co">##  [6] 0.8699440 0.9173173 0.9535709 0.9792468 0.9946649</span></code></pre></div>
+<p>Погодьтесь, що такий код читається значно легше. Для виклику оператора <code>%&gt;%</code> в RStudio використовується комбінація клавіш CTRL + SHIFT + M для Windows і CMD + SHIFT + M для Mac.</p>
+<p>Тож, якщо повернутися до фільтрації <a href="dplyr.html#filter">2.3.2</a>, код можна переписати:</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Попередній варіант</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>
+<span class="co">## # A tibble: 12 x 6</span>
+<span class="co">##    country continent  year lifeExp     pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Ireland Europe     1952    66.9 2952156     5210.</span>
+<span class="co">##  2 Ireland Europe     1957    68.9 2878220     5599.</span>
+<span class="co">##  3 Ireland Europe     1962    70.3 2830000     6632.</span>
+<span class="co">##  4 Ireland Europe     1967    71.1 2900100     7656.</span>
+<span class="co">##  5 Ireland Europe     1972    71.3 3024400     9531.</span>
+<span class="co">##  6 Ireland Europe     1977    72.0 3271900    11151.</span>
+<span class="co">##  7 Ireland Europe     1982    73.1 3480000    12618.</span>
+<span class="co">##  8 Ireland Europe     1987    74.4 3539900    13873.</span>
+<span class="co">##  9 Ireland Europe     1992    75.5 3557761    17559.</span>
+<span class="co">## 10 Ireland Europe     1997    76.1 3667233    24522.</span>
+<span class="co">## 11 Ireland Europe     2002    77.8 3879155    34077.</span>
+<span class="co">## 12 Ireland Europe     2007    78.9 4109086    40676.</span>
+
+<span class="co"># З використанням %&gt;%</span>
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>
+<span class="co">## # A tibble: 12 x 6</span>
+<span class="co">##    country continent  year lifeExp     pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Ireland Europe     1952    66.9 2952156     5210.</span>
+<span class="co">##  2 Ireland Europe     1957    68.9 2878220     5599.</span>
+<span class="co">##  3 Ireland Europe     1962    70.3 2830000     6632.</span>
+<span class="co">##  4 Ireland Europe     1967    71.1 2900100     7656.</span>
+<span class="co">##  5 Ireland Europe     1972    71.3 3024400     9531.</span>
+<span class="co">##  6 Ireland Europe     1977    72.0 3271900    11151.</span>
+<span class="co">##  7 Ireland Europe     1982    73.1 3480000    12618.</span>
+<span class="co">##  8 Ireland Europe     1987    74.4 3539900    13873.</span>
+<span class="co">##  9 Ireland Europe     1992    75.5 3557761    17559.</span>
+<span class="co">## 10 Ireland Europe     1997    76.1 3667233    24522.</span>
+<span class="co">## 11 Ireland Europe     2002    77.8 3879155    34077.</span>
+<span class="co">## 12 Ireland Europe     2007    78.9 4109086    40676.</span></code></pre></div>
+<p>Тут і далі я буду часто використовувати пайпи.</p>
+<p>Розберемо ще приклади фільтрації даних. Відберемо дані Ірландії та Іспанії за 2007 рік:</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span> <span class="op">|</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"Spain"</span>,
+         <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="co">## # A tibble: 2 x 6</span>
+<span class="co">##   country continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Ireland Europe     2007    78.9  4109086    40676.</span>
+<span class="co">## 2 Spain   Europe     2007    80.9 40448191    28821.</span></code></pre></div>
+<p>А тепер припустимо, що нам потрібно відібрати інформацію не по двом, а по низці країн. Переліковувати їх всіх через <code>country == "Назва_країни"</code> буде дуже довго і не зручно. В таких випадках зручно використовувати оператор <code>%in%</code>. Давайте відберемо інформацію по Ірландії, Іспанії, Норвегії та Польщі за 2007 рік:</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ireland"</span>, <span class="st">"Spain"</span>, <span class="st">"Norway"</span>, <span class="st">"Poland"</span><span class="op">)</span>,
+         <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="co">## # A tibble: 4 x 6</span>
+<span class="co">##   country continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Ireland Europe     2007    78.9  4109086    40676.</span>
+<span class="co">## 2 Norway  Europe     2007    80.2  4627926    49357.</span>
+<span class="co">## 3 Poland  Europe     2007    75.6 38518241    15390.</span>
+<span class="co">## 4 Spain   Europe     2007    80.9 40448191    28821.</span></code></pre></div>
+<p>Всі потрібні умови фільтрації можна переліковувати всередині функції <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> через кому.</p>
+</div>
+<div id="slice" class="section level3" number="2.3.3">
+<h3>
+<span class="header-section-number">2.3.3</span> dplyr::slice()<a class="anchor" aria-label="anchor" href="#slice"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для отримання зрізу даних, тобто тільки певних спостережень (перші, останні тощо) використовуються варіації функції <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>.</p>
+<p>Перші п’ять спостережень:</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
+<span class="co">## # A tibble: 5 x 6</span>
+<span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">## 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">## 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">## 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">## 5 Afghanistan Asia       1972    36.1 13079460      740.</span></code></pre></div>
+<p>Перші п’ять та десяте спостереження:</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="co">## # A tibble: 6 x 6</span>
+<span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">## 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">## 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">## 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">## 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">## 6 Afghanistan Asia       1997    41.8 22227415      635.</span></code></pre></div>
+<p>Всі крім перших трьох:</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,701 x 6</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  2 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  3 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  4 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  5 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  6 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">##  7 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">##  8 Afghanistan Asia       2002    42.1 25268405      727.</span>
+<span class="co">##  9 Afghanistan Asia       2007    43.8 31889923      975.</span>
+<span class="co">## 10 Albania     Europe     1952    55.2  1282697     1601.</span>
+<span class="co">## # ... with 1,691 more rows</span></code></pre></div>
+<p>Перші 15 спостережень:</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+<span class="co">## # A tibble: 15 x 6</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## 11 Afghanistan Asia       2002    42.1 25268405      727.</span>
+<span class="co">## 12 Afghanistan Asia       2007    43.8 31889923      975.</span>
+<span class="co">## 13 Albania     Europe     1952    55.2  1282697     1601.</span>
+<span class="co">## 14 Albania     Europe     1957    59.3  1476505     1942.</span>
+<span class="co">## 15 Albania     Europe     1962    64.8  1728137     2313.</span></code></pre></div>
+<p>Останні 15 спостережень:</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+<span class="co">## # A tibble: 15 x 6</span>
+<span class="co">##    country  continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Zambia   Africa     1997    40.2  9417789     1071.</span>
+<span class="co">##  2 Zambia   Africa     2002    39.2 10595811     1072.</span>
+<span class="co">##  3 Zambia   Africa     2007    42.4 11746035     1271.</span>
+<span class="co">##  4 Zimbabwe Africa     1952    48.5  3080907      407.</span>
+<span class="co">##  5 Zimbabwe Africa     1957    50.5  3646340      519.</span>
+<span class="co">##  6 Zimbabwe Africa     1962    52.4  4277736      527.</span>
+<span class="co">##  7 Zimbabwe Africa     1967    54.0  4995432      570.</span>
+<span class="co">##  8 Zimbabwe Africa     1972    55.6  5861135      799.</span>
+<span class="co">##  9 Zimbabwe Africa     1977    57.7  6642107      686.</span>
+<span class="co">## 10 Zimbabwe Africa     1982    60.4  7636524      789.</span>
+<span class="co">## 11 Zimbabwe Africa     1987    62.4  9216418      706.</span>
+<span class="co">## 12 Zimbabwe Africa     1992    60.4 10704340      693.</span>
+<span class="co">## 13 Zimbabwe Africa     1997    46.8 11404948      792.</span>
+<span class="co">## 14 Zimbabwe Africa     2002    40.0 11926563      672.</span>
+<span class="co">## 15 Zimbabwe Africa     2007    43.5 12311143      470.</span></code></pre></div>
+<p>Топ-3 з найбільшим значенням очікуваної тривалості життя:</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">lifeExp</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="co">## # A tibble: 3 x 6</span>
+<span class="co">##   country          continent  year lifeExp       pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Japan            Asia       2007    82.6 127467972    31656.</span>
+<span class="co">## 2 Hong Kong, China Asia       2007    82.2   6980412    39725.</span>
+<span class="co">## 3 Japan            Asia       2002    82   127065841    28605.</span></code></pre></div>
+<p>Топ-3 з найменшим значенням очікуваної тривалості життя:</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span><span class="va">lifeExp</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="co">## # A tibble: 3 x 6</span>
+<span class="co">##   country     continent  year lifeExp     pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Rwanda      Africa     1992    23.6 7290203      737.</span>
+<span class="co">## 2 Afghanistan Asia       1952    28.8 8425333      779.</span>
+<span class="co">## 3 Gambia      Africa     1952    30    284320      485.</span></code></pre></div>
 
 </div>
 </div>
@@ -236,7 +477,11 @@
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#dplyr"><span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#filter"><span class="header-section-number">2.3.1</span> dplyr::filter()</a></li></ul>
+<a class="nav-link" href="#dplyr"><span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#glimpse"><span class="header-section-number">2.3.1</span> dplyr::glimpse()</a></li>
+<li><a class="nav-link" href="#filter"><span class="header-section-number">2.3.2</span> dplyr::filter()</a></li>
+<li><a class="nav-link" href="#slice"><span class="header-section-number">2.3.3</span> dplyr::slice()</a></li>
+</ul>
 </li>
 </ul>
 

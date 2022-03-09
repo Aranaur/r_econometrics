@@ -557,7 +557,9 @@ my_df[2:3, "name"]
 Для створення таких змінних використовується функція `factor()`:
 ```{r factor01}
 race <- factor(
-  c("istari", "human", "human", "elf", "dwarf", "hobbit", "hobbit", "hobbit", "hobbit"),
+  c("istari", "human", "human",
+    "elf", "dwarf", "hobbit",
+    "hobbit", "hobbit", "hobbit"),
   levels = c("istari", "human", "elf", "dwarf", "hobbit")
   )
 
