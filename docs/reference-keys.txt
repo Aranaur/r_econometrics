@@ -45,7 +45,6 @@ filter
 slice
 arrange
 select
-bookdownrender_bookindex.rmd-output_dir-docs
 simple_regression
 multiple_regression
 multicollinearity
