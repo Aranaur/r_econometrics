@@ -45,6 +45,9 @@ filter
 slice
 arrange
 select
+relocate
+rename
+mutate
 simple_regression
 multiple_regression
 multicollinearity
