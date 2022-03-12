@@ -48,6 +48,10 @@ select
 relocate
 rename
 mutate
+group_by
+across
+count
+case
 simple_regression
 multiple_regression
 multicollinearity
