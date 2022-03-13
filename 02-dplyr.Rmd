@@ -1,4 +1,4 @@
-# Маніпуляції з даними за допомогою dplyr {#dplyr}
+# Маніпуляції з даними за допомогою dplyr і не тільки {#dplyr}
 ***
 ```{r setup-02, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
@@ -597,7 +597,7 @@ gapminder %>%
 
 ### dplyr::case_when() {#case}
 Яка маніпуляція з даними обходиться без конструкції "if - else"? В базовому синтаксисі R є функція `ifelse()` але я пропоную користуватися векторизованим варіантом з dplyr `case_when()`.
-Для прикладу давайте створемо нову номінативну змінну, яка буде оцінювати середню очікувану тривалість життя в форматі "низька-середня-висока":
+Для прикладу давайте створимо нову номінативну змінну, яка буде оцінювати середню очікувану тривалість життя в форматі "низька-середня-висока":
 ```{r case01}
 gapminder %>% 
   group_by(country) %>% 
@@ -611,6 +611,80 @@ gapminder %>%
   )
 ```
 
+### Обертання даних: pivot() {#pivot}
+Бувають випадки, коли дані приходять в "неохайному", незручному форматі:
+
+* одна змінна розташована у декількох стовпчиках.
+
+* одне спостереження може бути розкидане по кільком рядкам.
+
+Типовим прикладом таких даних можуть бути дані Всесвітнього банку. Давайте завантажимо їх і подивимось, як привести їх до "охайних". В таких випадках нам допоможуть функції `pivot_longer()` та `pivot_wider()` з пакету `tidyr` (частина tidyverse).
+
+В якості прикладу завантажимо інформацію по показнику Прямі іноземні інвестиції (Foreign direct investment, net (BoP, current US$)).
+
+Дані можна завантажити з мого репозитарію GitHub: [прямі іноземні інвестиції, дані Всісвітного банку](https://raw.githubusercontent.com/Aranaur/datasets/main/datasets/world_bank/Foreign_direct_investment/FDI.csv). Давайте переглянемо їх \@ref(fig:wbimage). 
+```{r wbimage, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Перегляд перших значень набору даних Всесвытнього банку"}
+knitr::include_graphics("docs/images/wb_01.png")
+```
+На що звертаємо увагу:
+
+* Перші 4 рядочки неінформативні.
+
+* Дані зберігаються у "широкому форматі": змінна року розташована горизонтально, що може ускладнити аналіз.
+
+Завантажимо дані і одразу пропустимо перші 4 рядки за допомогою аргументу `skip = 4`:
+```{r wb01}
+fdi <- read_csv("https://raw.githubusercontent.com/Aranaur/datasets/main/datasets/world_bank/Foreign_direct_investment/FDI.csv",
+                skip = 4)
+
+fdi
+```
+
+Використаємо функцію `pivot_longer()` для того щоб змінна року була окремим стовпчиком:
+```{r wb02}
+fdi_longer <- fdi %>% 
+  # змінимо формат назв стовпчиків
+  set_names(names(.) %>% str_to_lower() %>%  str_replace(" ", "_")) %>% 
+  # приберемо зайві
+  select(-c(indicator_name, indicator_code)) %>% 
+  # обертаємо дані
+    pivot_longer(cols = -c(country_name, country_code), # використовуємо всі 
+                                                        # крім country_name, country_code
+               names_to = "year", # назва нового стовпчика 
+                                  # (роки з початкового набору даних)
+               values_to = "fdi") %>% # назва нового стовпчика 
+                                      # (значення ПІІ до кожного року)
+  drop_na() # приберемо пропущені значення
+
+fdi_longer
+```
+З таким набором даних буде працювати значно зручніше.
+
+Для прикладу роботи функції `pivot_wider()` повернемося до датасету `gapminder`:
+```{r gap01}
+gapminder
+```
+
+Перевернемо його у широкий формат:
+```{r gap02}
+gapminder_wide <- gapminder %>% 
+  pivot_wider(names_from = year,
+              values_from = c(lifeExp:gdpPercap))
+
+gapminder_wide
+```
+
+В переважній більшості випадків вам знадобиться довгий формат даних. Але при потребі зберігання великих файлів - краще зберігати у широкому форматі, оскільки це збереже місце на диску.
+
+Збережемо результати широкого і довго формату набору даних `gapminder` та перевіремо їх розмір:
+```{r gap03}
+write_csv(gapminder, "docs/data/gapminder.csv")
+write_csv(gapminder_wide, "docs/data/gapminder_wide.csv")
+
+fs::file_size("docs/data/gapminder.csv")
+fs::file_size("docs/data/gapminder_wide.csv")
+```
+Широкий формат в `r round(80.2 / 47.3, 2)` рази менший.
 
 bookdown::render_book("index.Rmd", output_dir = "docs")
 

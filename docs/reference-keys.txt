@@ -5,6 +5,7 @@ fig:027
 fig:062
 fig:063
 fig:064
+fig:wbimage
 introR
 installR
 instalpc
@@ -52,6 +53,7 @@ group_by
 across
 count
 case
+pivot
 simple_regression
 multiple_regression
 multicollinearity
