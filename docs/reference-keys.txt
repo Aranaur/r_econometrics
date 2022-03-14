@@ -55,6 +55,7 @@ count
 case
 pivot
 simple_regression
+проста-лінійна-регресія
 multiple_regression
 multicollinearity
 heteroskedasticity

@@ -1,4 +1,3 @@
 `r if (knitr::is_html_output()) '
 # Література {-#references}
 '`
-text

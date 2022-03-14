@@ -88,7 +88,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.wid
 install.packages("tidyverse")
 ```
 Для підключення:
-```{r tidyload, eval=FALSE}
+```{r tidyload}
 library("tidyverse")
 ```
 
@@ -685,15 +685,3 @@ fs::file_size("docs/data/gapminder.csv")
 fs::file_size("docs/data/gapminder_wide.csv")
 ```
 Широкий формат в `r round(80.2 / 47.3, 2)` рази менший.
-
-bookdown::render_book("index.Rmd", output_dir = "docs")
-
-
-
-
-
-
-
-
-
-

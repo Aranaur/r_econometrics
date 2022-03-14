@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 3 Проста лінійна регресія | r_econometrics.knit</title>
 <meta name="author" content="Ігор Мірошниченко">
-<meta name="description" content="text">
+<meta name="description" content="Економетрика - це дисципліна, яка займається дослідженням взаємозв’язків між даними. Для цього нам знадобиться знання статистики, математики, економіки. Це може допомогти вирішити дві головні...">
 <meta name="generator" content="bookdown 0.24.4 with bs4_book()">
 <meta property="og:title" content=" 3 Проста лінійна регресія | r_econometrics.knit">
 <meta property="og:type" content="book">
-<meta property="og:description" content="text">
+<meta property="og:description" content="Економетрика - це дисципліна, яка займається дослідженням взаємозв’язків між даними. Для цього нам знадобиться знання статистики, математики, економіки. Це може допомогти вирішити дві головні...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 3 Проста лінійна регресія | r_econometrics.knit">
-<meta name="twitter:description" content="text">
+<meta name="twitter:description" content="Економетрика - це дисципліна, яка займається дослідженням взаємозв’язків між даними. Для цього нам знадобиться знання статистики, математики, економіки. Це може допомогти вирішити дві головні...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.12/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -62,15 +62,79 @@
 <h1>
 <span class="header-section-number"> 3</span> Проста лінійна регресія<a class="anchor" aria-label="anchor" href="#simple_regression"><i class="fas fa-link"></i></a>
 </h1>
-<p>text</p>
+<p><strong>Економетрика</strong> - це дисципліна, яка займається дослідженням взаємозв’язків між даними. Для цього нам знадобиться знання статистики, математики, економіки. Це може допомогти вирішити дві головні задачі дослідження:</p>
+<ul>
+<li><p>пояснити зв’язки: визначити які показники впливають сильніше на певні процеси, а які менше.</p></li>
+<li><p>будувати прогнози: як буде розвиватися процес в подальшому або при інших умовах.</p></li>
+</ul>
+<p>Уявіть, що вам необхідно оцінити ефективність витрат рекламної компанії, тенденцію розвитку витрат виробництва, прогноз валового внутрішнього продукту тощо. На кожне з цих завдань може допомогти знайти відповідь економетрика, хоча з точки зору прогнозної сили, напевно, слід піти далі і звернутися до алгоритмів машинного навчання або нейронних мереж, хоча й там є свої особливості. На мою думку, економетрика на рівні зі статистикою - це чудовий фундамент для подальшого вивчення машинного навчання.</p>
+<p>Для економетричного дослідження необхідно будувати математичні моделі - спрощений варіант реальних об’єктів дослідження. Виглядають вони частіше за все, як певні рівняння, наприклад опишемо залежність заробітної плати робітника від його освіти, досвіду роботи та навичок. Таку залежність можна описати наступним чином:</p>
+<p><span class="math display">\[y = f(x_1, x_2, x_3),\]</span>
+де
+<span class="math inline">\(y\)</span> — заробітна плата,
+<span class="math inline">\(x_1\)</span> — рівень освіти,
+<span class="math inline">\(x_2\)</span> — досвід роботи,
+<span class="math inline">\(x_3\)</span> — навички (знання мов програмування, статистики тощо),
+<span class="math inline">\(f\)</span> — функція залежності: описує яким саме чином <span class="math inline">\(x_i, i=\overline{1,3}\)</span> впливають на <span class="math inline">\(y\)</span>.</p>
+<p>Змінна <span class="math inline">\(y\)</span>, яку ми намагаємось пояснити, називається <strong>залежною</strong>, а змінні <span class="math inline">\(x_i\)</span>, за допомогою яких ми намагаємось пояснити або спрогнозувати залежну змінну, називають <strong>незалежними</strong>. Хоча можуть зустрічатися і альтернативні визначення:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center"><strong>Y</strong></th>
+<th align="center"><strong>X</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Залежна змінна</td>
+<td align="center">Незалежна змінна</td>
+</tr>
+<tr class="even">
+<td align="center">Пояснювана змінна</td>
+<td align="center">Пояснювальна змінна</td>
+</tr>
+<tr class="odd">
+<td align="center">Відгук</td>
+<td align="center">Контрольна змінна</td>
+</tr>
+<tr class="even">
+<td align="center">Прогнозована змінна</td>
+<td align="center">Предиктор</td>
+</tr>
+<tr class="odd">
+<td align="center">Регресант</td>
+<td align="center">Регресор</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">Коваріат</td>
+</tr>
+</tbody>
+</table></div>
+<p>Зверніть увагу, що ми суб’єктивно оголосили, що на заробітну плату впливають зазначені показники. При альтернативних дослідженні і форма залежності, і перелік змінних може бути іншим. Та й взагалі, можливо ми захочемо пояснити вже рівень освіти за допомогою заробітної плати, досвіду роботи і навичок. Все це ми визначаємо на основі своїх знань, досвіду та доступної інформації.</p>
+<p>В якості джерел даних можуть виступати:</p>
+<ul>
+<li><p><em>Перехресні дані</em>: дані зібрані по різним об’єктам дослідження (персонал, компанії, держави, сфери тощо). Часто такі дані були зібрані за допомогою простої випадкової вибірки.</p></li>
+<li><p><em>Часові ряди</em>: дані по одному чи декількох об’єктах дослідження впродовж певного періоду часу (курси валют, ВВП, пасажиропотік тощо). Головною особливістю таких даних виступає часова впорядкованість (від минулого до сучасного) та частота даних (однаковий інтервал запису даних).</p></li>
+<li><p><em>Панельні дані</em>: поєднуть в собі перехресні дані та часові ряди, вони показують, як об’єкти дослідження змінювались з часом.</p></li>
+</ul>
+<p>Функція залежності <span class="math inline">\(f\)</span> може мати різну форму та характер. Ми не знаємо її зазделегідь і намагаємось підібрати найкращий варіант з декількох альтернатив.</p>
+<div id="проста-лінійна-регресія" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Проста лінійна регресія<a class="anchor" aria-label="anchor" href="#%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%B0-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Проста лінійна регресія</strong> — це модель, яка пояснює залежність між двома змінними за допомогою лінійного взаємозв’язку.</p>
+<p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="dplyr.html"><span class="header-section-number">2</span> Маніпуляції з даними за допомогою dplyr і не тільки</a></div>
 <div class="next"><a href="multiple_regression.html"><span class="header-section-number">4</span> Множинна лінійна регресія</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#simple_regression"><span class="header-section-number">3</span> Проста лінійна регресія</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simple_regression"><span class="header-section-number">3</span> Проста лінійна регресія</a></li>
+<li><a class="nav-link" href="#%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%B0-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><span class="header-section-number">3.1</span> Проста лінійна регресія</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -88,7 +152,7 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-13.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -96,6 +160,34 @@
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>
