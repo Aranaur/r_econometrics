@@ -69,7 +69,10 @@
 </ul>
 <p>Уявіть, що вам необхідно оцінити ефективність витрат рекламної компанії, тенденцію розвитку витрат виробництва, прогноз валового внутрішнього продукту тощо. На кожне з цих завдань може допомогти знайти відповідь економетрика, хоча з точки зору прогнозної сили, напевно, слід піти далі і звернутися до алгоритмів машинного навчання або нейронних мереж, хоча й там є свої особливості. На мою думку, економетрика на рівні зі статистикою - це чудовий фундамент для подальшого вивчення машинного навчання.</p>
 <p>Для економетричного дослідження необхідно будувати математичні моделі - спрощений варіант реальних об’єктів дослідження. Виглядають вони частіше за все, як певні рівняння, наприклад опишемо залежність заробітної плати робітника від його освіти, досвіду роботи та навичок. Таку залежність можна описати наступним чином:</p>
-<p><span class="math display">\[y = f(x_1, x_2, x_3),\]</span>
+<p><span class="math display" id="eq:reg">\[
+y = f(x_1, x_2, x_3),
+\tag{3.1}
+\]</span>
 де
 <span class="math inline">\(y\)</span> — заробітна плата,
 <span class="math inline">\(x_1\)</span> — рівень освіти,
@@ -112,16 +115,136 @@
 <p>Зверніть увагу, що ми суб’єктивно оголосили, що на заробітну плату впливають зазначені показники. При альтернативних дослідженні і форма залежності, і перелік змінних може бути іншим. Та й взагалі, можливо ми захочемо пояснити вже рівень освіти за допомогою заробітної плати, досвіду роботи і навичок. Все це ми визначаємо на основі своїх знань, досвіду та доступної інформації.</p>
 <p>В якості джерел даних можуть виступати:</p>
 <ul>
-<li><p><em>Перехресні дані</em>: дані зібрані по різним об’єктам дослідження (персонал, компанії, держави, сфери тощо). Часто такі дані були зібрані за допомогою простої випадкової вибірки.</p></li>
-<li><p><em>Часові ряди</em>: дані по одному чи декількох об’єктах дослідження впродовж певного періоду часу (курси валют, ВВП, пасажиропотік тощо). Головною особливістю таких даних виступає часова впорядкованість (від минулого до сучасного) та частота даних (однаковий інтервал запису даних).</p></li>
-<li><p><em>Панельні дані</em>: поєднуть в собі перехресні дані та часові ряди, вони показують, як об’єкти дослідження змінювались з часом.</p></li>
+<li>
+<em>Перехресні дані</em>: дані зібрані по різним об’єктам дослідження (персонал, компанії, держави, сфери тощо). Часто такі дані були зібрані за допомогою простої випадкової вибірки.</li>
 </ul>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">starwars</span>
+<span class="co">## # A tibble: 87 x 14</span>
+<span class="co">##    name       height  mass hair_color skin_color eye_color</span>
+<span class="co">##    &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
+<span class="co">##  1 Luke Skyw~    172    77 blond      fair       blue     </span>
+<span class="co">##  2 C-3PO         167    75 &lt;NA&gt;       gold       yellow   </span>
+<span class="co">##  3 R2-D2          96    32 &lt;NA&gt;       white, bl~ red      </span>
+<span class="co">##  4 Darth Vad~    202   136 none       white      yellow   </span>
+<span class="co">##  5 Leia Orga~    150    49 brown      light      brown    </span>
+<span class="co">##  6 Owen Lars     178   120 brown, gr~ light      blue     </span>
+<span class="co">##  7 Beru Whit~    165    75 brown      light      blue     </span>
+<span class="co">##  8 R5-D4          97    32 &lt;NA&gt;       white, red red      </span>
+<span class="co">##  9 Biggs Dar~    183    84 black      light      brown    </span>
+<span class="co">## 10 Obi-Wan K~    182    77 auburn, w~ fair       blue-gray</span>
+<span class="co">## # ... with 77 more rows, and 8 more variables:</span>
+<span class="co">## #   birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;,</span>
+<span class="co">## #   homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,</span>
+<span class="co">## #   vehicles &lt;list&gt;, starships &lt;list&gt;</span></code></pre></div>
+<ul>
+<li>
+<em>Часові ряди</em>: дані по одному чи декількох об’єктах дослідження впродовж певного періоду часу (курси валют, ВВП, пасажиропотік тощо). Головною особливістю таких даних виступає часова впорядкованість (від минулого до сучасного) та частота даних (однаковий інтервал запису даних).</li>
+</ul>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">economics</span>
+<span class="co">## # A tibble: 574 x 6</span>
+<span class="co">##    date         pce    pop psavert uempmed unemploy</span>
+<span class="co">##    &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">##  1 1967-07-01  507. 198712    12.6     4.5     2944</span>
+<span class="co">##  2 1967-08-01  510. 198911    12.6     4.7     2945</span>
+<span class="co">##  3 1967-09-01  516. 199113    11.9     4.6     2958</span>
+<span class="co">##  4 1967-10-01  512. 199311    12.9     4.9     3143</span>
+<span class="co">##  5 1967-11-01  517. 199498    12.8     4.7     3066</span>
+<span class="co">##  6 1967-12-01  525. 199657    11.8     4.8     3018</span>
+<span class="co">##  7 1968-01-01  531. 199808    11.7     5.1     2878</span>
+<span class="co">##  8 1968-02-01  534. 199920    12.3     4.5     3001</span>
+<span class="co">##  9 1968-03-01  544. 200056    11.7     4.1     2877</span>
+<span class="co">## 10 1968-04-01  544  200208    12.3     4.6     2709</span>
+<span class="co">## # ... with 564 more rows</span></code></pre></div>
+<ul>
+<li>
+<em>Панельні дані</em>: поєднуть в собі перехресні дані та часові ряди, вони показують, як об’єкти дослідження змінювались з часом.</li>
+</ul>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="va">gapminder</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
 <p>Функція залежності <span class="math inline">\(f\)</span> може мати різну форму та характер. Ми не знаємо її зазделегідь і намагаємось підібрати найкращий варіант з декількох альтернатив.</p>
 <div id="проста-лінійна-регресія" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> Проста лінійна регресія<a class="anchor" aria-label="anchor" href="#%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%B0-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>Проста лінійна регресія</strong> — це модель, яка пояснює залежність між двома змінними за допомогою лінійного взаємозв’язку.</p>
+<p><strong>Проста лінійна регресія</strong> — це модель, яка пояснює залежність між <em>двома змінними</em> за допомогою <em>лінійного взаємозв’язку</em>.</p>
+<p>Роботу такої регресії краще пояснити на прикладі. В нашому розпорядженні є набір даних про вагу та зріст вибірки чоловіків та жінок:</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">weight_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/Aranaur/datasets/main/datasets/weight-height.csv"</span><span class="op">)</span>
+
+<span class="va">weight_height</span>
+<span class="co">## # A tibble: 10,000 x 3</span>
+<span class="co">##    Gender Height Weight</span>
+<span class="co">##    &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">##  1 Male     73.8   242.</span>
+<span class="co">##  2 Male     68.8   162.</span>
+<span class="co">##  3 Male     74.1   213.</span>
+<span class="co">##  4 Male     71.7   220.</span>
+<span class="co">##  5 Male     69.9   206.</span>
+<span class="co">##  6 Male     67.3   152.</span>
+<span class="co">##  7 Male     68.8   184.</span>
+<span class="co">##  8 Male     68.3   168.</span>
+<span class="co">##  9 Male     67.0   176.</span>
+<span class="co">## 10 Male     63.5   156.</span>
+<span class="co">## # ... with 9,990 more rows</span></code></pre></div>
+<p>Конвертуємо значення в кілограми і сантиметри та візуалізуємо підвибірку по чоловікам:</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># фіксуємо генератор випадкових величин</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
+
+<span class="va">male</span> <span class="op">&lt;-</span> <span class="va">weight_height</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># беремо тільки чоловіків</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Gender</span> <span class="op">==</span> <span class="st">"Male"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="co"># формуємо випадкову підвибірку</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># конвертуємо значення</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Height_kg <span class="op">=</span> <span class="va">Height</span> <span class="op">*</span> <span class="fl">2.54</span>,
+         Weight_cm <span class="op">=</span> <span class="va">Weight</span> <span class="op">*</span> <span class="fl">0.45</span><span class="op">)</span>
+
+<span class="co"># візуалізуємо</span>
+<span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/unnamed-chunk-8-1.png" width="100%"></div>
+<p>Таку залежність ми можемо виразити у вигляді формули:
+<span class="math display" id="eq:lmreg">\[
+y = \beta_0 + \beta_1x + u 
+\tag{3.2}
+\]</span>
+Підставемо конкретні змінні у рівняння, отримаємо:
+<span class="math display" id="eq:malereg">\[
+Height = \beta_0 + \beta_1Weight + u 
+\tag{3.3}
+\]</span>
+Рівняння <a href="simple_regression.html#eq:lmreg">(3.2)</a> та <a href="simple_regression.html#eq:malereg">(3.3)</a> називаються простою лінійною регресією або парною лінійною регресією.</p>
+<p>Розглянемо складові рівняння <a href="simple_regression.html#eq:lmreg">(3.2)</a>:</p>
+<ul>
+<li><p><span class="math inline">\(y\)</span>: залежна змінна.</p></li>
+<li><p><span class="math inline">\(\beta_0\)</span>: вільний параметр моделі.</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span>: залежний параметр моделі.</p></li>
+<li><p><span class="math inline">\(x\)</span>: незалежна змінна.</p></li>
+<li><p><span class="math inline">\(u\)</span>: залишки моделі.</p></li>
+</ul>
+<p>Наша задача - підібрати оптимальні значення параметрів моделі <span class="math inline">\(\beta_0\)</span> та <span class="math inline">\(\beta_1\)</span>.</p>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -152,7 +275,7 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-14.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -471,11 +471,11 @@
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co">## # A tibble: 3 x 6</span>
-<span class="co">##   country         continent  year lifeExp    pop gdpPercap</span>
-<span class="co">##   &lt;fct&gt;           &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">## 1 Iraq            Asia       1977    60.4 1.19e7    14688.</span>
-<span class="co">## 2 Japan           Asia       1952    63.0 8.65e7     3217.</span>
-<span class="co">## 3 Trinidad and T~ Americas   1972    65.9 9.75e5     6620.</span></code></pre></div>
+<span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Serbia      Europe     1957    61.7  7271135     4981.</span>
+<span class="co">## 2 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">## 3 Italy       Europe     1967    71.1 52667100    10022.</span></code></pre></div>
 <p>Зверніть увагу, що при повторному виконанні попереднього коду ви будете отримувати кожного разу різні підвибірки. Для того щоб отримати відтворюваний результат, необхідно вказати початкове значення генератора випадкових чисел за допомогою функції <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>. Аргументом цієї функції може бути будь-яке ціле число.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
@@ -1481,7 +1481,7 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-14.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -6,6 +6,9 @@ fig:062
 fig:063
 fig:064
 fig:wbimage
+eq:reg
+eq:lmreg
+eq:malereg
 introR
 installR
 instalpc
