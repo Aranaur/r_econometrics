@@ -225,26 +225,71 @@ y = f(x_1, x_2, x_3),
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
        y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/unnamed-chunk-8-1.png" width="100%"></div>
-<p>Таку залежність ми можемо виразити у вигляді формули:
+<p>Припустимо, що взаємозв’язок між вагою і зростом - лінійний. Такі випадки на практиці досить рідко зустрічаються і пізніше ми познайомимось з іншими варіантами.</p>
+<p>Рівняння прямої виглядає наступним чином:
 <span class="math display" id="eq:lmreg">\[
-y = \beta_0 + \beta_1x + u 
+y_i = \beta_0 + \beta_1x_i + u_i
 \tag{3.2}
 \]</span>
-Підставемо конкретні змінні у рівняння, отримаємо:
+Підставимо конкретні змінні у рівняння, отримаємо:
 <span class="math display" id="eq:malereg">\[
-Height = \beta_0 + \beta_1Weight + u 
+Height_i = \beta_0 + \beta_1Weight_i + u_i
 \tag{3.3}
 \]</span>
 Рівняння <a href="simple_regression.html#eq:lmreg">(3.2)</a> та <a href="simple_regression.html#eq:malereg">(3.3)</a> називаються простою лінійною регресією або парною лінійною регресією.</p>
 <p>Розглянемо складові рівняння <a href="simple_regression.html#eq:lmreg">(3.2)</a>:</p>
 <ul>
 <li><p><span class="math inline">\(y\)</span>: залежна змінна.</p></li>
-<li><p><span class="math inline">\(\beta_0\)</span>: вільний параметр моделі.</p></li>
-<li><p><span class="math inline">\(\beta_1\)</span>: залежний параметр моделі.</p></li>
+<li><p><span class="math inline">\(\beta_0\)</span>: вільний параметр моделі, який відповідає за точку перетину прямої з вістю ординат.</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span>: залежний параметр моделі, який відповідає за кут нахилу прямої.</p></li>
 <li><p><span class="math inline">\(x\)</span>: незалежна змінна.</p></li>
 <li><p><span class="math inline">\(u\)</span>: залишки моделі.</p></li>
 </ul>
-<p>Наша задача - підібрати оптимальні значення параметрів моделі <span class="math inline">\(\beta_0\)</span> та <span class="math inline">\(\beta_1\)</span>.</p>
+<p>Для того щоб тримати рівняння прямої, нам необхідно підібрати значення параметрів моделі: <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span>. Що значать “кришки” <span class="math inline">\(^\)</span> над коєфіціентами? Справа в тому, що в нашому розпорядженні є тільки певна вибірка даних і провести ідеальну пряму через всі точки неможливо. Тому нам необхідно розрахувати оцінки параметрів моделі, які будуть задовільняти нас. Рівень задоволення ми будемо оцінювати за допомогою функції втрат (<em>loss function</em>), яку необхідно мінімізувати.</p>
+<p>Отже рівняння моделі набуває вигляду:
+<span class="math display" id="eq:lmreg1">\[
+\hat{y_i} = \hat{\beta_0} + \hat{\beta_1}x_i
+\tag{3.4}
+\]</span>
+або для нашого прикладу
+<span class="math display" id="eq:malereg1">\[
+\hat{Height_i} = \hat{\beta_0} + \hat{\beta_1}Weight_i
+\tag{3.5}
+\]</span>
+Давайте для початку проведемо пряму, яка відповідає середньому значенню ваги чоловіків по вибірці:</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/midline-1.png" width="100%"></div>
+<p>Очевидно, що така “модель” є неоптимальною і вона має значні залишки: відхилення модельних значень від фактичних:</p>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Weight_cm</span><span class="op">)</span>,
+         resid1 <span class="op">=</span> <span class="va">Weight_cm</span> <span class="op">-</span> <span class="va">fit1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xend <span class="op">=</span> <span class="va">Height_kg</span>, yend <span class="op">=</span> <span class="va">fit1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/resid-1.png" width="100%"></div>
+<p>Позитивні відхилення розташовані вище модельних значень, а від’ємні - нижче.</p>
+<p>Давайте побудуємо декілька альтернативних прямих:</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit2 <span class="op">=</span> <span class="fl">60</span> <span class="op">+</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">Weight_cm</span>,
+         fit3 <span class="op">=</span> <span class="fl">55</span> <span class="op">+</span> <span class="fl">1.2</span> <span class="op">*</span> <span class="va">Weight_cm</span>,
+         fit4 <span class="op">=</span> <span class="fl">57</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">fit2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/fit2-1.png" width="100%"></div>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -275,7 +320,7 @@ Height = \beta_0 + \beta_1Weight + u
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-15.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

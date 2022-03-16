@@ -9,6 +9,8 @@ fig:wbimage
 eq:reg
 eq:lmreg
 eq:malereg
+eq:lmreg1
+eq:malereg1
 introR
 installR
 instalpc

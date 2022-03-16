@@ -840,7 +840,7 @@ R працює з багатьма структурами даних: векто
 </h3>
 <p>Разом з самою мовою програмування R поставляються пакети, які не потрібно встановлювати: основний <code>base</code> та декілька інших, такі як <code>stats</code>, <code>utils</code>, <code>graphics</code> та інші. Повний перелік можна переглянути за наступним кодом:</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">##  [1] "base"      "compiler"  "datasets"  "graphics" </span>
 <span class="co">##  [5] "grDevices" "grid"      "methods"   "parallel" </span>
 <span class="co">##  [9] "splines"   "stats"     "stats4"    "tcltk"    </span>
@@ -853,7 +853,7 @@ R працює з багатьма структурами даних: векто
 <p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## [1] 18967</span></code></pre></div>
+<span class="co">## [1] 18973</span></code></pre></div>
 <p>І з кожним роком їх стає все більше:
 <img src="docs/images/CRAN.png" width="100%">
 Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє звантажувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
@@ -907,7 +907,7 @@ R працює з багатьма структурами даних: векто
 <p>У випадках, коли функцію з пакету буде використано вcього декілька разів, є сенс не підключати весь пакет, а завантажити тільки окрему його функцію. Для цього використовується спеціальний оператор <code>::</code>, ліворуч від якого вказується назва пакету, а праворуч відповідна функція з обраного пакету.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">vroom</span><span class="fu">::</span><span class="fu"><a href="https://vroom.r-lib.org/reference/vroom_example.html">vroom_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Крім того оператор <code>::</code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
+<p>Крім того оператор <code>::</code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Пріоритет надається функціоналу пакету, який був підключений останній.</p>
@@ -978,7 +978,7 @@ R працює з багатьма структурами даних: векто
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-15.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
