@@ -2,7 +2,7 @@
 ***
 ```{r setup-01, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.width = '100%')
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.width = '100%', cache = TRUE)
 ```
 
 Мова програмування **R** --- потужний інструмент, що широко використовується в різних сферах: статистика, візуалізація, наука про дані, машинне навчання, глибоке навчання тощо. Це безкоштовна система з відкритим кодом, з широкими можливостями, які досягаються за рахунок різноманіття покетів (*packages*) доповнень.

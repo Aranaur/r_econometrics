@@ -122,22 +122,20 @@ y = f(x_1, x_2, x_3),
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">starwars</span>
 <span class="co">## # A tibble: 87 x 14</span>
-<span class="co">##    name       height  mass hair_color skin_color eye_color</span>
-<span class="co">##    &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
-<span class="co">##  1 Luke Skyw~    172    77 blond      fair       blue     </span>
-<span class="co">##  2 C-3PO         167    75 &lt;NA&gt;       gold       yellow   </span>
-<span class="co">##  3 R2-D2          96    32 &lt;NA&gt;       white, bl~ red      </span>
-<span class="co">##  4 Darth Vad~    202   136 none       white      yellow   </span>
-<span class="co">##  5 Leia Orga~    150    49 brown      light      brown    </span>
-<span class="co">##  6 Owen Lars     178   120 brown, gr~ light      blue     </span>
-<span class="co">##  7 Beru Whit~    165    75 brown      light      blue     </span>
-<span class="co">##  8 R5-D4          97    32 &lt;NA&gt;       white, red red      </span>
-<span class="co">##  9 Biggs Dar~    183    84 black      light      brown    </span>
-<span class="co">## 10 Obi-Wan K~    182    77 auburn, w~ fair       blue-gray</span>
-<span class="co">## # ... with 77 more rows, and 8 more variables:</span>
-<span class="co">## #   birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;,</span>
-<span class="co">## #   homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,</span>
-<span class="co">## #   vehicles &lt;list&gt;, starships &lt;list&gt;</span></code></pre></div>
+<span class="co">##    name     height  mass hair_color skin_color eye_color birth_year sex   gender</span>
+<span class="co">##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; </span>
+<span class="co">##  1 Luke Sk~    172    77 blond      fair       blue            19   male  mascu~</span>
+<span class="co">##  2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~</span>
+<span class="co">##  3 R2-D2        96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~</span>
+<span class="co">##  4 Darth V~    202   136 none       white      yellow          41.9 male  mascu~</span>
+<span class="co">##  5 Leia Or~    150    49 brown      light      brown           19   fema~ femin~</span>
+<span class="co">##  6 Owen La~    178   120 brown, gr~ light      blue            52   male  mascu~</span>
+<span class="co">##  7 Beru Wh~    165    75 brown      light      blue            47   fema~ femin~</span>
+<span class="co">##  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu~</span>
+<span class="co">##  9 Biggs D~    183    84 black      light      brown           24   male  mascu~</span>
+<span class="co">## 10 Obi-Wan~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~</span>
+<span class="co">## # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,</span>
+<span class="co">## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</span></code></pre></div>
 <ul>
 <li>
 <em>Часові ряди</em>: дані по одному чи декількох об’єктах дослідження впродовж певного періоду часу (курси валют, ВВП, пасажиропотік тощо). Головною особливістю таких даних виступає часова впорядкованість (від минулого до сучасного) та частота даних (однаковий інтервал запису даних).</li>
@@ -245,7 +243,7 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
 <li><p><span class="math inline">\(x\)</span>: незалежна змінна.</p></li>
 <li><p><span class="math inline">\(u\)</span>: залишки моделі.</p></li>
 </ul>
-<p>Для того щоб тримати рівняння прямої, нам необхідно підібрати значення параметрів моделі: <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span>. Що значать “кришки” <span class="math inline">\(^\)</span> над коєфіціентами? Справа в тому, що в нашому розпорядженні є тільки певна вибірка даних і провести ідеальну пряму через всі точки неможливо. Тому нам необхідно розрахувати оцінки параметрів моделі, які будуть задовільняти нас. Рівень задоволення ми будемо оцінювати за допомогою функції втрат (<em>loss function</em>), яку необхідно мінімізувати.</p>
+<p>Для того щоб тримати рівняння прямої, нам необхідно підібрати значення параметрів моделі: <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span>. Що значать “кришки” <span class="math inline">\(^\)</span> над коєфіціентами? Справа в тому, що в нашому розпорядженні є тільки певна вибірка даних і провести ідеальну пряму через всі точки неможливо. Тому нам необхідно розрахувати оцінки параметрів моделі, які будуть задовільняти нас.</p>
 <p>Отже рівняння моделі набуває вигляду:
 <span class="math display" id="eq:lmreg1">\[
 \hat{y_i} = \hat{\beta_0} + \hat{\beta_1}x_i
@@ -265,7 +263,7 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
        y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/midline-1.png" width="100%"></div>
-<p>Очевидно, що така “модель” є неоптимальною і вона має значні залишки: відхилення модельних значень від фактичних:</p>
+<p>Очевидно, що така “модель” є неоптимальною і вона має значні залишки: відхилення модельних значень від фактичних</p>
 <div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Weight_cm</span><span class="op">)</span>,
@@ -278,18 +276,198 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
        y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/resid-1.png" width="100%"></div>
 <p>Позитивні відхилення розташовані вище модельних значень, а від’ємні - нижче.</p>
-<p>Давайте побудуємо декілька альтернативних прямих:</p>
+<div class="inline-figure">Давайте побудуємо декілька альтернативних прямих
+<img src="r_econometrics_files/figure-html/fit2-1.png" width="100%">
+</div>
+<p>Такі моделі вже мають значно менші відхилення. Але вони були побудовані “на око” без точних математичних розрахунків. Як провести оптимізацію процесу підбору моделі? Для цього ми вводимо функцію втрат (<em>loss function</em>), мінімізуючи котру ми будемо підбирати оптимальні значення <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span>. На перший погляд здається, що непоганою ідеєю було б розрахувати суму похибок <span class="math inline">\(\sum\limits^{n}_{i=1}{u_i}\)</span> для всіх альтернатив та обрати модель з найменшим значенням. Але такий підхід має значний недолік: представимо, що ми побудували дві моделі і отримали залишки <span class="math inline">\(u_{m1} = (-10, -5, 5, 10)\)</span> для першої та <span class="math inline">\(u_{m2} = (-100, -50, 50, 100)\)</span> для другої моделі. Сума залишків для обох моделей дорівнює нулю, але це не значит, що моделі не помиляються. Позитивні та негативні похибки компенсують один одного, при цьому коливання похибок другої моделі значно більші. Тож такий підхід нам не підходить.</p>
+<p>Тому для оцінювання параметрів моделі в лінійній регресії пропонується використовувати <strong>метод найменших квадратів</strong> (МНК, <em>ordinary least squares, OLS</em>): серед альтернатив обbраємо ту, для котрої сума квадратів відхилення буде мінімальною.
+<span class="math display" id="eq:ols">\[
+\sum\limits^{n}_{i=1}{u_i^2} = u_1^2 + u_2^2 + \dots + u_n^2 \rightarrow min
+\tag{3.6}
+\]</span>
+Чому слід брати квадрат відхилення, а не абсолютні значення <span class="math inline">\(\left |{u_1}\right | + \left |{u_2}\right | + \dots + \left |{u_n}\right |\)</span>? Такий підхід має значний недолік: абсолютні значення не мають неперервної похідної, що робить таку функцію негладкою. До того ж квадрат похибок “штрафують” модель сильніше з більших відхилень. Як альтернативу можна обрати інші парні степені похибок, такі як 4 або 6, але і там є певні складнощі. Тому на практиці частіше за всі інші альтернативи обирають МНК.</p>
+<p>Подивимось, як працює мінімізація суми квадратів залишків.
+<span class="math display" id="eq:sumerror">\[
+\sum\limits^{n}_{i=1}{u_i^2} = \sum\limits^{n}_{i=1}(y_i - \hat{\beta_0} - \hat{\beta_1}x_i)^2 \rightarrow min
+\tag{3.7}
+\]</span>
+Візьмемо похідні по <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span>:
+<span class="math display" id="eq:pohid">\[
+\left\{\begin{matrix}
+ -2\sum\limits^{n}_{i=1}(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 &amp; \\ 
+-2\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 &amp; 
+\end{matrix}\right.
+\tag{3.8}
+\]</span></p>
+<p>Розкриємо дужки першого рівняння:
+<span class="math display" id="eq:pohid2">\[
+\left\{\begin{matrix}
+\sum\limits^{n}_{i=1}y_i - n\hat{\beta_0} - \hat{\beta_1}x_i = 0 &amp; \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 &amp; 
+\end{matrix}\right.
+\tag{3.9}
+\]</span></p>
+<p>Поділимо перше рівняння на <span class="math inline">\(n\)</span>:
+<span class="math display" id="eq:pohid3">\[
+\left\{\begin{matrix}
+\overline{y} - \hat{\beta_0} - \hat{\beta_1}\overline{x} = 0 &amp; \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 &amp; 
+\end{matrix}\right.
+\tag{3.10}
+\]</span>
+З першого рівняння виразимо <span class="math inline">\(\hat{\beta_0}\)</span> і підставимо у друге:
+<span class="math display" id="eq:pohid4">\[
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} &amp; \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - (\overline{y} - \hat{\beta_1}\overline{x}) - \hat{\beta_1}x_i) = 0 &amp; 
+\end{matrix}\right.
+\tag{3.11}
+\]</span>
+Розкриємо дужки у другому рівнянні:
+<span class="math display" id="eq:pohid5">\[
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} &amp; \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) =  \hat{\beta_1}\sum\limits^{n}_{i=1}x_i(x_i - \overline{x}) 
+\end{matrix}\right.
+\tag{3.12}
+\]</span>
+Оскільки
+<span class="math display">\[\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) = \sum\limits^{n}_{i=1}(x_i - \overline{x})^2\]</span>
+та
+<span class="math display">\[\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) = \sum\limits^{n}_{i=1}(x_i - \overline{x})(y_i - \overline{y}),\]</span>
+тоді за умови
+<span class="math display" id="eq:pohid6">\[
+\sum\limits^{n}_{i=1}(x_i - \overline{x})^2 &gt; 0
+\tag{3.13}
+\]</span>
+оцінки параметрів моделі <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span> будуть дорівнювати:
+<span class="math display" id="eq:pohid7">\[
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} &amp; \\ 
+\hat{\beta_1} = \frac{\sum\limits^{n}_{i=1}(x_i - \overline{x})(y_i - \overline{y})}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2} = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2}
+\end{matrix}\right.
+\tag{3.14}
+\]</span>
+Давайте поетапно розрахуємо значення <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span> для нашого прикладу з вагою і зростом:</p>
 <div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit2 <span class="op">=</span> <span class="fl">60</span> <span class="op">+</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">Weight_cm</span>,
-         fit3 <span class="op">=</span> <span class="fl">55</span> <span class="op">+</span> <span class="fl">1.2</span> <span class="op">*</span> <span class="va">Weight_cm</span>,
-         fit4 <span class="op">=</span> <span class="fl">57</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span>
+<span class="co">## # A tibble: 100 x 2</span>
+<span class="co">##    Height_kg Weight_cm</span>
+<span class="co">##        &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1      182.      89.4</span>
+<span class="co">##  2      174.      80.9</span>
+<span class="co">##  3      175.      83.9</span>
+<span class="co">##  4      182.      86.6</span>
+<span class="co">##  5      177.      82.9</span>
+<span class="co">##  6      184.     101. </span>
+<span class="co">##  7      185.      84.8</span>
+<span class="co">##  8      169.      79.2</span>
+<span class="co">##  9      170.      74.0</span>
+<span class="co">## 10      187.      94.5</span>
+<span class="co">## # ... with 90 more rows</span></code></pre></div>
+<p>Додамо розрахункові значення <span class="math inline">\(Height_{kg}^2\)</span> та <span class="math inline">\(Height_{kg}*Weight_{cm}\)</span>:</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Height_kg_sq <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">^</span> <span class="fl">2</span>,
+         Height_Weight <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">*</span> <span class="va">Weight_cm</span><span class="op">)</span>
+<span class="co">## # A tibble: 100 x 4</span>
+<span class="co">##    Height_kg Weight_cm Height_kg_sq Height_Weight</span>
+<span class="co">##        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">##  1      182.      89.4       33197.        16286.</span>
+<span class="co">##  2      174.      80.9       30197.        14062.</span>
+<span class="co">##  3      175.      83.9       30469.        14644.</span>
+<span class="co">##  4      182.      86.6       33302.        15799.</span>
+<span class="co">##  5      177.      82.9       31233.        14651.</span>
+<span class="co">##  6      184.     101.        33907.        18675.</span>
+<span class="co">##  7      185.      84.8       34065.        15647.</span>
+<span class="co">##  8      169.      79.2       28566.        13385.</span>
+<span class="co">##  9      170.      74.0       28917.        12583.</span>
+<span class="co">## 10      187.      94.5       34841.        17637.</span>
+<span class="co">## # ... with 90 more rows</span></code></pre></div>
+<p>Знайдемо середнє значення для кожного стовпчика:</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Height_kg_sq <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">^</span> <span class="fl">2</span>,
+         Height_Weight <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">*</span> <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">Height_kg</span><span class="op">:</span><span class="va">Height_Weight</span>,
+            <span class="va">mean</span>,
+            .names <span class="op">=</span> <span class="st">"mean_{.col}"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1 x 4</span>
+<span class="co">##   mean_Height_kg mean_Weight_cm mean_Height_kg_sq mean_Height_Weight</span>
+<span class="co">##            &lt;dbl&gt;          &lt;dbl&gt;             &lt;dbl&gt;              &lt;dbl&gt;</span>
+<span class="co">## 1           176.           83.8            30892.             14780.</span></code></pre></div>
+<p>Тепер можемо розрахувати оцінки параметрів моделі:</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Height_kg_sq <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">^</span> <span class="fl">2</span>,
+         Height_Weight <span class="op">=</span> <span class="va">Height_kg</span> <span class="op">*</span> <span class="va">Weight_cm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">Height_kg</span><span class="op">:</span><span class="va">Height_Weight</span>,
+            <span class="va">mean</span>,
+            .names <span class="op">=</span> <span class="st">"mean_{.col}"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>beta_1 <span class="op">=</span> <span class="op">(</span><span class="va">mean_Height_Weight</span> <span class="op">-</span> <span class="va">mean_Height_kg</span> <span class="op">*</span> <span class="va">mean_Weight_cm</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">mean_Height_kg_sq</span> <span class="op">-</span> <span class="va">mean_Height_kg</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,
+            beta_0 <span class="op">=</span> <span class="va">mean_Weight_cm</span> <span class="op">-</span> <span class="va">beta_1</span> <span class="op">*</span> <span class="va">mean_Height_kg</span><span class="op">)</span>
+<span class="co">## # A tibble: 1 x 2</span>
+<span class="co">##   beta_1 beta_0</span>
+<span class="co">##    &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">## 1   1.02  -96.0</span></code></pre></div>
+<p>Отже рівняння простої лінійної регресії для нашого прикладу буде виглядати:
+<span class="math display">\[\hat{y_i} = -96 + 1.02 * \hat{x}\]</span>
+Звичайно, на практиці оцінки параметрів моделі за МНК розраховуються за допомогою комп’ютера. Для цього, в R є функція <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, де першим аргументом вказується формула залежності, а другим набір даних:</p>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># у формулі ліворуч від ~ знаходиться залежна змінна</span>
+<span class="co"># праворуч від ~ незалежні змінні</span>
+<span class="va">male_ols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Weight_cm</span> <span class="op">~</span> <span class="va">Height_kg</span>, data <span class="op">=</span> <span class="va">male</span><span class="op">)</span>
+<span class="va">male_ols</span>
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## lm(formula = Weight_cm ~ Height_kg, data = male)</span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">## (Intercept)    Height_kg  </span>
+<span class="co">##     -95.999        1.024</span></code></pre></div>
+<p>Результат моделі <code>male_ols</code> зберігається у вигляді списку, з якого ми можемо отримати залишки, параметри моделі, модельні значення тощо:</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Оцінки параметрів моделі</span>
+<span class="va">male_ols</span><span class="op">$</span><span class="va">coefficients</span>
+<span class="co">## (Intercept)   Height_kg </span>
+<span class="co">##  -95.998717    1.024054</span>
+<span class="co"># Модельні значення в тібблі</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">male_ols</span><span class="op">$</span><span class="va">fitted.values</span><span class="op">)</span>
+<span class="co">## # A tibble: 100 x 1</span>
+<span class="co">##    value</span>
+<span class="co">##    &lt;dbl&gt;</span>
+<span class="co">##  1  90.6</span>
+<span class="co">##  2  82.0</span>
+<span class="co">##  3  82.8</span>
+<span class="co">##  4  90.9</span>
+<span class="co">##  5  85.0</span>
+<span class="co">##  6  92.6</span>
+<span class="co">##  7  93.0</span>
+<span class="co">##  8  77.1</span>
+<span class="co">##  9  78.1</span>
+<span class="co">## 10  95.1</span>
+<span class="co">## # ... with 90 more rows</span></code></pre></div>
+<p>Побудуємо візуалізацію отриманих результатів за допомогою <code>ggplot2</code></p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">fit2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
        y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="r_econometrics_files/figure-html/fit2-1.png" width="100%"></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/olsplot1-1.png" width="100%"></div>
+<p>або</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit_ols <span class="op">=</span> <span class="va">male_ols</span><span class="op">$</span><span class="va">fitted.values</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">fit_ols</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/olsplot2-1.png" width="100%"></div>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>

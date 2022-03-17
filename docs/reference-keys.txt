@@ -11,6 +11,15 @@ eq:lmreg
 eq:malereg
 eq:lmreg1
 eq:malereg1
+eq:ols
+eq:sumerror
+eq:pohid
+eq:pohid2
+eq:pohid3
+eq:pohid4
+eq:pohid5
+eq:pohid6
+eq:pohid7
 introR
 installR
 instalpc

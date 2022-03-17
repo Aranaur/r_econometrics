@@ -119,7 +119,7 @@ $$
 
 * $u$: залишки моделі.
 
-Для того щоб тримати рівняння прямої, нам необхідно підібрати значення параметрів моделі: $\hat{\beta_0}$ та $\hat{\beta_1}$. Що значать "кришки" $^$ над коєфіціентами? Справа в тому, що в нашому розпорядженні є тільки певна вибірка даних і провести ідеальну пряму через всі точки неможливо. Тому нам необхідно розрахувати оцінки параметрів моделі, які будуть задовільняти нас. Рівень задоволення ми будемо оцінювати за допомогою функції втрат (*loss function*), яку необхідно мінімізувати.
+Для того щоб тримати рівняння прямої, нам необхідно підібрати значення параметрів моделі: $\hat{\beta_0}$ та $\hat{\beta_1}$. Що значать "кришки" $^$ над коєфіціентами? Справа в тому, що в нашому розпорядженні є тільки певна вибірка даних і провести ідеальну пряму через всі точки неможливо. Тому нам необхідно розрахувати оцінки параметрів моделі, які будуть задовільняти нас.
 
 Отже рівняння моделі набуває вигляду:
 $$
@@ -141,7 +141,7 @@ male %>%
        y = "Вага (кг)")
 ```
 
-Очевидно, що така "модель" є неоптимальною і вона має значні залишки: відхилення модельних значень від фактичних:
+Очевидно, що така "модель" є неоптимальною і вона має значні залишки: відхилення модельних значень від фактичних
 ```{r resid}
 male %>% 
   mutate(fit1 = mean(Weight_cm),
@@ -156,17 +156,164 @@ male %>%
 
 Позитивні відхилення розташовані вище модельних значень, а від'ємні - нижче.
 
-Давайте побудуємо декілька альтернативних прямих:
-```{r fit2}
+Давайте побудуємо декілька альтернативних прямих
+```{r fit2, echo=FALSE}
 male %>% 
-  mutate(fit2 = 60 + 0.7 * Weight_cm,
-         fit3 = 55 + 1.2 * Weight_cm,
-         fit4 = 57 + 2 * Weight_cm) %>% 
   ggplot(aes(Height_kg, Weight_cm)) +
   geom_point() +
-  geom_line(aes(Height_kg, fit2)) +
+  geom_abline(intercept = -139.18, slope = 1.27, color = "blue", size = 1) +
+  geom_abline(intercept = -180.68, slope = 1.51, color = "darkgreen", size = 1) +
+  geom_abline(intercept = -80, slope = 0.95, color = "darkred", size = 1) +
   labs(x = "Зріст (см)",
        y = "Вага (кг)")
+```
+
+Такі моделі вже мають значно менші відхилення. Але вони були побудовані "на око" без точних математичних розрахунків. Як провести оптимізацію процесу підбору моделі? Для цього ми вводимо функцію втрат (*loss function*), мінімізуючи котру ми будемо підбирати оптимальні значення $\hat{\beta_0}$ та $\hat{\beta_1}$. На перший погляд здається, що непоганою ідеєю було б розрахувати суму похибок $\sum\limits^{n}_{i=1}{u_i}$ для всіх альтернатив та обрати модель з найменшим значенням. Але такий підхід має значний недолік: представимо, що ми побудували дві моделі і отримали залишки $u_{m1} = (-10, -5, 5, 10)$ для першої та $u_{m2} = (-100, -50, 50, 100)$ для другої моделі. Сума залишків для обох моделей дорівнює нулю, але це не значит, що моделі не помиляються. Позитивні та негативні похибки компенсують один одного, при цьому коливання похибок другої моделі значно більші. Тож такий підхід нам не підходить.
+
+Тому для оцінювання параметрів моделі в лінійній регресії пропонується використовувати **метод найменших квадратів** (МНК, *ordinary least squares, OLS*): серед альтернатив обbраємо ту, для котрої сума квадратів відхилення буде мінімальною.
+$$
+\sum\limits^{n}_{i=1}{u_i^2} = u_1^2 + u_2^2 + \dots + u_n^2 \rightarrow min
+(\#eq:ols)
+$$
+Чому слід брати квадрат відхилення, а не абсолютні значення $\left |{u_1}\right | + \left |{u_2}\right | + \dots + \left |{u_n}\right |$? Такий підхід має значний недолік: абсолютні значення не мають неперервної похідної, що робить таку функцію негладкою. До того ж квадрат похибок "штрафують" модель сильніше з більших відхилень. Як альтернативу можна обрати інші парні степені похибок, такі як 4 або 6, але і там є певні складнощі. Тому на практиці частіше за всі інші альтернативи обирають МНК.
+
+Подивимось, як працює мінімізація суми квадратів залишків.
+$$
+\sum\limits^{n}_{i=1}{u_i^2} = \sum\limits^{n}_{i=1}(y_i - \hat{\beta_0} - \hat{\beta_1}x_i)^2 \rightarrow min
+(\#eq:sumerror)
+$$
+Візьмемо похідні по $\hat{\beta_0}$ та $\hat{\beta_1}$:
+$$
+\left\{\begin{matrix}
+ -2\sum\limits^{n}_{i=1}(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 & \\ 
+-2\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 & 
+\end{matrix}\right.
+(\#eq:pohid)
+$$
+
+Розкриємо дужки першого рівняння:
+$$
+\left\{\begin{matrix}
+\sum\limits^{n}_{i=1}y_i - n\hat{\beta_0} - \hat{\beta_1}x_i = 0 & \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 & 
+\end{matrix}\right.
+(\#eq:pohid2)
+$$
+
+Поділимо перше рівняння на $n$:
+$$
+\left\{\begin{matrix}
+\overline{y} - \hat{\beta_0} - \hat{\beta_1}\overline{x} = 0 & \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 & 
+\end{matrix}\right.
+(\#eq:pohid3)
+$$
+З першого рівняння виразимо $\hat{\beta_0}$ і підставимо у друге:
+$$
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} & \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - (\overline{y} - \hat{\beta_1}\overline{x}) - \hat{\beta_1}x_i) = 0 & 
+\end{matrix}\right.
+(\#eq:pohid4)
+$$
+Розкриємо дужки у другому рівнянні:
+$$
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} & \\ 
+\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) =  \hat{\beta_1}\sum\limits^{n}_{i=1}x_i(x_i - \overline{x}) 
+\end{matrix}\right.
+(\#eq:pohid5)
+$$
+Оскільки 
+$$\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) = \sum\limits^{n}_{i=1}(x_i - \overline{x})^2$$ 
+та 
+$$\sum\limits^{n}_{i=1}x_i(y_i - \overline{y}) = \sum\limits^{n}_{i=1}(x_i - \overline{x})(y_i - \overline{y}),$$
+тоді за умови
+$$
+\sum\limits^{n}_{i=1}(x_i - \overline{x})^2 > 0
+(\#eq:pohid6)
+$$
+оцінки параметрів моделі $\hat{\beta_0}$ та $\hat{\beta_1}$ будуть дорівнювати:
+$$
+\left\{\begin{matrix}
+\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x} & \\ 
+\hat{\beta_1} = \frac{\sum\limits^{n}_{i=1}(x_i - \overline{x})(y_i - \overline{y})}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2} = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2}
+\end{matrix}\right.
+(\#eq:pohid7)
+$$
+Давайте поетапно розрахуємо значення $\hat{\beta_0}$ та $\hat{\beta_1}$ для нашого прикладу з вагою і зростом:
+```{r ols1}
+male %>% 
+  select(Height_kg, Weight_cm)
+```
+
+Додамо розрахункові значення $Height_{kg}^2$ та $Height_{kg}*Weight_{cm}$:
+```{r ols2}
+male %>% 
+  select(Height_kg, Weight_cm) %>% 
+  mutate(Height_kg_sq = Height_kg ^ 2,
+         Height_Weight = Height_kg * Weight_cm)
+```
+
+Знайдемо середнє значення для кожного стовпчика:
+```{r ols3}
+male %>% 
+  select(Height_kg, Weight_cm) %>% 
+  mutate(Height_kg_sq = Height_kg ^ 2,
+         Height_Weight = Height_kg * Weight_cm) %>% 
+  summarise(across(Height_kg:Height_Weight,
+            mean,
+            .names = "mean_{.col}"))
+```
+
+Тепер можемо розрахувати оцінки параметрів моделі:
+```{r ols4}
+male %>% 
+  select(Height_kg, Weight_cm) %>% 
+  mutate(Height_kg_sq = Height_kg ^ 2,
+         Height_Weight = Height_kg * Weight_cm) %>% 
+  summarise(across(Height_kg:Height_Weight,
+            mean,
+            .names = "mean_{.col}")) %>% 
+  transmute(beta_1 = (mean_Height_Weight - mean_Height_kg * mean_Weight_cm)/(mean_Height_kg_sq - mean_Height_kg^2),
+            beta_0 = mean_Weight_cm - beta_1 * mean_Height_kg)
+```
+
+Отже рівняння простої лінійної регресії для нашого прикладу буде виглядати:
+$$\hat{y_i} = -96 + 1.02 * \hat{x}$$
+Звичайно, на практиці оцінки параметрів моделі за МНК розраховуються за допомогою комп'ютера. Для цього, в R є функція `lm()`, де першим аргументом вказується формула залежності, а другим набір даних:
+```{r ols5}
+# у формулі ліворуч від ~ знаходиться залежна змінна
+# праворуч від ~ незалежні змінні
+male_ols <- lm(Weight_cm ~ Height_kg, data = male)
+male_ols
+```
+
+Результат моделі `male_ols` зберігається у вигляді списку, з якого ми можемо отримати залишки, параметри моделі, модельні значення тощо:
+```{r ols6}
+# Оцінки параметрів моделі
+male_ols$coefficients
+# Модельні значення в тібблі
+as_tibble(male_ols$fitted.values)
+```
+
+Побудуємо візуалізацію отриманих результатів за допомогою `ggplot2`
+```{r olsplot1}
+male %>% 
+  ggplot(aes(Height_kg, Weight_cm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Зріст (см)",
+       y = "Вага (кг)")
+```
+
+або
+```{r olsplot2}
+male %>% 
+  mutate(fit_ols = male_ols$fitted.values) %>% 
+  ggplot(aes(Height_kg, Weight_cm)) +
+  geom_point() +
+  geom_line(aes(Height_kg, fit_ols), color = "blue")
 ```
 
 bookdown::render_book("index.Rmd", output_dir = "docs")
