@@ -20,6 +20,15 @@ eq:pohid4
 eq:pohid5
 eq:pohid6
 eq:pohid7
+eq:resid1
+eq:resid2
+eq:resid3
+eq:SST
+eq:SSE
+eq:SSR
+eq:SST1
+eq:rsquar
+eq:corr
 introR
 installR
 instalpc
@@ -70,6 +79,8 @@ case
 pivot
 simple_regression
 проста-лінійна-регресія
+властивості-модельних-значень-та-залишків
+коефіцієнт-детермінації
 multiple_regression
 multicollinearity
 heteroskedasticity
