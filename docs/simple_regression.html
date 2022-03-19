@@ -70,7 +70,7 @@
 <p>Уявіть, що вам необхідно оцінити ефективність витрат рекламної компанії, тенденцію розвитку витрат виробництва, прогноз валового внутрішнього продукту тощо. На кожне з цих завдань може допомогти знайти відповідь економетрика, хоча з точки зору прогнозної сили, напевно, слід піти далі і звернутися до алгоритмів машинного навчання або нейронних мереж, хоча й там є свої особливості. На мою думку, економетрика на рівні зі статистикою - це чудовий фундамент для подальшого вивчення машинного навчання.</p>
 <p>Для економетричного дослідження необхідно будувати математичні моделі - спрощений варіант реальних об’єктів дослідження. Виглядають вони частіше за все, як певні рівняння, наприклад опишемо залежність заробітної плати робітника від його освіти, досвіду роботи та навичок. Таку залежність можна описати наступним чином:</p>
 <p><span class="math display" id="eq:reg">\[
-y = f(x_1, x_2, x_3),
+y = f(x_1, x_2, x_3, \dots, x_n),
 \tag{3.1}
 \]</span>
 де
@@ -78,7 +78,8 @@ y = f(x_1, x_2, x_3),
 <span class="math inline">\(x_1\)</span> — рівень освіти,
 <span class="math inline">\(x_2\)</span> — досвід роботи,
 <span class="math inline">\(x_3\)</span> — навички (знання мов програмування, статистики тощо),
-<span class="math inline">\(f\)</span> — функція залежності: описує яким саме чином <span class="math inline">\(x_i, i=\overline{1,3}\)</span> впливають на <span class="math inline">\(y\)</span>.</p>
+<span class="math inline">\(x_n\)</span> — інші показники,
+<span class="math inline">\(f\)</span> — функція залежності: описує яким саме чином <span class="math inline">\(x_i\)</span> впливають на <span class="math inline">\(y\)</span>.</p>
 <p>Змінна <span class="math inline">\(y\)</span>, яку ми намагаємось пояснити, називається <strong>залежною</strong>, а змінні <span class="math inline">\(x_i\)</span>, за допомогою яких ми намагаємось пояснити або спрогнозувати залежну змінну, називають <strong>незалежними</strong>. Хоча можуть зустрічатися і альтернативні визначення:</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -177,7 +178,7 @@ y = f(x_1, x_2, x_3),
 <span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
 <span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
 <span class="co">## # ... with 1,694 more rows</span></code></pre></div>
-<p>Функція залежності <span class="math inline">\(f\)</span> може мати різну форму та характер. Ми не знаємо її зазделегідь і намагаємось підібрати найкращий варіант з декількох альтернатив.</p>
+<p>Функція залежності (<span class="math inline">\(f\)</span>) може мати різну форму та характер. Ми не знаємо її заздалегідь і намагаємось підібрати найкращий варіант з декількох альтернатив.</p>
 <div id="проста-лінійна-регресія" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> Проста лінійна регресія<a class="anchor" aria-label="anchor" href="#%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%B0-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><i class="fas fa-link"></i></a>
@@ -503,7 +504,7 @@ ESS = \sum\limits^{n}_{i=1}(\hat{y_i} - \overline{y})^2
 \tag{3.19}
 \]</span></p>
 <p><span class="math display" id="eq:SSR">\[
-RSS = \sum\limits^{n}_{i=1}\hat{u_i^2}
+RSS = \sum\limits^{n}_{i=1}{u_i^2}
 \tag{3.20}
 \]</span></p>
 <p>SST оцінює дисперсію серез <span class="math inline">\(y_i\)</span>, тобто на скільки дані розсіяні у вибірці. Якщо поділити SST на <span class="math inline">\(n-1\)</span>, ми отримаємо вибіркову дисперсію значень <span class="math inline">\(y_i\)</span>.</p>
@@ -514,11 +515,13 @@ RSS = \sum\limits^{n}_{i=1}\hat{u_i^2}
 TSS = ESS + RSS
 \tag{3.21}
 \]</span>
-&gt; Окремо зверну увагу на абрівіатури цих показників в різних джерелах:
-* TSS іноді записують, як SST.
-* ESS іноді записують, як RSS (regression sum of squares).
-* RSS іноді вживають, як SSR (sum of squared residuals) або ESS (error sum of squares).
-Будьте уважні!</p>
+<em>Окремо зверну увагу на абрівіатури цих показників в різних джерелах:</em></p>
+<ul>
+<li><p><em>TSS іноді записують, як SST.</em></p></li>
+<li><p><em>ESS іноді записують, як RSS (regression sum of squares).</em></p></li>
+<li><p><em>RSS іноді вживають, як SSR (sum of squared residuals) або ESS (error sum of squares).</em></p></li>
+</ul>
+<p><em>Будьте уважні!</em></p>
 </div>
 <div id="коефіцієнт-детермінації" class="section level2" number="3.3">
 <h2>
@@ -527,22 +530,81 @@ TSS = ESS + RSS
 <p>Тепер слід визначити, наскільки пояснювальна змінна <span class="math inline">\(x_i\)</span> пояснює пояснювальну змінну <span class="math inline">\(y_i\)</span>.</p>
 <p>Якщо припустити, що TSS не дорівнює нулю (це можливо тільки в тому випадку коли всі <span class="math inline">\(y_i\)</span> однакові), ми можемо поділити <a href="simple_regression.html#eq:SST1">(3.21)</a> на TSS. В результаті, ми отримаємо <strong>коефіцієнт детермінації</strong> або <span class="math inline">\(R^2\)</span> (R-квадрат):
 <span class="math display" id="eq:rsquar">\[
-R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}
+R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS} = 1 - \frac{\sum\limits^{n}_{i=1}{u_i^2}}{\sum\limits^{n}_{i=1}(y_i - \overline{y})^2}
 \tag{3.22}
 \]</span>
-<span class="math inline">\(R^2\)</span> показує, яка частина варіації (розсіювання) <span class="math inline">\(y_i\)</span> пояснюється <span class="math inline">\(x_i\)</span>. Цей показник знаходиться завжди в межах від нуля до одиниці (<span class="math inline">\([0,1]\)</span>). Для інтерпретації у відсотках, <span class="math inline">\(R^2\)</span> домножують на 100: <em>який відсоток варіації <span class="math inline">\(y_i\)</span> пояснюється <span class="math inline">\(x_i\)</span></em>. Чим ближчий <span class="math inline">\(R^2\)</span> до 1 - тим краще <span class="math inline">\(x_i\)</span> пояснює <span class="math inline">\(y_i\)</span> і навпаки, чим ближчий <span class="math inline">\(R^2\)</span> до 0 - тим гіршу модель ми отримали.</p>
+<span class="math inline">\(R^2\)</span> показує, яка частина варіації (розсіювання) <span class="math inline">\(y_i\)</span> пояснюється <span class="math inline">\(x_i\)</span>. Цей показник знаходиться завжди в межах від нуля до одиниці <span class="math inline">\([0,1]\)</span>. Для інтерпретації у відсотках, <span class="math inline">\(R^2\)</span> домножують на 100: <em>який відсоток варіації <span class="math inline">\(y_i\)</span> пояснюється <span class="math inline">\(x_i\)</span></em>. Чим ближчий <span class="math inline">\(R^2\)</span> до 1 - тим краще <span class="math inline">\(x_i\)</span> пояснює <span class="math inline">\(y_i\)</span> і навпаки, чим ближчий <span class="math inline">\(R^2\)</span> до 0 - тим гіршу модель ми отримали.</p>
 <p>Також <span class="math inline">\(R^2\)</span> можна пояснити, як квадрат коефіцієнта кореляції між <span class="math inline">\(y_i\)</span> та <span class="math inline">\(\hat{y_i}\)</span>.</p>
 <p><strong>Коефіцієнта кореляції</strong> (r, <em>correlation coefficien</em>) — показник, який показує силу лінійного взаємозв’язку між двома змінними:
 <span class="math display" id="eq:corr">\[
 r = \frac{n\sum\limits^{n}_{i=1}(xy) - \sum\limits^{n}_{i=1}x_i\sum\limits^{n}_{i=1}y_i}{\sqrt{[n\sum\limits^{n}_{i=1}x^2 - (\sum\limits^{n}_{i=1}x_i)^2][n\sum\limits^{n}_{i=1}y_i^2-(\sum\limits^{n}_{i=1}y_i)^2]}}
 \tag{3.23}
 \]</span>
-<span class="math inline">\(r\)</span> змінюється від мінус одиниці до одиниці (<span class="math inline">\([-1,1]\)</span>):</p>
+<span class="math inline">\(r\)</span> змінюється від мінус одиниці до одиниці <span class="math inline">\([-1,1]\)</span>:</p>
 <ul>
 <li><p>при наближенні до -1 присутній обернений взаємозв’язок між змінними (одна зростає, інша спадає і навпаки)</p></li>
 <li><p>при наближенні до +1 присутній прямий лінійний взаємозв’язок між змінними (одна зростає й інша зростає і навпаки)</p></li>
-<li><p>при наближнні до 0 лінійного взаємозв’язку між змінними не існує.</p></li>
+<li><p>при наближенні до 0 лінійного взаємозв’язку між змінними не існує.</p></li>
 </ul>
+<p>Для розрахунку коефіцієнта кореляції в R використовується функція <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>:</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">male</span><span class="op">$</span><span class="va">Weight_cm</span>, <span class="va">male</span><span class="op">$</span><span class="va">Height_kg</span><span class="op">)</span>
+<span class="co">## [1] 0.8862974</span></code></pre></div>
+<p>Тоді коефіцієнт детермінації має дорівнювати:</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">male</span><span class="op">$</span><span class="va">Weight_cm</span>, <span class="va">male</span><span class="op">$</span><span class="va">Height_kg</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<span class="co">## [1] 0.7855231</span></code></pre></div>
+<p>Давайте розрахуємо <span class="math inline">\(R^2\)</span> вручну <a href="simple_regression.html#eq:rsquar">(3.22)</a>:</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">male_ols</span><span class="op">$</span><span class="va">residuals</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">male</span><span class="op">$</span><span class="va">Weight_cm</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">male</span><span class="op">$</span><span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="co">## [1] 0.7855231</span></code></pre></div>
+<p>Але все теж саме можна отримати застосувавши функцію <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> до МНК моделі:</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">male_ols</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## lm(formula = Weight_cm ~ Height_kg, data = male)</span>
+<span class="co">## </span>
+<span class="co">## Residuals:</span>
+<span class="co">##     Min      1Q  Median      3Q     Max </span>
+<span class="co">## -8.2309 -3.3608  0.0104  3.1405 11.6086 </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">## (Intercept) -95.99872    9.50045  -10.11   &lt;2e-16 ***</span>
+<span class="co">## Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  </span>
+<span class="co">## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">## </span>
+<span class="co">## Residual standard error: 4.314 on 98 degrees of freedom</span>
+<span class="co">## Multiple R-squared:  0.7855, Adjusted R-squared:  0.7833 </span>
+<span class="co">## F-statistic: 358.9 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<p>Функція <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> виводить багато різноманітної інформації щодо побудованої моделі, з кожним елементом якої ми познайомимось вже згодом.</p>
+<p>З точки зору інтерпретації результатів по <span class="math inline">\(R^2\)</span> слід сказати, що 78.5% варіації ваги чоловіків пояснюється їх зростом, а 21.5% пояснюються іншими показниками, які не входять у дослідження.</p>
+<p>На практиці можна досить часто зустріти маленькі значення <span class="math inline">\(R^2\)</span>, але це ще не означає, що побудована модель є неефективною. Критеріїв ефективності моделей, як і задач які вони мають вирішувати досить багато, тому не слід концентруватися виключно на коефіцієнті детермінації.</p>
+</div>
+<div id="передумови-використання-мнк" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Передумови використання МНК<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D1%83%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2%D0%B8%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%8F-%D0%BC%D0%BD%D0%BA"><i class="fas fa-link"></i></a>
+</h2>
+<p>Нагадаю, що є принципова відмінність між параметрами моделі <span class="math inline">\(\beta_k\)</span> та <span class="math inline">\(\hat{\beta_k}\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_k\)</span> (без “кришки”) — це істинні параметри моделі, котрі на практиці ніколи не відомі, тому що ми не маємо у розпорядженні генеральну сукупність даних щодо об’єкту дослідження. Якщо повернутися до прикладу зі зростом та вагою серед чоловіків, тоді нам потрібно було б зібрати цю інформацію для всієї чоловічої половини населення планети, але це неможливо.</p></li>
+<li><p><span class="math inline">\(\hat{\beta_k}\)</span> (з “кришкою”) — це наближені оцінки параметрів моделі, які були отримані за допомогою вибірки даних. Як правило, така вибірка є випадковою, а отже і оцінки параметрів моделі є випадковими величинами.</p></li>
+</ul>
+<p>І тут постає питання: за яких умов ми можемо довіряти оцінкам параметрів моделі? Ці умови називають <strong>передумовами МНК</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Модель лінійна за параметрами і має коректну специфікацію.</strong> Якщо дані мають нелінійну природу та/або формула задана некоректно (про це трошки пізніше), очікувати на коректні результати від такої моделі не має сенсу.</p></li>
+<li><p><strong>Випадковість вибірки даних.</strong> Якщо б в нашому прикладі з вагою і зростом були зібрана інформація тільки по високим чоловікам, то й узагальнення на основі моделі стосувалися б тільки високих чоловіків, а не всіх чоловіків планети.</p></li>
+<li><p><strong>Неоднаковість та незалежність змінних <span class="math inline">\(x_i\)</span>.</strong> Явище кореляції між пояснювальними змінними називається мультиколінеарністю і вона призводить до неефективності параметрів моделі з точки зору їх інтерпретації.</p></li>
+<li><p><strong>Математичне сподівання залишків моделі дорівнює нулю <span class="math inline">\(E(u_i) = 0\)</span>.</strong> Це припущення говорить по те, що серед залишків моделі будуть як позитивні, так і негативні значення, але вони компенсують один одного.</p></li>
+<li><p><strong>Гомоскедастичність (постійність) залишків моделі <span class="math inline">\(Var(u_i) = \sigma^2\)</span>.</strong> Непостійність залишків призводить до значних проблем в моделі, явище гетероскедастичності (протилежність до гомоскедастичності) ми розглянемо в окремій темі.</p></li>
+<li><p><strong>Незалежність залишків моделі.</strong> Якщо залишки корелюють між собою, це означає, що в них залишилась “корисна” інформація, яку наша модель не змогла визначити.</p></li>
+<li><p><strong>Залишки моделі мають нормальний розподіл <span class="math inline">\(N(0, \sigma^2)\)</span>.</strong> Ця властивість буде корисною при тестуванні різноманітних гіпотез та побудові довірчих інтервалів.</p></li>
+</ol>
+<p>На практиці, ви досить часто будете зустрічати ситуації коли одна або одразу декілька (якщо не всі) передумов МНК не будуть виконуватись. Звичайно є альтернативні методи та моделі для побудови регресійних задач, але саме проста лінійна регресія є фундаментом, від котрого всі відштовхуються. Це як таблиця множення, розуміння і вміння нею користуватися значно полегшує подальшу роботу.</p>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -557,6 +619,7 @@ r = \frac{n\sum\limits^{n}_{i=1}(xy) - \sum\limits^{n}_{i=1}x_i\sum\limits^{n}_{
 <li><a class="nav-link" href="#%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%B0-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><span class="header-section-number">3.1</span> Проста лінійна регресія</a></li>
 <li><a class="nav-link" href="#%D0%B2%D0%BB%D0%B0%D1%81%D1%82%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%96-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D1%85-%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D1%8C-%D1%82%D0%B0-%D0%B7%D0%B0%D0%BB%D0%B8%D1%88%D0%BA%D1%96%D0%B2"><span class="header-section-number">3.2</span> Властивості модельних значень та залишків</a></li>
 <li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97"><span class="header-section-number">3.3</span> Коефіцієнт детермінації</a></li>
+<li><a class="nav-link" href="#%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D1%83%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2%D0%B8%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%8F-%D0%BC%D0%BD%D0%BA"><span class="header-section-number">3.4</span> Передумови використання МНК</a></li>
 </ul>
 
       <div class="book-extra">
@@ -575,7 +638,7 @@ r = \frac{n\sum\limits^{n}_{i=1}(xy) - \sum\limits^{n}_{i=1}x_i\sum\limits^{n}_{
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-18.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

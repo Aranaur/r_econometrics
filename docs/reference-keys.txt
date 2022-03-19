@@ -81,6 +81,7 @@ simple_regression
 проста-лінійна-регресія
 властивості-модельних-значень-та-залишків
 коефіцієнт-детермінації
+передумови-використання-мнк
 multiple_regression
 multicollinearity
 heteroskedasticity
