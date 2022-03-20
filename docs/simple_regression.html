@@ -605,7 +605,39 @@ r = \frac{n\sum\limits^{n}_{i=1}(xy) - \sum\limits^{n}_{i=1}x_i\sum\limits^{n}_{
 <li><p><strong>Залишки моделі мають нормальний розподіл <span class="math inline">\(N(0, \sigma^2)\)</span>.</strong> Ця властивість буде корисною при тестуванні різноманітних гіпотез та побудові довірчих інтервалів.</p></li>
 </ol>
 <p>На практиці, ви досить часто будете зустрічати ситуації коли одна або одразу декілька (якщо не всі) передумов МНК не будуть виконуватись. Звичайно є альтернативні методи та моделі для побудови регресійних задач, але саме проста лінійна регресія є фундаментом, від котрого всі відштовхуються. Це як таблиця множення, розуміння і вміння нею користуватися значно полегшує подальшу роботу.</p>
-<p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
+</div>
+<div id="значущість-оцінок-параметрів-моделі" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Значущість оцінок параметрів моделі<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><i class="fas fa-link"></i></a>
+</h2>
+<p>Я вже говорив, що оцінки параметрів моделі <span class="math inline">\(\hat{\beta_0}\)</span> та <span class="math inline">\(\hat{\beta_1}\)</span> є випадковими величинами, які “приблизно” оцінюють істині параметри моделі <span class="math inline">\({\beta_0}\)</span> та <span class="math inline">\({\beta_1}\)</span>. Якщо істинні параметри моделі дорівнюють нулю, скоріш за все їх оцінки будуть дещо відхилятися від нуля і навпаки. Тож нам слід вміти визначати <strong>статистичну значущість оцінок параметрів моделі</strong> — впевненість в тому, що <strong>параметри моделі не дорівнюють нулю</strong>.</p>
+<p>В якості статистичного критерію використовуються <strong>t-критерій Стьюдента</strong>:
+<span class="math display" id="eq:student">\[
+t_{b_k} = \frac{\hat{\beta_k}}{se}
+\tag{3.24}
+\]</span></p>
+<p>Я залишу поза межами цього підручника доведення відповідних теорем, але якщо комусь буде цікаво ознайомитись, пропоную почитати роботи <span class="citation">(<a href="references.html#ref-wooldridge2019" role="doc-biblioref">Wooldridge 2019</a>; <a href="references.html#ref-zeileis2008" role="doc-biblioref">Kleiber 2006</a>)</span>.</p>
+<p><strong>Дисперсія оцінки параметру моделі</strong> <span class="math inline">\(\hat{\beta_1}\)</span> дорівнює:
+<span class="math display" id="eq:beta1var">\[
+\hat{var}(\hat{\beta_1}) = \frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2},
+\tag{3.25}
+\]</span>
+де
+<span class="math display" id="eq:sbeta1">\[
+S^2 = \frac{1}{n-2}\sum\limits^{n}_{i=1}u_i^2
+\tag{3.26}
+\]</span>
+Корінь квадратний з <a href="#eq:sbeta">(<strong>??</strong>)</a> називається <strong>стандартною помилкою оцінки параметру <span class="math inline">\(\hat{\beta_1}\)</span></strong>:
+<span class="math display" id="eq:sebeta1">\[
+se(\hat{\beta_1}) = \sqrt{\hat{var}(\hat{\beta_1})} = \sqrt{\frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+\tag{3.27}
+\]</span></p>
+<p>Аналогічним чином розраховується <strong>стандартна помилка оцінки параметру <span class="math inline">\(\hat{\beta_0}\)</span></strong>:
+<span class="math display" id="eq:sebeta0">\[
+se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\sum\limits^{n}_{i=1}x_i^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+\tag{3.28}
+\]</span>
+bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
 </div>
@@ -620,6 +652,7 @@ r = \frac{n\sum\limits^{n}_{i=1}(xy) - \sum\limits^{n}_{i=1}x_i\sum\limits^{n}_{
 <li><a class="nav-link" href="#%D0%B2%D0%BB%D0%B0%D1%81%D1%82%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%96-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D1%85-%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D1%8C-%D1%82%D0%B0-%D0%B7%D0%B0%D0%BB%D0%B8%D1%88%D0%BA%D1%96%D0%B2"><span class="header-section-number">3.2</span> Властивості модельних значень та залишків</a></li>
 <li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97"><span class="header-section-number">3.3</span> Коефіцієнт детермінації</a></li>
 <li><a class="nav-link" href="#%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D1%83%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2%D0%B8%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%8F-%D0%BC%D0%BD%D0%BA"><span class="header-section-number">3.4</span> Передумови використання МНК</a></li>
+<li><a class="nav-link" href="#%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">3.5</span> Значущість оцінок параметрів моделі</a></li>
 </ul>
 
       <div class="book-extra">

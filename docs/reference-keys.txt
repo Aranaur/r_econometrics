@@ -29,6 +29,11 @@ eq:SSR
 eq:SST1
 eq:rsquar
 eq:corr
+eq:student
+eq:beta1var
+eq:sbeta1
+eq:sebeta1
+eq:sebeta0
 introR
 installR
 instalpc
@@ -82,6 +87,7 @@ simple_regression
 властивості-модельних-значень-та-залишків
 коефіцієнт-детермінації
 передумови-використання-мнк
+значущість-оцінок-параметрів-моделі
 multiple_regression
 multicollinearity
 heteroskedasticity
