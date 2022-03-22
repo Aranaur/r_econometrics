@@ -34,6 +34,7 @@ eq:beta1var
 eq:sbeta1
 eq:sebeta1
 eq:sebeta0
+eq:confint
 introR
 installR
 instalpc
@@ -88,6 +89,9 @@ simple_regression
 коефіцієнт-детермінації
 передумови-використання-мнк
 значущість-оцінок-параметрів-моделі
+довірчі-інтервали-оцінок-параметрів-моделі
+розрахунок-статистик-в-r
+прогнозування
 multiple_regression
 multicollinearity
 heteroskedasticity
