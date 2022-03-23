@@ -467,7 +467,9 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit_ols <span class="op">=</span> <span class="va">male_ols</span><span class="op">$</span><span class="va">fitted.values</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">fit_ols</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">fit_ols</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/olsplot2-1.png" width="100%"></div>
 </div>
 <div id="властивості-модельних-значень-та-залишків" class="section level2" number="3.2">
@@ -494,29 +496,29 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
 \]</span>
 Ці властивості притаманні кожній моделі, яка побудована з використанням МНК.</p></li>
 </ol>
-<p>Важливо вивести такі загальні поняття, як <strong>загальна сума квадратів</strong> (TSS, <em>total sum of squares</em>), <strong>пояснювальна сума квадратів</strong> (ESS, <em>explained/estimated sum of squares</em>) та <strong>сума квадратів залишків</strong> (RSS, <em>residual sum of squares</em>):</p>
-<p><span class="math display" id="eq:SST">\[
-TSS = \sum\limits^{n}_{i=1}(y_i - \overline{y})^2
+<p>Важливо вивести наступні поняття:</p>
+<ul>
+<li><p><strong>загальна сума квадратів</strong> (TSS, <em>total sum of squares</em>): оцінює дисперсію серед <span class="math inline">\(y_i\)</span>, тобто на скільки дані розсіяні у вибірці. Якщо поділити SST на <span class="math inline">\(n-1\)</span>, ми отримаємо вибіркову дисперсію значень <span class="math inline">\(y_i\)</span>.
+<span class="math display" id="eq:SST">\[
+TSS = \sum\limits^{n}_{i=1}(y_i - \overline{y})^2,
 \tag{3.18}
-\]</span></p>
-<p><span class="math display" id="eq:SSE">\[
-ESS = \sum\limits^{n}_{i=1}(\hat{y_i} - \overline{y})^2
+\]</span></p></li>
+<li><p><strong>пояснювальна сума квадратів</strong> (ESS, <em>explained/estimated sum of squares</em>): оцінює міру розсіювання <span class="math inline">\(\hat{y_i}\)</span> <a href="simple_regression.html#eq:resid3">(3.17)</a>.
+<span class="math display" id="eq:SSE">\[
+ESS = \sum\limits^{n}_{i=1}(\hat{y_i} - \overline{y})^2,
 \tag{3.19}
-\]</span></p>
-<p><span class="math display" id="eq:SSR">\[
+\]</span></p></li>
+<li><p><strong>сума квадратів залишків</strong> (RSS, <em>residual sum of squares</em>): оцінює розсіювання серед <span class="math inline">\(\hat{u_i}\)</span>.
+<span class="math display" id="eq:SSR">\[
 RSS = \sum\limits^{n}_{i=1}{u_i^2}
 \tag{3.20}
-\]</span></p>
-<p>SST оцінює дисперсію серез <span class="math inline">\(y_i\)</span>, тобто на скільки дані розсіяні у вибірці. Якщо поділити SST на <span class="math inline">\(n-1\)</span>, ми отримаємо вибіркову дисперсію значень <span class="math inline">\(y_i\)</span>.</p>
-<p>Аналогічно SSE оцінює міру розсіювання <span class="math inline">\(\hat{y_i}\)</span> (оскільки <a href="simple_regression.html#eq:resid3">(3.17)</a>).</p>
-<p>Нарешті SSR оцінює розсіювання серед <span class="math inline">\(\hat{u_i}\)</span>.</p>
-<p>SST може визначена через суму SSE та SSR:
+\]</span>
+TSS може визначена через суму SSE та SSR:
 <span class="math display" id="eq:SST1">\[
 TSS = ESS + RSS
 \tag{3.21}
 \]</span>
-<em>Окремо зверну увагу на абрівіатури цих показників в різних джерелах:</em></p>
-<ul>
+<em>Окремо зверну увагу на абрівіатури цих показників в різних джерелах:</em></p></li>
 <li><p><em>TSS іноді записують, як SST.</em></p></li>
 <li><p><em>ESS іноді записують, як RSS (regression sum of squares).</em></p></li>
 <li><p><em>RSS іноді вживають, як SSR (sum of squared residuals) або ESS (error sum of squares).</em></p></li>
@@ -710,8 +712,13 @@ se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">male_ols</span><span class="op">$</span><span class="va">residuals</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"male"</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%1.1f"</span>, <span class="va">..y..</span><span class="op">)</span><span class="op">)</span>,
+    geom <span class="op">=</span> <span class="st">"text"</span>, 
+    fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/boxplot.stats.html">boxplot.stats</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">$</span><span class="va">stats</span>,
+    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_nudge.html">position_nudge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.33</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/residplot-1.png" width="100%"></div>
 <ol start="2" style="list-style-type: decimal">
 <li>У розділі <code>Coefficients</code> відображається таблиця про оцінки параметрів моделі:</li>
@@ -738,11 +745,69 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 </ul>
 <p>Останні три рядка ми розберемо згодом.</p>
 </div>
-<div id="прогнозування" class="section level2" number="3.8">
+<div id="точковий-та-інтервальний-прогноз" class="section level2" number="3.8">
 <h2>
-<span class="header-section-number">3.8</span> Прогнозування<a class="anchor" aria-label="anchor" href="#%D0%BF%D1%80%D0%BE%D0%B3%D0%BD%D0%BE%D0%B7%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.8</span> Точковий та інтервальний прогноз<a class="anchor" aria-label="anchor" href="#%D1%82%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-%D1%82%D0%B0-%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%BE%D0%B3%D0%BD%D0%BE%D0%B7"><i class="fas fa-link"></i></a>
 </h2>
-<p>Крім пояснення сили впливу незалежної змінної на залежну, лінійна регресія дає можливість будувати прогнози. У випадку перехресних даних ми відповідаємо на питання “що якщо?” тобто визначаємо значення <span class="math inline">\(y_{n+1}\)</span> за заданого значення <span class="math inline">\(x_{n+1}\)</span>. У випадку часових рядів - визначаємо, чому буде дорівнювати залежна змінна в наступні періоди часу.</p>
+<p>Крім пояснення сили впливу незалежної змінної на залежну, лінійна регресія дає можливість будувати прогнози. У випадку перехресних даних ми відповідаємо на питання “що-якщо?” тобто визначаємо значення <span class="math inline">\(y_{n+1}\)</span> за заданого значення <span class="math inline">\(x_{n+1}\)</span>. У випадку часових рядів - визначаємо, чому буде дорівнювати залежна змінна в наступні періоди часу.</p>
+<p>Формула для розрахунку <strong>точкового прогнозу</strong>:
+<span class="math display" id="eq:predict">\[
+\hat{y}_{n+1} = \hat{\beta_0} + \hat{\beta_1}x_{n+1}
+\tag{3.30}
+\]</span>
+Але й тут необхідно розраховувати довірчі інтервали до прогнозних значень. Для цього нам необхідно знати <strong>стандартну похибку пронозу</strong>:
+<span class="math display" id="eq:predictCI">\[
+\delta = \sqrt{S^2 (1 + \frac{1}{n} + \frac{(x_{n+1} - \overline{x})^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2})}
+\tag{3.31}
+\]</span>
+Тоді <strong>прогнозний інтервал</strong>:
+<span class="math display" id="eq:predictCI2">\[
+\hat{y}_{n+1} - \delta*t_{df}^{\alpha/2} &lt; {y}_{n+1} &lt; \hat{y}_{n+1} + \delta*t_{df}^{\alpha/2}
+\tag{3.32}
+\]</span></p>
+<p>Для побудови прогнозу в R використовується функція <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, де необхідно вказати модель та нові значення для прогнозу.</p>
+<p>В якості прикладу створимо новий датасет з тьома новими значеннями зросту для чоловіків: 186 см, 192 см та 200 см. І передамо ці значення у функцію <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>. В результаті для кожного нового значення отримуємо точкові прогнози:</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Height_kg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">186</span>, <span class="fl">192</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">male_ols</span>, newdata <span class="op">=</span> <span class="va">new_height</span><span class="op">)</span>
+<span class="co">##         1         2         3 </span>
+<span class="co">##  94.47537 100.61970 108.81213</span></code></pre></div>
+<p>Для отримання прогнозів з довірчими інтервалами, необіхдно додатки аргумент <code>interval = "prediction"</code> до функції <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>. З замовчуванням будується 95% довірчий інтервал, де <code>lwr</code> та <code>upr</code> — верхня та нижня межа довірчих інтервалів.</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">male_ols</span>, newdata <span class="op">=</span> <span class="va">new_height</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span>
+<span class="co">##         fit      lwr      upr</span>
+<span class="co">## 1  94.47537 85.80017 103.1506</span>
+<span class="co">## 2 100.61970 91.83835 109.4010</span>
+<span class="co">## 3 108.81213 99.81929 117.8050</span></code></pre></div>
+<p>Для інтерпретації результатів можна сказати, що згідно нашої моделі, 95% чоловіків зі зростом 200 сантиметрів мають вагу від 99.81929 до 117.8050 кілограмів.</p>
+<p>Як альтернативу, можна використати аргумент <code>interval = "confidence"</code> для побудови <strong>довірчого інтервалу до середнього прогнозу</strong>:</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">male_ols</span>, newdata <span class="op">=</span> <span class="va">new_height</span>, interval <span class="op">=</span> <span class="st">"confidence"</span><span class="op">)</span>
+<span class="co">##         fit       lwr       upr</span>
+<span class="co">## 1  94.47537  93.06753  95.88321</span>
+<span class="co">## 2 100.61970  98.66140 102.57800</span>
+<span class="co">## 3 108.81213 106.05638 111.56789</span></code></pre></div>
+<p>В такому випадку інтерпретація буде наступна: згідно нашої моделі, чоловічки зі зростом 200 сантиметрів мають в середньому вагу від 106.05638 до 111.56789 кілограмів.</p>
+<p>Що обрати, довірчий інтервал до середнього прогнозу чи інтервальний прогноз? Інтервальний прогнозу оцінює невизначеність щодо конкретного значення, а довірчий інтервал щодо середнього значення. Це означає, що інтервальний прогноз буде значно ширший за довірчий інтервал. Тож вибір залежить від цілей та контексту аналізу. Частіше нас цікавлять конкретні індивідуальні значення прогнозів, тож інтервальні прогнози використовуються частіше <span class="citation">(<a href="references.html#ref-bruce2017" role="doc-biblioref">Bruce and Bruce O’Reilly Media</a>)</span>.</p>
+<p>Наступний код демонструє різницю між довірчим інтервалом (сірий) та інтервальним прогнозом (червоний):</p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 1. Будуємо прогнозні значення за моделью за реальними даними</span>
+<span class="va">pred.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">male_ols</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span>
+
+<span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># 2. Об'єднуємо стовпчики</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">pred.int</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># 3. Будуємо графік</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Height_kg</span>, <span class="va">Weight_cm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co"># 4. Додаємо лінію регресії та довірчий інтервал</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co"># 5. Додаємо інтервальні прогнози</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lwr</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">upr</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
+       y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/predvsconf-1.png" width="100%"></div>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -761,7 +826,7 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 <li><a class="nav-link" href="#%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">3.5</span> Значущість оцінок параметрів моделі</a></li>
 <li><a class="nav-link" href="#%D0%B4%D0%BE%D0%B2%D1%96%D1%80%D1%87%D1%96-%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D0%B8-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">3.6</span> Довірчі інтервали оцінок параметрів моделі</a></li>
 <li><a class="nav-link" href="#%D1%80%D0%BE%D0%B7%D1%80%D0%B0%D1%85%D1%83%D0%BD%D0%BE%D0%BA-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA-%D0%B2-r"><span class="header-section-number">3.7</span> Розрахунок статистик в R</a></li>
-<li><a class="nav-link" href="#%D0%BF%D1%80%D0%BE%D0%B3%D0%BD%D0%BE%D0%B7%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F"><span class="header-section-number">3.8</span> Прогнозування</a></li>
+<li><a class="nav-link" href="#%D1%82%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-%D1%82%D0%B0-%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%BE%D0%B3%D0%BD%D0%BE%D0%B7"><span class="header-section-number">3.8</span> Точковий та інтервальний прогноз</a></li>
 </ul>
 
       <div class="book-extra">

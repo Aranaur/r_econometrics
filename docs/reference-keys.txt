@@ -35,6 +35,9 @@ eq:sbeta1
 eq:sebeta1
 eq:sebeta0
 eq:confint
+eq:predict
+eq:predictCI
+eq:predictCI2
 introR
 installR
 instalpc
@@ -91,7 +94,7 @@ simple_regression
 значущість-оцінок-параметрів-моделі
 довірчі-інтервали-оцінок-параметрів-моделі
 розрахунок-статистик-в-r
-прогнозування
+точковий-та-інтервальний-прогноз
 multiple_regression
 multicollinearity
 heteroskedasticity
