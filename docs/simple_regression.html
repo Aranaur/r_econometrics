@@ -708,7 +708,7 @@ se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\
 <li><p>третій квартиль (3Q): 3.1405</p></li>
 <li><p>максимальне значення (Max): 11.6086</p></li>
 </ul>
-<p>За бажання можно візуалізувати розподіл залишків моделі:</p>
+<p>За бажання можна візуалізувати розподіл залишків моделі:</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">male_ols</span><span class="op">$</span><span class="va">residuals</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -788,7 +788,7 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 <span class="co">## 2 100.61970  98.66140 102.57800</span>
 <span class="co">## 3 108.81213 106.05638 111.56789</span></code></pre></div>
 <p>В такому випадку інтерпретація буде наступна: згідно нашої моделі, чоловічки зі зростом 200 сантиметрів мають в середньому вагу від 106.05638 до 111.56789 кілограмів.</p>
-<p>Що обрати, довірчий інтервал до середнього прогнозу чи інтервальний прогноз? Інтервальний прогнозу оцінює невизначеність щодо конкретного значення, а довірчий інтервал щодо середнього значення. Це означає, що інтервальний прогноз буде значно ширший за довірчий інтервал. Тож вибір залежить від цілей та контексту аналізу. Частіше нас цікавлять конкретні індивідуальні значення прогнозів, тож інтервальні прогнози використовуються частіше <span class="citation">(<a href="references.html#ref-bruce2017" role="doc-biblioref">Bruce and Bruce O’Reilly Media</a>)</span>.</p>
+<p>Що обрати, довірчий інтервал до середнього прогнозу чи інтервальний прогноз? Інтервальний прогнозу оцінює невизначеність щодо конкретного значення, а довірчий інтервал щодо середнього значення. Це означає, що інтервальний прогноз буде значно ширший за довірчий інтервал. Тож вибір залежить від цілей та контексту аналізу. Частіше нас цікавлять конкретні індивідуальні значення прогнозів, тож інтервальні прогнози використовуються частіше <span class="citation">(<a href="references.html#ref-bruce2017" role="doc-biblioref">Bruce and Bruce 2017</a>)</span>.</p>
 <p>Наступний код демонструє різницю між довірчим інтервалом (сірий) та інтервальним прогнозом (червоний):</p>
 <div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 1. Будуємо прогнозні значення за моделью за реальними даними</span>
