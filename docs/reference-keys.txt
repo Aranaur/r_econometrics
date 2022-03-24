@@ -38,6 +38,15 @@ eq:confint
 eq:predict
 eq:predictCI
 eq:predictCI2
+eq:multreg
+eq:y
+eq:x
+eq:u
+eq:betavec
+eq:betahatvec
+eq:matrixmnk
+eq:smult
+eq:sebetamult
 introR
 installR
 instalpc
@@ -96,6 +105,10 @@ simple_regression
 розрахунок-статистик-в-r
 точковий-та-інтервальний-прогноз
 multiple_regression
+загальні-відомості
+мнк-для-множинної-регресії
+стандартні-помилки-оцінок-параметрів-множинної-моделі
+коефіцієнт-детермінації-1
 multicollinearity
 heteroskedasticity
 regularization

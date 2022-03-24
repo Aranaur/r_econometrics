@@ -665,5 +665,3 @@ male %>%
   labs(x = "Зріст (см)",
        y = "Вага (кг)")
 ```
-
-bookdown::render_book("index.Rmd", output_dir = "docs")
