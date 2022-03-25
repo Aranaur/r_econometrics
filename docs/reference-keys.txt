@@ -47,6 +47,7 @@ eq:betahatvec
 eq:matrixmnk
 eq:smult
 eq:sebetamult
+eq:adjrsquer
 introR
 installR
 instalpc
@@ -109,7 +110,7 @@ multiple_regression
 мнк-для-множинної-регресії
 стандартні-помилки-оцінок-параметрів-множинної-моделі
 значущість-оцінок-параметрів-моделі-1
-коефіцієнт-детермінації-1
+скорегований-коефіцієнт-детермінації
 multicollinearity
 heteroskedasticity
 regularization

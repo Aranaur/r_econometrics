@@ -174,13 +174,57 @@ se(\hat\beta_j) = \sqrt{\hat{V_{jj}}} = \sqrt{\hat{var}(\hat\beta_j)}
 </h2>
 <p>Даний етап виконується аналогічно до парної регресії.</p>
 </div>
-<div id="коефіцієнт-детермінації-1" class="section level2" number="4.5">
+<div id="скорегований-коефіцієнт-детермінації" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">4.5</span> Коефіцієнт детермінації<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Скорегований коефіцієнт детермінації<a class="anchor" aria-label="anchor" href="#%D1%81%D0%BA%D0%BE%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97"><i class="fas fa-link"></i></a>
 </h2>
 <p>Розрахунок та інтерпретація коефіцієнту детермінації залишається аналогічним до простої лінійної регресії <a href="simple_regression.html#eq:rsquar">(3.22)</a>.</p>
 <p>Проте <span class="math inline">\(R^2\)</span> має суттєву особливість в множинній регресії: він характеризує наявність кореляції між незалежними і залежною змінною, але <strong>нічного не говорить про причинно-наслідкові зв’язки</strong>. Тому <span class="math inline">\(R^2\)</span> <strong>не може бути використаний для порівняння простих і більш складних (з більшою кількістю незалежних змінних) моделей</strong>.</p>
-<p>Додаючи нові змінні у специфікацюю моделі ми не можемо отримати гірший результат за сумою квартатів відхилення. Які б змінні ми не додавали у рівняння моделі <span class="math inline">\(R^2\)</span> буде збільшуватись або, в рідких випадках, залишатися незмінним.</p>
+<p>Додаючи нові змінні у специфікацію моделі ми не можемо отримати гірший результат за сумою квадратів відхилення. Які б змінні ми не додавали у рівняння моделі <span class="math inline">\(R^2\)</span> буде збільшуватись або, в рідких випадках, залишатися незмінним.</p>
+<p>В таких випадках пропонують використовувати вдосконалену версію <span class="math inline">\(R^2\)</span> — <strong>скорегований коефіцієнт детермінації</strong> (<em>adjusted <span class="math inline">\(R^2\)</span></em>):
+<span class="math display" id="eq:adjrsquer">\[
+R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
+\tag{4.10}
+\]</span>
+В порівнянні з класичним <span class="math inline">\(R^2\)</span>, його модифікація <span class="math inline">\(R_{adj}^2\)</span> штрафується на кількість змінних. Якщо додавати в модель предиктори, які не приносять суттєвого вкладу в пояснення залежної змінної, <span class="math inline">\(R_{adj}^2\)</span> буде зменшуватися.</p>
+<p>Давайте до нашого прикладу з вагою і зростом чоловіків додамо три випадкові змінні:</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
+<span class="va">male</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Random1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,
+         Random2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,
+         Random3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Weight_cm</span> <span class="op">~</span> <span class="va">Height_kg</span> <span class="op">+</span> <span class="va">Random1</span> <span class="op">+</span> <span class="va">Random2</span> <span class="op">+</span> <span class="va">Random3</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## lm(formula = Weight_cm ~ Height_kg + Random1 + Random2 + Random3, </span>
+<span class="co">##     data = .)</span>
+<span class="co">## </span>
+<span class="co">## Residuals:</span>
+<span class="co">##     Min      1Q  Median      3Q     Max </span>
+<span class="co">## -7.4085 -3.3038 -0.6037  2.8625 10.8335 </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">## (Intercept) -91.385497  10.038576  -9.103 1.36e-14 ***</span>
+<span class="co">## Height_kg     1.004487   0.056245  17.859  &lt; 2e-16 ***</span>
+<span class="co">## Random1       0.009089   0.016469   0.552    0.582    </span>
+<span class="co">## Random2      -0.010823   0.014359  -0.754    0.453    </span>
+<span class="co">## Random3      -0.021313   0.015644  -1.362    0.176    </span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  </span>
+<span class="co">## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">## </span>
+<span class="co">## Residual standard error: 4.32 on 95 degrees of freedom</span>
+<span class="co">## Multiple R-squared:  0.7914, Adjusted R-squared:  0.7826 </span>
+<span class="co">## F-statistic: 90.12 on 4 and 95 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<p>Тоді, якщо порівняти коефіцієнти детермінації простої лінійної моделі та множинної моделі з декількома випадковими змінними, можна побачити, що <span class="math inline">\(R^2\)</span> збільшився, проте <span class="math inline">\(R_{adj}^2\)</span> дещо зменшився. В даному випадку доцільніше використовувати саме просту модель.</p>
+<pre><code>1. Weight_cm ~ Height_kg
+Multiple R-squared:  0.7855,    Adjusted R-squared:  0.7833
+
+2. Weight_cm ~ Height_kg + Random1 + Random2 + Random3
+Multiple R-squared:  0.7914,    Adjusted R-squared:  0.7826 </code></pre>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -196,7 +240,7 @@ se(\hat\beta_j) = \sqrt{\hat{V_{jj}}} = \sqrt{\hat{var}(\hat\beta_j)}
 <li><a class="nav-link" href="#%D0%BC%D0%BD%D0%BA-%D0%B4%D0%BB%D1%8F-%D0%BC%D0%BD%D0%BE%D0%B6%D0%B8%D0%BD%D0%BD%D0%BE%D1%97-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%97"><span class="header-section-number">4.2</span> МНК для множинної регресії</a></li>
 <li><a class="nav-link" href="#%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D0%BD%D1%96-%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BD%D0%BE%D0%B6%D0%B8%D0%BD%D0%BD%D0%BE%D1%97-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">4.3</span> Стандартні помилки оцінок параметрів множинної моделі</a></li>
 <li><a class="nav-link" href="#%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96-1"><span class="header-section-number">4.4</span> Значущість оцінок параметрів моделі</a></li>
-<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97-1"><span class="header-section-number">4.5</span> Коефіцієнт детермінації</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%BA%D0%BE%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97"><span class="header-section-number">4.5</span> Скорегований коефіцієнт детермінації</a></li>
 </ul>
 
       <div class="book-extra">
