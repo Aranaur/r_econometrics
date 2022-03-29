@@ -162,9 +162,9 @@ male %>%
 male %>% 
   ggplot(aes(Height_kg, Weight_cm)) +
   geom_point() +
-  geom_abline(intercept = -139.18, slope = 1.27, color = "blue", size = 1) +
-  geom_abline(intercept = -180.68, slope = 1.51, color = "darkgreen", size = 1) +
-  geom_abline(intercept = -80, slope = 0.95, color = "darkred", size = 1) +
+  geom_abline(intercept = -139.18, slope = 1.27, color = "blue", size = 1, alpha = 1/4) +
+  geom_abline(intercept = -180.68, slope = 1.51, color = "darkgreen", size = 1, alpha = 1/4) +
+  geom_abline(intercept = -80, slope = 0.95, color = "darkred", size = 1, alpha = 1/4) +
   labs(x = "Зріст (см)",
        y = "Вага (кг)")
 ```
