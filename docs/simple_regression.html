@@ -232,7 +232,7 @@ y_i = \beta_0 + \beta_1x_i + u_i
 \]</span>
 Підставимо конкретні змінні у рівняння, отримаємо:
 <span class="math display" id="eq:malereg">\[
-Height_i = \beta_0 + \beta_1Weight_i + u_i
+Weight_i = \beta_0 + \beta_1Height_i + u_i
 \tag{3.3}
 \]</span>
 Рівняння <a href="simple_regression.html#eq:lmreg">(3.2)</a> та <a href="simple_regression.html#eq:malereg">(3.3)</a> називаються простою лінійною регресією або парною лінійною регресією.</p>
@@ -252,7 +252,7 @@ Height_i = \beta_0 + \beta_1Weight_i + u_i
 \]</span>
 або для нашого прикладу
 <span class="math display" id="eq:malereg1">\[
-\hat{Height_i} = \hat{\beta_0} + \hat{\beta_1}Weight_i
+\hat{Weight_i} = \hat{\beta_0} + \hat{\beta_1}Height_i
 \tag{3.5}
 \]</span>
 Давайте для початку проведемо пряму, яка відповідає середньому значенню ваги чоловіків по вибірці:</p>
@@ -808,7 +808,51 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Зріст (см)"</span>,
        y <span class="op">=</span> <span class="st">"Вага (кг)"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="r_econometrics_files/figure-html/predvsconf-1.png" width="100%"></div>
-
+</div>
+<div id="завдання" class="section level2" number="3.9">
+<h2>
+<span class="header-section-number">3.9</span> Завдання<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F"><i class="fas fa-link"></i></a>
+</h2>
+<div id="обрати-та-завантажити-дані" class="section level3" number="3.9.1">
+<h3>
+<span class="header-section-number">3.9.1</span> 1. Обрати та завантажити дані<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%B8-%D1%82%D0%B0-%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8-%D0%B4%D0%B0%D0%BD%D1%96"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для практичних та лабораторних робіт необхідно знайти та обрати дані з якими бажаєте працювати. Для цього рекомендую наступні джерела:</p>
+<ul>
+<li><p>Сервіс з пошуку даних від Google <a href="https://datasetsearch.research.google.com/">Dataset Search</a></p></li>
+<li><p>Репозитарій з машинного навчання <a href="https://archive.ics.uci.edu/ml/datasets.php">UCI</a></p></li>
+<li><p>Дані <a href="https://data.worldbank.org/">Всісвітнього банку</a></p></li>
+<li><p>Набори даних з <a href="https://hbiostat.org/data/#vanderbilt-biostatistics-datasets">біостатистики</a></p></li>
+<li><p>Платформа змагать <a href="https://www.kaggle.com/">Kaggle</a></p></li>
+<li><p><a href="https://www.fueleconomy.gov/feg/download.shtml">Fuel Economy Data</a></p></li>
+</ul>
+<p>Вимоги до датасетів прості: мають бути цікавими для Вас та наявність числових змінних (більше двох). Можете пошукати щось додатково в гуглі.</p>
+<p>Завантажте дані в R.</p>
+</div>
+<div id="обробка-даних" class="section level3" number="3.9.2">
+<h3>
+<span class="header-section-number">3.9.2</span> 2. Обробка даних<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%80%D0%BE%D0%B1%D0%BA%D0%B0-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Після завантаження даних, за потреби приведіть їх до охайного вигляду, створіть нові змінні або перекодуйте вже існуючі.</p>
+</div>
+<div id="лінійна-регресія" class="section level3" number="3.9.3">
+<h3>
+<span class="header-section-number">3.9.3</span> 3. Лінійна регресія<a class="anchor" aria-label="anchor" href="#%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Всі завдання виконуються у двох напрямках: вручну (всі розрахунки будуєте самостійно) та за допомогою функцій мови програмування R.</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Оберіть дві числові змінні з завантаженого набору даних. Визначте, яка змінна буде залежною, а яка незалежною.</p></li>
+<li><p>Побудуйте точкову діаграму. Як ви можете описати отриманий результат?</p></li>
+<li><p>Розрахуйте коефіцієнт кореляції. Зробіть висновки.</p></li>
+<li><p>Побудуйте модель простої лінійної регресії за допомогою формул та за допомогою функції <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. Порівняйте результати. Запишіть рівняння регресії.</p></li>
+<li><p>Відобразіть на графіку точкової діаграми лінію регресії.</p></li>
+<li><p>Розрахуйте стандартні похибки оцінок параметрів моделі.</p></li>
+<li><p>Розрахуйте t-критерій Стьюдента до оцінок параметрів моделі. Порівняйте з табличним значенням або розрахуйте p-значення. Зробіть висновки щодо гіпотез.</p></li>
+<li><p>Побудуйте довірчі інтервали до оцінок параметрів моделі.</p></li>
+<li><p>Розрахуйте коефіцієнт детермінації. Зробіть висновок щодо його значення.</p></li>
+<li><p>Побудуйте точковий та інтервальний прогноз за побудованою моделью за довільними значеннями незалежної змінної.</p></li>
+</ol>
+</div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -826,6 +870,13 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 <li><a class="nav-link" href="#%D0%B4%D0%BE%D0%B2%D1%96%D1%80%D1%87%D1%96-%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D0%B8-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">3.6</span> Довірчі інтервали оцінок параметрів моделі</a></li>
 <li><a class="nav-link" href="#%D1%80%D0%BE%D0%B7%D1%80%D0%B0%D1%85%D1%83%D0%BD%D0%BE%D0%BA-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA-%D0%B2-r"><span class="header-section-number">3.7</span> Розрахунок статистик в R</a></li>
 <li><a class="nav-link" href="#%D1%82%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-%D1%82%D0%B0-%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%BE%D0%B3%D0%BD%D0%BE%D0%B7"><span class="header-section-number">3.8</span> Точковий та інтервальний прогноз</a></li>
+<li>
+<a class="nav-link" href="#%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F"><span class="header-section-number">3.9</span> Завдання</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%B8-%D1%82%D0%B0-%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8-%D0%B4%D0%B0%D0%BD%D1%96"><span class="header-section-number">3.9.1</span> 1. Обрати та завантажити дані</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%80%D0%BE%D0%B1%D0%BA%D0%B0-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">3.9.2</span> 2. Обробка даних</a></li>
+<li><a class="nav-link" href="#%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><span class="header-section-number">3.9.3</span> 3. Лінійна регресія</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -844,7 +895,7 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-03-29.</p>
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

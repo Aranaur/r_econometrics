@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 4 Завдання | r_econometrics.knit</title>
+<meta name="author" content="Ігор Мірошниченко">
+<meta name="description" content="4.1 1. Обрати та завантажити дані Для практичних та лабораторних робіт необхідно знайти та обрати дані з якими бажаєте працювати. Для цього рекомендую наступні джерела: Сервіс з пошуку даних від...">
+<meta name="generator" content="bookdown 0.24.4 with bs4_book()">
+<meta property="og:title" content=" 4 Завдання | r_econometrics.knit">
+<meta property="og:type" content="book">
+<meta property="og:description" content="4.1 1. Обрати та завантажити дані Для практичних та лабораторних робіт необхідно знайти та обрати дані з якими бажаєте працювати. Для цього рекомендую наступні джерела: Сервіс з пошуку даних від...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 4 Завдання | r_econometrics.knit">
+<meta name="twitter:description" content="4.1 1. Обрати та завантажити дані Для практичних та лабораторних робіт необхідно знайти та обрати дані з якими бажаєте працювати. Для цього рекомендую наступні джерела: Сервіс з пошуку даних від...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.12/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title=""><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
+</span></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Основи економетрики в R</a></li>
+<li><a class="" href="introR.html"><span class="header-section-number">1</span> Вступ до R</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">2</span> Маніпуляції з даними за допомогою dplyr і не тільки</a></li>
+<li><a class="" href="simple_regression.html"><span class="header-section-number">3</span> Проста лінійна регресія</a></li>
+<li><a class="active" href="%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F.html"><span class="header-section-number">4</span> Завдання</a></li>
+<li><a class="" href="multiple_regression.html"><span class="header-section-number">5</span> Множинна лінійна регресія</a></li>
+<li><a class="" href="multicollinearity.html"><span class="header-section-number">6</span> Мультиколінеарність</a></li>
+<li><a class="" href="heteroskedasticity.html"><span class="header-section-number">7</span> Гетероскедастичність</a></li>
+<li><a class="" href="regularization.html"><span class="header-section-number">8</span> Регуляризація</a></li>
+<li><a class="" href="time_series.html"><span class="header-section-number">9</span> Регресійний аналіз часових рядів</a></li>
+<li><a class="" href="glm.html"><span class="header-section-number">10</span> GLM</a></li>
+<li><a class="" href="references.html">Література</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/aranaur/r_econometrics">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="завдання" class="section level1" number="4">
+<h1>
+<span class="header-section-number"> 4</span> Завдання<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F"><i class="fas fa-link"></i></a>
+</h1>
+<div id="обрати-та-завантажити-дані" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> 1. Обрати та завантажити дані<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%B8-%D1%82%D0%B0-%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8-%D0%B4%D0%B0%D0%BD%D1%96"><i class="fas fa-link"></i></a>
+</h2>
+<p>Для практичних та лабораторних робіт необхідно знайти та обрати дані з якими бажаєте працювати. Для цього рекомендую наступні джерела:</p>
+<ul>
+<li><p>Сервіс з пошуку даних від Google <a href="https://datasetsearch.research.google.com/">Dataset Search</a></p></li>
+<li><p>Репозитарій з машинного навчання <a href="https://archive.ics.uci.edu/ml/datasets.php">UCI</a></p></li>
+<li><p>Дані <a href="https://data.worldbank.org/">Всісвітнього банку</a></p></li>
+<li><p>Набори даних з <a href="https://hbiostat.org/data/#vanderbilt-biostatistics-datasets">біостатистики</a></p></li>
+<li><p>Платформа змагать <a href="https://www.kaggle.com/">Kaggle</a></p></li>
+<li><p><a href="https://www.fueleconomy.gov/feg/download.shtml">Fuel Economy Data</a></p></li>
+</ul>
+<p>Вимоги до датасетів прості: мають бути цікавими для Вас та наявність числових змінних (більше двох). Можете пошукати щось додатково в гуглі.</p>
+<p>Завантажте дані в R.</p>
+</div>
+<div id="обробка-даних" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> 2. Обробка даних<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%80%D0%BE%D0%B1%D0%BA%D0%B0-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Після завантаження даних, за потреби приведіть їх до охайного вигляду, створіть нові змінні або перекодуйте вже існуючі.</p>
+</div>
+<div id="лінійна-регресія" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> 3. Лінійна регресія<a class="anchor" aria-label="anchor" href="#%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Всі завдання виконуються у двох напрямках: вручну (всі розрахунки будуєте самостійно) та за допомогою функцій мови програмування R.</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Оберіть дві числові змінні з завантаженого набору даних. Визначте, яка змінна буде залежною, а яка незалежною.</p></li>
+<li><p>Побудуйте точкову діаграму. Як ви можете описати отриманий результат?</p></li>
+<li><p>Розрахуйте коефіцієнт кореляції. Зробіть висновки.</p></li>
+<li><p>Побудуйте модель простої лінійної регресії за допомогою формул та за допомогою функції <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. Порівняйте результати. Запишіть рівняння регресії.</p></li>
+<li><p>Відобразіть на графіку точкової діаграми лінію регресії.</p></li>
+<li><p>Розрахуйте стандартні похибки оцінок параметрів моделі.</p></li>
+<li><p>Розрахуйте t-критерій Стьюдента до оцінок параметрів моделі. Порівняйте з табличним значенням або розрахуйте p-значення. Зробіть висновки щодо гіпотез.</p></li>
+<li><p>Побудуйте довірчі інтервали до оцінок параметрів моделі.</p></li>
+<li><p>Розрахуйте коефіцієнт детермінації. Зробіть висновок щодо його значення.</p></li>
+<li><p>Побудуйте точковий та інтервальний прогноз за побудованою моделью за довільними значеннями незалежної змінної.</p></li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="simple_regression.html"><span class="header-section-number">3</span> Проста лінійна регресія</a></div>
+<div class="next"><a href="multiple_regression.html"><span class="header-section-number">5</span> Множинна лінійна регресія</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F"><span class="header-section-number">4</span> Завдання</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%B8-%D1%82%D0%B0-%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8-%D0%B4%D0%B0%D0%BD%D1%96"><span class="header-section-number">4.1</span> 1. Обрати та завантажити дані</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%80%D0%BE%D0%B1%D0%BA%D0%B0-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">4.2</span> 2. Обробка даних</a></li>
+<li><a class="nav-link" href="#%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%8F"><span class="header-section-number">4.3</span> 3. Лінійна регресія</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/aranaur/r_econometrics/blob/master/03-Simple_regression.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_econometrics/edit/master/03-Simple_regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
+</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-04-11.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
