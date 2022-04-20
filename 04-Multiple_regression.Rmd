@@ -3,6 +3,9 @@
 ```{r setup-04, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.width = '100%', cache = TRUE)
+
+library(pacman)
+p_load(broom, latex2exp, ggplot2, ggthemes, ggforce, viridis, dplyr, magrittr, knitr, parallel)
 ```
 
 ## Загальні відомості 
@@ -120,7 +123,44 @@ $$
 
 Проте $R^2$ має суттєву особливість в множинній регресії: він характеризує наявність кореляції між незалежними і залежною змінною, але **нічного не говорить про причинно-наслідкові зв'язки**. Тому $R^2$ **не може бути використаний для порівняння простих і більш складних (з більшою кількістю незалежних змінних) моделей**.
 
-Додаючи нові змінні у специфікацію моделі ми не можемо отримати гірший результат за сумою квадратів відхилення. Які б змінні ми не додавали у рівняння моделі $R^2$ буде збільшуватись або, в рідких випадках, залишатися незмінним.
+Але є значна **проблема**: додавання нових змінних до спеицифікації моделі призводить до збільшення $R^2$. В деяких випадках він може залишитися незмінним, але точно не зменшитися. Це означає, що якщо бездумно додавати будь-які змінні в модель, вона може ставати кращою, але це оманливе відчуття.
+
+Щоб продемонструвати цю проблему:
+- згенеруємо 10000 значень  $y$
+- згенеруємо 10000 значень для кожної змінної від $x_1$ до $x_{1000}$
+- побудуємо моделі регресії:
+  - $LM_1$: Регресія $y$ на даних $x_1$
+  - $LM_2$: Регресія $y$ на даних $x_2$
+  - $\dots$
+  - $LM_{1000}$: Регресія $y$ на даних $x_{1000}$
+- до кожної моделі розрахуємо $R^2$ і подивимось на динаміку його зміни.
+
+Зауважу, що жодного зв'язку між $y$ та $x_k$ не має.
+
+```{r r_sim, cache = T}
+set.seed(1234)
+y <- rnorm(1e4)
+x <- matrix(data = rnorm(1e7), nrow = 1e4)
+x %<>% cbind(matrix(data = 1, nrow = 1e4, ncol = 1), x)
+r_df <- mclapply(X = 1:(1e3-1), FUN = function(i) {
+  tmp_reg <- lm(y ~ x[,1:(i+1)]) %>% summary()
+  data.frame(
+    k = i + 1,
+    r2 = tmp_reg %$% r.squared,
+    r2_adj = tmp_reg %$% adj.r.squared
+  )
+}) %>% bind_rows()
+```
+
+```{r, r2 plot, echo = F, dev = "svg", fig.height = 6.25}
+ggplot(data = r_df, aes(x = k, y = r2)) +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  geom_line(size = 2, alpha = 0.75, color = "darkslategrey") +
+  geom_line(aes(y = r2_adj), size = 0.2, alpha = 0, color = "#e64173") +
+  ylab(TeX("R^2")) +
+  xlab("Кількість пояснювальних змінних (k)")
+```
 
 В таких випадках пропонують використовувати вдосконалену версію $R^2$ --- **скорегований коефіцієнт детермінації** (*adjusted $R^2$*):
 $$
@@ -129,24 +169,35 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 $$
 В порівнянні з класичним $R^2$, його модифікація $R_{adj}^2$ штрафується на кількість змінних. Якщо додавати в модель предиктори, які не приносять суттєвого вкладу в пояснення залежної змінної, $R_{adj}^2$ буде зменшуватися.
 
-Давайте до нашого прикладу з вагою і зростом чоловіків додамо три випадкові змінні:
-```{r adj}
-set.seed(2022)
-male %>% 
-  mutate(Random1 = runif(100, 0, 100),
-         Random2 = runif(100, 0, 100),
-         Random3 = runif(100, 0, 100)) %>%
-  lm(Weight_cm ~ Height_kg + Random1 + Random2 + Random3, data = .) %>% 
-  summary()
+```{R, adjusted r2 plot, echo = F, dev = "svg", fig.height = 6.25}
+ggplot(data = r_df, aes(x = k, y = r2)) +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  geom_line(size = 2, alpha = 0.15, color = "darkslategrey") +
+  geom_line(aes(y = r2_adj), size = 2, alpha = 0.85, color = "#e64173") +
+  ylab(TeX("R^2")) +
+  xlab("Кількість пояснювальних змінних (k)")
 ```
 
-Тоді, якщо порівняти коефіцієнти детермінації простої лінійної моделі та множинної моделі з декількома випадковими змінними, можна побачити, що $R^2$ збільшився, проте $R_{adj}^2$ дещо зменшився. В даному випадку доцільніше використовувати саме просту модель.
-```
-1. Weight_cm ~ Height_kg
-Multiple R-squared:  0.7855,	Adjusted R-squared:  0.7833
 
-2. Weight_cm ~ Height_kg + Random1 + Random2 + Random3
-Multiple R-squared:  0.7914,	Adjusted R-squared:  0.7826 
+<!-- Давайте до нашого прикладу з вагою і зростом чоловіків додамо три випадкові змінні: -->
+<!-- ```{r adj} -->
+<!-- set.seed(2022) -->
+<!-- male %>%  -->
+<!--   mutate(Random1 = runif(100, 0, 100), -->
+<!--          Random2 = runif(100, 0, 100), -->
+<!--          Random3 = runif(100, 0, 100)) %>% -->
+<!--   lm(Weight_cm ~ Height_kg + Random1 + Random2 + Random3, data = .) %>%  -->
+<!--   summary() -->
+<!-- ``` -->
+
+<!-- Тоді, якщо порівняти коефіцієнти детермінації простої лінійної моделі та множинної моделі з декількома випадковими змінними, можна побачити, що $R^2$ збільшився, проте $R_{adj}^2$ дещо зменшився. В даному випадку доцільніше використовувати саме просту модель. -->
+<!-- ``` -->
+<!-- 1. Weight_cm ~ Height_kg -->
+<!-- Multiple R-squared:  0.7855,	Adjusted R-squared:  0.7833 -->
+
+<!-- 2. Weight_cm ~ Height_kg + Random1 + Random2 + Random3 -->
+<!-- Multiple R-squared:  0.7914,	Adjusted R-squared:  0.7826  -->
 ```
 
 bookdown::render_book("index.Rmd", output_dir = "docs")
