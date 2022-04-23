@@ -34,7 +34,7 @@ purple <- "#6A5ACD"
 ```
 
 ## Загальні відомості 
-**Множинна лінійна регресія** --- варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної \@ref(fig:venn-iv). В більшості випадків це підвищує ефективність моделі в порівнянні з парною регресією.
+**Множинна лінійна регресія** --- варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної \@ref(fig:venn-plot). В більшості випадків це підвищує ефективність моделі в порівнянні з парною регресією.
 
 ```{R venn_iv0, echo = F, dev = "svg"}
 # Colors (order: x1, x2, x3, y)
@@ -50,7 +50,7 @@ venn_df <- tibble(
 )
 ```
 
-```{R venn-iv, echo = F, dev = "svg"}
+```{R venn-plot, echo = F, dev = "svg", fig.cap="Умовне зображення множинної регресії"}
 ggplot(data = venn_df, aes(x0 = x, y0 = y, r = r, fill = l, color = l)) +
   geom_circle(alpha = 0.3, size = 0.75) +
   theme_void() +
@@ -61,6 +61,7 @@ ggplot(data = venn_df, aes(x0 = x, y0 = y, r = r, fill = l, color = l)) +
   xlim(-5.5, 4.5) +
   ylim(-4.2, 3.4) +
   coord_equal()
+
 ```
 
 Загальне рівняння множинної лінійної регресії:
@@ -239,11 +240,11 @@ ggplot(data = omit_df, aes(x = school, y = pay)) +
 )
 ```
 
-Якщо ж включити в модель впливову змінну статі (**<font color="#e64173">жінки</font>** та **<font color="#314f4f">чоловіки</font>**) \@ref(fig:plot-ovb-4), це суттєво має вплинути на оцінюванні параметри моделі. А незміщена модель набуває вигляду:
+Якщо ж включити в модель впливову змінну статі (**<font color="#e64173">жінки</font>** та **<font color="#314f4f">чоловіки</font>**) \@ref(fig:plot-ovb-3), це суттєво має вплинути на оцінюванні параметри моделі. А незміщена модель набуває вигляду:
 
 $\widehat{\text{Зарплата}}_i = `r bu0` + `r bu1` \times \text{Освіта}_i + `r bu2` \times \text{Стать}_i$
 
-```{R, plot-ovb-4, echo = F, dev = "svg", fig.height = 5.5}
+```{R plot-ovb-3, echo = F, dev = "svg", fig.height = 5.5, fig.cap="Включення впливової змінної в модель"}
 ggplot(data = omit_df, aes(x = school, y = pay)) +
 geom_point(size = 2.5, alpha = 0.8, aes(color = male, shape = male)) +
 geom_hline(yintercept = 0) +
@@ -259,8 +260,8 @@ geom_abline(
   slope = lm_unbias$coefficients[2],
   color = "darkslategrey", size = 1
 ) +
-xlab("Schooling") +
-ylab("Pay") +
+xlab("Освіта") +
+ylab("Зарплата") +
 theme_empty +
 theme(
   axis.title = element_text(size = 18),
@@ -268,6 +269,7 @@ theme(
 ) +
 scale_color_manual("", values = c(red_pink, "darkslategrey"), labels = c("Female", "Male")) +
 scale_shape_manual("", values = c(16, 1), labels = c("Female", "Male"))
+
 ```
 
 Існують певні методи боротьби з цим явищем:
@@ -366,6 +368,11 @@ ggplot(data = r_df, aes(x = k, y = r2)) +
   
 ## Інтерпретація коефіціентів
   
+See Figure \@ref(fig:cars-plot).
 
+```{r cars-plot, echo=FALSE, fig.cap="The cars data."}
+ggplot(mtcars, aes(mpg, hp)) +
+  geom_point()
+```
 
 bookdown::render_book("index.Rmd", output_dir = "docs")

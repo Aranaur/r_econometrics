@@ -13,3 +13,10 @@ pre code {
   white-space: inherit;
 }
 
+.container-fluid main {
+    max-width: 65rem;
+    text-align: justify;
+}
+.sidebar-chapter {
+    max-height: 150vh;
+}

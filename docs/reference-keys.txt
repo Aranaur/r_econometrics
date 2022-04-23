@@ -38,6 +38,7 @@ eq:confint
 eq:predict
 eq:predictCI
 eq:predictCI2
+fig:venn-plot
 eq:multreg
 eq:y
 eq:x
@@ -47,7 +48,9 @@ eq:betahatvec
 eq:matrixmnk
 eq:smult
 eq:sebetamult
+fig:plot-ovb-3
 eq:adjrsquer
+fig:cars-plot
 introR
 installR
 instalpc

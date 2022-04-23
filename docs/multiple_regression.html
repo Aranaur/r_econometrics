@@ -6,44 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 4 Множинна лінійна регресія | r_econometrics.knit</title>
 <meta name="author" content="Ігор Мірошниченко">
-<meta name="description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної ??. В більшості випадків це підвищує ефективність...">
+<meta name="description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної 4.1. В більшості випадків це підвищує ефективність...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content=" 4 Множинна лінійна регресія | r_econometrics.knit">
 <meta property="og:type" content="book">
-<meta property="og:description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної ??. В більшості випадків це підвищує ефективність...">
+<meta property="og:description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної 4.1. В більшості випадків це підвищує ефективність...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 4 Множинна лінійна регресія | r_econometrics.knit">
-<meta name="twitter:description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної ??. В більшості випадків це підвищує ефективність...">
+<meta name="twitter:description" content="4.1 Загальні відомості Множинна лінійна регресія — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної 4.1. В більшості випадків це підвищує ефективність...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
-<style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -64,7 +38,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+      <nav aria-label="Table of contents"><h2>Зміст</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Основи економетрики в R</a></li>
 <li><a class="" href="introR.html"><span class="header-section-number">1</span> Вступ до R</a></li>
@@ -80,7 +54,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/aranaur/r_econometrics">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/aranaur/r_econometrics">Переглянути код <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -92,8 +66,13 @@
 <h2>
 <span class="header-section-number">4.1</span> Загальні відомості<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B3%D0%B0%D0%BB%D1%8C%D0%BD%D1%96-%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%BE%D1%81%D1%82%D1%96"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>Множинна лінійна регресія</strong> — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної <a href="#fig:venn-iv"><strong>??</strong></a>. В більшості випадків це підвищує ефективність моделі в порівнянні з парною регресією.</p>
-<div class="inline-figure"><img src="r_econometrics_files/figure-html/venn-iv-1.svg" width="100%"></div>
+<p><strong>Множинна лінійна регресія</strong> — варіант регресійної моделі, де в якості предикторів використовується більше однієї змінної <a href="multiple_regression.html#fig:venn-plot">4.1</a>. В більшості випадків це підвищує ефективність моделі в порівнянні з парною регресією.</p>
+<div class="figure">
+<span style="display:block;" id="fig:venn-plot"></span>
+<img src="r_econometrics_files/figure-html/venn-plot-1.svg" alt="Умовне зображення множинної регресії" width="100%"><p class="caption">
+Рисунок 4.1: Умовне зображення множинної регресії
+</p>
+</div>
 <p>Загальне рівняння множинної лінійної регресії:
 <span class="math display" id="eq:multreg">\[
 y_i = \beta_0 + \beta_0x_{i,1} + \beta_0x_{i,2} + \dots + \beta_kx_{i,k} + u_i, i = 1,\dots,n
@@ -234,9 +213,14 @@ se(\hat\beta_j) = \sqrt{\hat{V_{jj}}} = \sqrt{\hat{var}(\hat\beta_j)}
 <span class="math display">\[\widehat{\text{Зарплата}}_i = 32.7 + -1.2 \times \text{Освіта}_i\]</span>
 Візуально це буде виглядати так:
 <img src="r_econometrics_files/figure-html/plot-ovb-2-1.svg" width="100%"></p>
-<p>Якщо ж включити в модель впливову змінну статі (<strong><font color="#e64173">жінки</font></strong> та <strong><font color="#314f4f">чоловіки</font></strong>) <a href="#fig:plot-ovb-4"><strong>??</strong></a>, це суттєво має вплинути на оцінюванні параметри моделі. А незміщена модель набуває вигляду:</p>
+<p>Якщо ж включити в модель впливову змінну статі (<strong><font color="#e64173">жінки</font></strong> та <strong><font color="#314f4f">чоловіки</font></strong>) <a href="multiple_regression.html#fig:plot-ovb-3">4.2</a>, це суттєво має вплинути на оцінюванні параметри моделі. А незміщена модель набуває вигляду:</p>
 <p><span class="math inline">\(\widehat{\text{Зарплата}}_i = 22.3 + 0.1 \times \text{Освіта}_i + 9.1 \times \text{Стать}_i\)</span></p>
-<div class="inline-figure"><img src="r_econometrics_files/figure-html/plot-ovb-4-1.svg" width="100%"></div>
+<div class="figure">
+<span style="display:block;" id="fig:plot-ovb-3"></span>
+<img src="r_econometrics_files/figure-html/plot-ovb-3-1.svg" alt="Включення впливової змінної в модель" width="100%"><p class="caption">
+Рисунок 4.2: Включення впливової змінної в модель
+</p>
+</div>
 <p>Існують певні методи боротьби з цим явищем:</p>
 <ol style="list-style-type: decimal">
 <li><p>Включати всі впливові змінні в модель. Але це буває можливо далеко не кожного разу.</p></li>
@@ -323,6 +307,13 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <h2>
 <span class="header-section-number">4.7</span> Інтерпретація коефіціентів<a class="anchor" aria-label="anchor" href="#%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%86%D1%96%D1%8F-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D0%B5%D0%BD%D1%82%D1%96%D0%B2"><i class="fas fa-link"></i></a>
 </h2>
+<p>See Figure <a href="multiple_regression.html#fig:cars-plot">4.3</a>.</p>
+<div class="figure">
+<span style="display:block;" id="fig:cars-plot"></span>
+<img src="r_econometrics_files/figure-html/cars-plot-1.png" alt="The cars data." width="100%"><p class="caption">
+Рисунок 4.3: The cars data.
+</p>
+</div>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -331,7 +322,7 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <div class="prev"><a href="simple_regression.html"><span class="header-section-number">3</span> Проста лінійна регресія</a></div>
 <div class="next"><a href="multicollinearity.html"><span class="header-section-number">5</span> Мультиколінеарність</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#multiple_regression"><span class="header-section-number">4</span> Множинна лінійна регресія</a></li>
 <li><a class="nav-link" href="#%D0%B7%D0%B0%D0%B3%D0%B0%D0%BB%D1%8C%D0%BD%D1%96-%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%BE%D1%81%D1%82%D1%96"><span class="header-section-number">4.1</span> Загальні відомості</a></li>
@@ -345,8 +336,8 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/aranaur/r_econometrics/blob/master/04-Multiple_regression.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/aranaur/r_econometrics/edit/master/04-Multiple_regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/aranaur/r_econometrics/blob/master/04-Multiple_regression.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_econometrics/edit/master/04-Multiple_regression.Rmd">Редагувати <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -359,11 +350,11 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>" was written by Ігор Мірошниченко. It was last built on 2022-04-23.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+    <p>Книгу створено за допомогою пакету <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
   </div>
 
 </div></div>
