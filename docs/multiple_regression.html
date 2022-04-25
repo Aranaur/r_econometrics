@@ -303,19 +303,70 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <li><p>можливо ми все ще не врахували важливу змінну</p></li>
 </ul>
 </div>
-<div id="інтерпретація-коефіціентів" class="section level2" number="4.7">
+<div id="інтерпретація-коефіціентів-регресії" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">4.7</span> Інтерпретація коефіціентів<a class="anchor" aria-label="anchor" href="#%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%86%D1%96%D1%8F-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D0%B5%D0%BD%D1%82%D1%96%D0%B2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Інтерпретація коефіціентів регресії<a class="anchor" aria-label="anchor" href="#%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%86%D1%96%D1%8F-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D0%B5%D0%BD%D1%82%D1%96%D0%B2-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%97"><i class="fas fa-link"></i></a>
 </h2>
-<p>See Figure <a href="multiple_regression.html#fig:cars-plot">4.3</a>.</p>
+<div id="неперервна-змінна" class="section level3" number="4.7.1">
+<h3>
+<span class="header-section-number">4.7.1</span> Неперервна змінна<a class="anchor" aria-label="anchor" href="#%D0%BD%D0%B5%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Припустимо, що ми маємо наступне рівняння:
+<span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Досвід}_i + u_i \]</span>
+де</p>
+<ul>
+<li><p><span class="math inline">\(\text{Зарплата}_i\)</span> – це неперервна змінна, що вимірює заробітну плату</p></li>
+<li><p><span class="math inline">\(\text{Освіта}_i\)</span> – це неперервна змінна, яка вимірює роки навчання</p></li>
+<li><p><span class="math inline">\(\text{Досвід}_i\)</span> – це неперервна змінна, яка вимірює роки навчання</p></li>
+</ul>
+<p>Тоді інтерпретація коефіцієнтів буде наступною:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span>: перетин <span class="math inline">\(y\)</span>, тобто чому буде дорівнювати <span class="math inline">\(\text{Зарплата}\)</span>, коли <span class="math inline">\(\text{Освіта} = 0\)</span></p></li>
+<li><p><span class="math inline">\(\beta_1\)</span>: очікуване збільшення <span class="math inline">\(\text{Зарплати}\)</span> при збільшені на одну одиницю <span class="math inline">\(\text{Освіти}\)</span>, за умови незмінності інших предикторів.</p></li>
+<li><p><span class="math inline">\(\beta_2\)</span>:очікуване збільшення <span class="math inline">\(\text{Зарплати}\)</span> при збільшені на одну одиницю <span class="math inline">\(\text{Досвіду}\)</span>, за умови незмінності інших предикторів.</p></li>
+</ul>
+</div>
+<div id="номінативна-змінна" class="section level3" number="4.7.2">
+<h3>
+<span class="header-section-number">4.7.2</span> Номінативна змінна<a class="anchor" aria-label="anchor" href="#%D0%BD%D0%BE%D0%BC%D1%96%D0%BD%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Замінемо незалежну змінну на номінативну:
+<span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Стать}_i + u_i \]</span>
+де</p>
+<p><span class="math inline">\(\text{Стать}_i\)</span> – це бінарна змінна, яка визначає стать (1 - жінка, 0 - чоловік)</p>
+<p>Тоді інтерпретація коефіцієнтів буде наступною <a href="multiple_regression.html#fig:dat-plot-2">4.3</a>:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span>: очікувана <span class="math inline">\(\text{Зарплата}\)</span> для чоловіків (тобто, коли <span class="math inline">\(\text{Стать} = 0\)</span>)</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span>: очікувана різниця в <span class="math inline">\(\text{Зарплаті}\)</span> між жінками та чоловіками</p></li>
+<li><p><span class="math inline">\(\beta_0 + \beta_1\)</span>: очікувана <span class="math inline">\(\text{Зарплата}\)</span> для жінок</p></li>
+</ul>
+<p><strong>Примітка 1</strong>: якщо не має інших змінних, тоді <span class="math inline">\(\hat{\beta}_1\)</span> дорівнює різниці середніх груп, тобто <span class="math inline">\(\overline{x}_\text{Жінка} - \overline{x}_\text{Чоловік}\)</span>.</p>
+<p><strong>Примітка 2</strong>: незмінність інших змінних також розповсюджується на інтерпритацію номінативнних змінних у множинній регресії.</p>
 <div class="figure">
-<span style="display:block;" id="fig:cars-plot"></span>
-<img src="r_econometrics_files/figure-html/cars-plot-1.png" alt="The cars data." width="100%"><p class="caption">
-Рисунок 4.3: The cars data.
+<span style="display:block;" id="fig:dat-plot-2"></span>
+<img src="r_econometrics_files/figure-html/dat-plot-2-1.png" alt="Візуалізація інтерпритації коефіцієнтів при номінативній змінній" width="100%"><p class="caption">
+Рисунок 4.3: Візуалізація інтерпритації коефіцієнтів при номінативній змінній
 </p>
 </div>
+</div>
+<div id="взаємодія-змінних" class="section level3" number="4.7.3">
+<h3>
+<span class="header-section-number">4.7.3</span> Взаємодія змінних<a class="anchor" aria-label="anchor" href="#%D0%B2%D0%B7%D0%B0%D1%94%D0%BC%D0%BE%D0%B4%D1%96%D1%8F-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Взаємодія змінних — це процес, який дозволяє досліджувати вплив однієї змінної в залежності від зміни іншої.</p>
+<p>Наприклад:</p>
+<ol style="list-style-type: decimal">
+<li><p>Чи змінюється вплив освіти на зарплату за статтю?</p></li>
+<li><p>Чи змінюється вплив статі на зарплату за расою?</p></li>
+<li><p>Чи змінюється вплив освіти на зарплату при зміні досвіду?</p></li>
+</ol>
+<p>Раніше ми розглядали ситуацію, коли стать мала різну вагу у рівнянні, однак модель передбачала, що вплив освіти на зарплату був однаковим для всіх:</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + u_i \]</span>
+Але якщо ми хочемо врахувати вплив освіти за гендером слід модифікувати специфікацію моделі:</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + \beta_3 \, \text{Освіта}_i\times\text{Стать}_i + u_i \]</span></p>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
+</div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -331,7 +382,13 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <li><a class="nav-link" href="#%D0%B7%D0%BC%D1%96%D1%89%D0%B5%D0%BD%D0%BD%D1%8F%D0%BC-%D0%BF%D1%80%D0%B8-%D0%BD%D0%B5%D0%B2%D1%80%D0%B0%D1%85%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%96-%D0%B2%D0%BF%D0%BB%D0%B8%D0%B2%D0%BE%D0%B2%D0%BE%D1%97-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%BE%D1%97"><span class="header-section-number">4.4</span> Зміщенням при неврахуванні впливової змінної</a></li>
 <li><a class="nav-link" href="#%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D0%BE%D1%86%D1%96%D0%BD%D0%BE%D0%BA-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96-1"><span class="header-section-number">4.5</span> Значущість оцінок параметрів моделі</a></li>
 <li><a class="nav-link" href="#%D1%81%D0%BA%D0%BE%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D1%94%D0%BD%D1%82-%D0%B4%D0%B5%D1%82%D0%B5%D1%80%D0%BC%D1%96%D0%BD%D0%B0%D1%86%D1%96%D1%97"><span class="header-section-number">4.6</span> Скорегований коефіцієнт детермінації</a></li>
-<li><a class="nav-link" href="#%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%86%D1%96%D1%8F-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D0%B5%D0%BD%D1%82%D1%96%D0%B2"><span class="header-section-number">4.7</span> Інтерпретація коефіціентів</a></li>
+<li>
+<a class="nav-link" href="#%D1%96%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%86%D1%96%D1%8F-%D0%BA%D0%BE%D0%B5%D1%84%D1%96%D1%86%D1%96%D0%B5%D0%BD%D1%82%D1%96%D0%B2-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%97"><span class="header-section-number">4.7</span> Інтерпретація коефіціентів регресії</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BD%D0%B5%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><span class="header-section-number">4.7.1</span> Неперервна змінна</a></li>
+<li><a class="nav-link" href="#%D0%BD%D0%BE%D0%BC%D1%96%D0%BD%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><span class="header-section-number">4.7.2</span> Номінативна змінна</a></li>
+<li><a class="nav-link" href="#%D0%B2%D0%B7%D0%B0%D1%94%D0%BC%D0%BE%D0%B4%D1%96%D1%8F-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D1%85"><span class="header-section-number">4.7.3</span> Взаємодія змінних</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -350,7 +407,7 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-23.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

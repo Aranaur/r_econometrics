@@ -50,7 +50,7 @@ eq:smult
 eq:sebetamult
 fig:plot-ovb-3
 eq:adjrsquer
-fig:cars-plot
+fig:dat-plot-2
 introR
 installR
 instalpc
@@ -119,7 +119,10 @@ multiple_regression
 зміщенням-при-неврахуванні-впливової-змінної
 значущість-оцінок-параметрів-моделі-1
 скорегований-коефіцієнт-детермінації
-інтерпретація-коефіціентів
+інтерпретація-коефіціентів-регресії
+неперервна-змінна
+номінативна-змінна
+взаємодія-змінних
 multicollinearity
 heteroskedasticity
 regularization
