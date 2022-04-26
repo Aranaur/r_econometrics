@@ -457,11 +457,223 @@ theme_empty
 
 3. Чи змінюється вплив освіти на зарплату при зміні досвіду?
 
-Раніше ми розглядали ситуацію, коли стать мала різну вагу у рівнянні, однак модель передбачала, що вплив освіти на зарплату був однаковим для всіх:
+Раніше ми розглядали ситуацію, коли стать мала різну вагу у рівнянні, однак модель передбачала, що вплив освіти на зарплату був однаковим для всіх \@ref(fig:int-plot-1):
 
 $$ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + u_i $$
+```{R, int-data, include = F, cache = T}
+# Set seed
+set.seed(12345)
+# Sample size
+n <- 1e3
+# Parameters
+beta0 <- 20; beta1 <- 0.5; beta2 <- 10; beta3 <- 3
+# Dataset
+int_df <- tibble(
+  male = sample(x = c(F, T), size = n, replace = T),
+  school = runif(n, 3, 9) - 3 * male,
+  pay = beta0 + beta1 * school + beta2 * male + rnorm(n, sd = 7) + beta3 * male * school
+)
+reg_noint <- lm(pay ~ school + male, int_df)
+reg_int <- lm(pay ~ school + male + school:male, int_df)
+```
+
+```{R, int-plot-1, echo = F, dev = "svg", fig.height = 5.5, fig.cap = "Однаковий вплив освіти на зарплату"}
+ggplot(data = int_df, aes(x = school, y = pay)) +
+geom_point(aes(color = male, shape = male), size = 2.5) +
+geom_hline(yintercept = 0) +
+geom_vline(xintercept = 0) +
+geom_abline(
+  intercept = reg_noint$coefficients[1] + reg_noint$coefficients[3],
+  slope = reg_noint$coefficients[2],
+  color = "darkslategrey", size = 1, alpha = 0.8
+) +
+geom_abline(
+  intercept = reg_noint$coefficients[1],
+  slope = reg_noint$coefficients[2],
+  color = red_pink, size = 1, alpha = 0.8
+) +
+xlab("Освіта") +
+ylab("Зарплата") +
+theme_empty +
+theme(
+  axis.title = element_text(size = 18),
+  plot.margin = structure(c(0, 0, 0.1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+) +
+scale_color_manual("", values = c(red_pink, "darkslategrey"), labels = c("Female", "Male")) +
+scale_shape_manual("", values = c(16, 1), labels = c("Female", "Male"))
+```
+
 Але якщо ми хочемо врахувати вплив освіти за гендером слід модифікувати специфікацію моделі:
 
 $$ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + \beta_3 \, \text{Освіта}_i\times\text{Стать}_i + u_i $$
+```{R, int-plot-2, echo = F, dev = "svg", fig.height = 5.5, fig.cap = "Різний вплив освіти на зарплату за гендером"}
+ggplot(data = int_df, aes(x = school, y = pay)) +
+geom_point(aes(color = male, shape = male), size = 2.5) +
+geom_hline(yintercept = 0) +
+geom_vline(xintercept = 0) +
+geom_abline(
+  intercept = reg_noint$coefficients[1] + reg_noint$coefficients[3],
+  slope = reg_noint$coefficients[2],
+  color = "darkslategrey", size = 0.75, alpha = 0.2
+) +
+geom_abline(
+  intercept = reg_noint$coefficients[1],
+  slope = reg_noint$coefficients[2],
+  color = red_pink, size = 0.75, alpha = 0.2
+) +
+geom_abline(
+  intercept = reg_int$coefficients[1] + reg_int$coefficients[3],
+  slope = reg_int$coefficients[2] + reg_int$coefficients[4],
+  color = "darkslategrey", size = 1, alpha = 0.8
+) +
+geom_abline(
+  intercept = reg_int$coefficients[1],
+  slope = reg_int$coefficients[2],
+  color = red_pink, size = 1, alpha = 0.8
+) +
+xlab("Освіта") +
+ylab("Зарплата") +
+theme_empty +
+theme(
+  axis.title = element_text(size = 18),
+  plot.margin = structure(c(0, 0, 0.1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+) +
+scale_color_manual("", values = c(red_pink, "darkslategrey"), labels = c("Female", "Male")) +
+scale_shape_manual("", values = c(16, 1), labels = c("Female", "Male"))
+```
+
+В таких випадках інтерпретація коефіцієнтів регресії буде наступною:
+
+- $\beta_1$: очікувана доплата за додатковий рік навчання для чоловіків
+
+- $\beta_1 + \beta_3$: очікувана доплата за додатковий рік навчання для жінок
+
+- $\beta_3$: різниця в доплаті за додатковий рік навчання для жінок і чоловіків
+
+### Лог-лінійна специфікація
+Ви часто будете зустрічати ситуації, коли при побудові моделі використовують не "сиру" залежну змінну, а трансформовану. Найпопулярніший підхід - логарифмування:
+
+$$ \log(\text{Зарплата}_i) = \beta_0 + \beta_1 \, \text{Освіта}_i + u_i $$
+
+В таких випадках інтерпретація коефіцієнтів дещо змінюється:
+
+- Збільшення пояснювальної змінної на одиницю змінює залежну змінну на $\beta_1 \times 100$
+
+- *Приклад:* додатковий рік навчання збільшує зарплату на 3% (якщо $\beta_1 = 0.03$)
+
+- Тобто зміна $x$ призводить до відсоткової зміни $y$
+
+Для застосовувати лог-лінійної специфікації моделі необхідно пересвідчитися, що такий підхід відповідає вашим даним. Чи дійсно $x$ змінює $y$ за експоненціальною взаємозалежністю:
+
+$$ \log(y_i) = \beta_0 + \beta_1 \, x_i + u_i \iff y_i = e^{\beta_0 + \beta_1 x_i + u_i} $$
+
+```{R, log-linear-plot, echo = F, cache = T, dev = "svg", fig.height = 6, fig.cap = "Лог-лінійна взаємозалежність між змінними"}
+# Set seed
+set.seed(1234)
+# Sample size
+n <- 1e3
+# Generate data
+ll_df <- tibble(
+  x = runif(n, 0, 3),
+  y = exp(-100 + 0.75 * x + rnorm(n, sd = 0.5))
+)
+# Plot
+ggplot(data = ll_df, aes(x = x, y = y)) +
+geom_hline(yintercept = 0) +
+geom_vline(xintercept = 0) +
+geom_point(size = 3, color = "darkslategrey", alpha = 0.5) +
+geom_smooth(color = red_pink, se = F) +
+xlab("x") +
+ylab("y")
+```
+
+### Лог-логарифмічна специфікація
+Аналогічно, економетрики часто використовують log-log моделі, в яких залежна і хоча б одна з пояснювальних змінних логарифмуються:
+
+$$ \log(\text{Зарплата}_i) = \beta_0 + \beta_1 \, \log(\text{Освіта}_i) + u_i $$
+Інтерпретація:
+
+- Зміна на 1% пояснювальної змінної $x$ призводить до зміни $y$ на $\beta_1$ відсотків
+
+- Такий підхід часто інтерпретується як **еластичність**
+
+### Лог-лінійна специфікація з бінарною змінною
+Якщо у вас лог-лінійна модель із бінарною залежною змінною, інтерпретація коефіцієнта для цієї змінної змінюється.
+
+$$ \log(y_i) = \beta_0 + \beta_1 x_1 + u_i $$
+
+за бінарної $x_1$.
+
+Інтерпретація $\beta_1$:
+
+- При зміні $x_1$ з 0 до 1, $y$ змінується на $100 \times \left( e^{\beta_1} -1 \right)$ відсотків
+
+- При зміні $x_1$ від 1 до 0, $y$ змінується на $100 \times \left( e^{-\beta_1} -1 \right)$ відсотків
+
+## F-тест
+В економетриці ви часто будете зустрічатися з F-тестом. Він використовується для **перевірки обмежень параметрів моделі** та **статистичної значущості рівняння регресії**.
+
+### Перевірки обмежень параметрів моделі
+Статистика тесту для перевірки лінійних обмежень на параметри класичної нормальної лінійної регресії можуть бути різні, наприклад:
+
+- $\beta_1 = \beta_2$
+
+- $\beta_3 + \beta_4 = 1$
+
+Припустимо, що рівень освіти та досвід роботи мають однаковий вплив на зарплату:
+
+$$ \text{Зарплата}_i = \beta_0 + \beta_1 \text{Освіта}_{i} + \beta_2 \text{Досвід}_i + u_i $$
+
+Ми можемо записати нульову гіпотезу як
+
+$$ H_o:\: \beta_1 = \beta_2 \iff H_o :\: \beta_1 - \beta_2 = 0 $$
+
+Якщо нульова гіпотеза дійсна, тоді ми отримаємо **обмежену модель** (*restricted model*):
+
+$$ \text{Зарплата}_i = \beta_0 + \beta_1 \text{Освіта}_{i} + \beta_1 \text{Досвід}_i + u_i $$
+
+або 
+
+$$ \text{Зарплата}_i = \beta_0 + \beta_1 \left( \text{Освіта}_{i} + \text{Досвід}_i \right) + u_i $$
+
+Для тестування нульової гіпотези $H_o :\: \beta_1 = \beta_2$ проти альтернативної $H_a :\: \beta_1 \neq \beta_2$ ми використовуємо $F$ статистику:
+
+$$
+\begin{align}
+  F = \dfrac{\left(\text{RSS}_r - \text{RSS}_u\right)/q}{\text{RSS}_u/(n-k-1)} = \dfrac{\left(\text{R}_r^2 - \text{R}_u^2\right)/q}{(\text{1 - R}_u^2)/(n-k-1)} \sim F_{q,\,n-k-1}
+\end{align}
+$$
+
+де
+
+- $q = k_u - k_r$ --- кількість обмежень і він же ступінь свободи чисельника
+
+- $n$ --- кількість спостережень
+
+- $k$ --- кількість пояснюючих змінних
+
+- $RSS$ --- сума квадратів відхилення
+
+- $R^2$ --- коефіцієнт детермінації
+
+- індекси $r$ та $u$ --- обмежена (*restricted*) та повна (*unrestricted*) модель, відповідно
+
+Отриманий показник ми порівнюємо з $F$-розподілом з заданим ступенем значущості $\alpha$ та ступенями свободи $df_1 = q$ та $df_2 = n-k-1$. Якщо $F_{кр} < F_{розр}$ ми відхиляємо нульову гіпотезу, і навпаки, якщо $F_{кр} > F_{розр}$ ми не можемо відхилити нульову гіпотезу.
+
+### Статистична значущість рівняння регресії
+Цей тест дуже важливий у регресійному аналізі і по суті є окремим випадком перевірки обмежень. В даному випадку нульова гіпотеза - про одночасну рівність нулю всіх коефіцієнтів при факторах регресійної моделі (тобто обмежень $k-1$). В такому випадку обмежена модель - це просто константа, тобто коефіцієнт детермінації обмеженої моделі дорівнює нулю. Гіпотези записуються наступним чином:
+
+- $H_0: \beta_1 = \beta_2 = \dots = \beta_{k-1} = 0$ 
+
+- $H_a: \beta_j \neq 0$ хоча б для одного $j$
+
+Розрахунок статистики:
+$$
+\begin{align}
+F = \frac{R^2 / k}{(1-R^2)(n-k-1)} \sim F_{k, \ n-k-1}
+\end{align}
+$$
+
+Відповідно, якщо значення цієї статистики більше критичного значення при цьому рівні значущості, то нульова гіпотеза відкидається, що означає статистичну значущість регресії. В іншому випадку модель є статистично незначущою.
 
 bookdown::render_book("index.Rmd", output_dir = "docs")

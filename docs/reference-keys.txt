@@ -51,6 +51,9 @@ eq:sebetamult
 fig:plot-ovb-3
 eq:adjrsquer
 fig:dat-plot-2
+fig:int-plot-1
+fig:int-plot-2
+fig:log-linear-plot
 introR
 installR
 instalpc
@@ -123,6 +126,12 @@ multiple_regression
 неперервна-змінна
 номінативна-змінна
 взаємодія-змінних
+лог-лінійна-специфікація
+лог-логарифмічна-специфікація
+лог-лінійна-специфікація-з-бінарною-змінною
+f-тест
+перевірки-обмежень-параметрів-моделі
+статистична-значущість-рівняння-регресії
 multicollinearity
 heteroskedasticity
 regularization

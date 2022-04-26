@@ -360,10 +360,131 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <li><p>Чи змінюється вплив статі на зарплату за расою?</p></li>
 <li><p>Чи змінюється вплив освіти на зарплату при зміні досвіду?</p></li>
 </ol>
-<p>Раніше ми розглядали ситуацію, коли стать мала різну вагу у рівнянні, однак модель передбачала, що вплив освіти на зарплату був однаковим для всіх:</p>
-<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + u_i \]</span>
-Але якщо ми хочемо врахувати вплив освіти за гендером слід модифікувати специфікацію моделі:</p>
-<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + \beta_3 \, \text{Освіта}_i\times\text{Стать}_i + u_i \]</span></p>
+<p>Раніше ми розглядали ситуацію, коли стать мала різну вагу у рівнянні, однак модель передбачала, що вплив освіти на зарплату був однаковим для всіх <a href="multiple_regression.html#fig:int-plot-1">4.4</a>:</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + u_i \]</span></p>
+<div class="figure">
+<span style="display:block;" id="fig:int-plot-1"></span>
+<img src="r_econometrics_files/figure-html/int-plot-1-1.svg" alt="Однаковий вплив освіти на зарплату" width="100%"><p class="caption">
+Рисунок 4.4: Однаковий вплив освіти на зарплату
+</p>
+</div>
+<p>Але якщо ми хочемо врахувати вплив освіти за гендером слід модифікувати специфікацію моделі:</p>
+<span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \, \text{Освіта}_i + \beta_2 \, \text{Стать}_i + \beta_3 \, \text{Освіта}_i\times\text{Стать}_i + u_i \]</span>
+<div class="figure">
+<span style="display:block;" id="fig:int-plot-2"></span>
+<img src="r_econometrics_files/figure-html/int-plot-2-1.svg" alt="Різний вплив освіти на зарплату за гендером" width="100%"><p class="caption">
+Рисунок 4.5: Різний вплив освіти на зарплату за гендером
+</p>
+</div>
+<p>В таких випадках інтерпретація коефіцієнтів регресії буде наступною:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_1\)</span>: очікувана доплата за додатковий рік навчання для чоловіків</p></li>
+<li><p><span class="math inline">\(\beta_1 + \beta_3\)</span>: очікувана доплата за додатковий рік навчання для жінок</p></li>
+<li><p><span class="math inline">\(\beta_3\)</span>: різниця в доплаті за додатковий рік навчання для жінок і чоловіків</p></li>
+</ul>
+</div>
+<div id="лог-лінійна-специфікація" class="section level3" number="4.7.4">
+<h3>
+<span class="header-section-number">4.7.4</span> Лог-лінійна специфікація<a class="anchor" aria-label="anchor" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ви часто будете зустрічати ситуації, коли при побудові моделі використовують не “сиру” залежну змінну, а трансформовану. Найпопулярніший підхід - логарифмування:</p>
+<p><span class="math display">\[ \log(\text{Зарплата}_i) = \beta_0 + \beta_1 \, \text{Освіта}_i + u_i \]</span></p>
+<p>В таких випадках інтерпретація коефіцієнтів дещо змінюється:</p>
+<ul>
+<li><p>Збільшення пояснювальної змінної на одиницю змінює залежну змінну на <span class="math inline">\(\beta_1 \times 100\)</span></p></li>
+<li><p><em>Приклад:</em> додатковий рік навчання збільшує зарплату на 3% (якщо <span class="math inline">\(\beta_1 = 0.03\)</span>)</p></li>
+<li><p>Тобто зміна <span class="math inline">\(x\)</span> призводить до відсоткової зміни <span class="math inline">\(y\)</span></p></li>
+</ul>
+<p>Для застосовувати лог-лінійної специфікації моделі необхідно пересвідчитися, що такий підхід відповідає вашим даним. Чи дійсно <span class="math inline">\(x\)</span> змінює <span class="math inline">\(y\)</span> за експоненціальною взаємозалежністю:</p>
+<p><span class="math display">\[ \log(y_i) = \beta_0 + \beta_1 \, x_i + u_i \iff y_i = e^{\beta_0 + \beta_1 x_i + u_i} \]</span></p>
+<div class="figure">
+<span style="display:block;" id="fig:log-linear-plot"></span>
+<img src="r_econometrics_files/figure-html/log-linear-plot-1.svg" alt="Лог-лінійна взаємозалежність між змінними" width="100%"><p class="caption">
+Рисунок 4.6: Лог-лінійна взаємозалежність між змінними
+</p>
+</div>
+</div>
+<div id="лог-логарифмічна-специфікація" class="section level3" number="4.7.5">
+<h3>
+<span class="header-section-number">4.7.5</span> Лог-логарифмічна специфікація<a class="anchor" aria-label="anchor" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D0%BE%D0%B3%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D1%96%D1%87%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F"><i class="fas fa-link"></i></a>
+</h3>
+<p>Аналогічно, економетрики часто використовують log-log моделі, в яких залежна і хоча б одна з пояснювальних змінних логарифмуються:</p>
+<p><span class="math display">\[ \log(\text{Зарплата}_i) = \beta_0 + \beta_1 \, \log(\text{Освіта}_i) + u_i \]</span>
+Інтерпретація:</p>
+<ul>
+<li><p>Зміна на 1% пояснювальної змінної <span class="math inline">\(x\)</span> призводить до зміни <span class="math inline">\(y\)</span> на <span class="math inline">\(\beta_1\)</span> відсотків</p></li>
+<li><p>Такий підхід часто інтерпретується як <strong>еластичність</strong></p></li>
+</ul>
+</div>
+<div id="лог-лінійна-специфікація-з-бінарною-змінною" class="section level3" number="4.7.6">
+<h3>
+<span class="header-section-number">4.7.6</span> Лог-лінійна специфікація з бінарною змінною<a class="anchor" aria-label="anchor" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F-%D0%B7-%D0%B1%D1%96%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D1%8E-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%BE%D1%8E"><i class="fas fa-link"></i></a>
+</h3>
+<p>Якщо у вас лог-лінійна модель із бінарною залежною змінною, інтерпретація коефіцієнта для цієї змінної змінюється.</p>
+<p><span class="math display">\[ \log(y_i) = \beta_0 + \beta_1 x_1 + u_i \]</span></p>
+<p>за бінарної <span class="math inline">\(x_1\)</span>.</p>
+<p>Інтерпретація <span class="math inline">\(\beta_1\)</span>:</p>
+<ul>
+<li><p>При зміні <span class="math inline">\(x_1\)</span> з 0 до 1, <span class="math inline">\(y\)</span> змінується на <span class="math inline">\(100 \times \left( e^{\beta_1} -1 \right)\)</span> відсотків</p></li>
+<li><p>При зміні <span class="math inline">\(x_1\)</span> від 1 до 0, <span class="math inline">\(y\)</span> змінується на <span class="math inline">\(100 \times \left( e^{-\beta_1} -1 \right)\)</span> відсотків</p></li>
+</ul>
+</div>
+</div>
+<div id="f-тест" class="section level2" number="4.8">
+<h2>
+<span class="header-section-number">4.8</span> F-тест<a class="anchor" aria-label="anchor" href="#f-%D1%82%D0%B5%D1%81%D1%82"><i class="fas fa-link"></i></a>
+</h2>
+<p>В економетриці ви часто будете зустрічатися з F-тестом. Він використовується для <strong>перевірки обмежень параметрів моделі</strong> та <strong>статистичної значущості рівняння регресії</strong>.</p>
+<div id="перевірки-обмежень-параметрів-моделі" class="section level3" number="4.8.1">
+<h3>
+<span class="header-section-number">4.8.1</span> Перевірки обмежень параметрів моделі<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D0%BA%D0%B8-%D0%BE%D0%B1%D0%BC%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><i class="fas fa-link"></i></a>
+</h3>
+<p>Статистика тесту для перевірки лінійних обмежень на параметри класичної нормальної лінійної регресії можуть бути різні, наприклад:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_1 = \beta_2\)</span></p></li>
+<li><p><span class="math inline">\(\beta_3 + \beta_4 = 1\)</span></p></li>
+</ul>
+<p>Припустимо, що рівень освіти та досвід роботи мають однаковий вплив на зарплату:</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \text{Освіта}_{i} + \beta_2 \text{Досвід}_i + u_i \]</span></p>
+<p>Ми можемо записати нульову гіпотезу як</p>
+<p><span class="math display">\[ H_o:\: \beta_1 = \beta_2 \iff H_o :\: \beta_1 - \beta_2 = 0 \]</span></p>
+<p>Якщо нульова гіпотеза дійсна, тоді ми отримаємо <strong>обмежену модель</strong> (<em>restricted model</em>):</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \text{Освіта}_{i} + \beta_1 \text{Досвід}_i + u_i \]</span></p>
+<p>або</p>
+<p><span class="math display">\[ \text{Зарплата}_i = \beta_0 + \beta_1 \left( \text{Освіта}_{i} + \text{Досвід}_i \right) + u_i \]</span></p>
+<p>Для тестування нульової гіпотези <span class="math inline">\(H_o :\: \beta_1 = \beta_2\)</span> проти альтернативної <span class="math inline">\(H_a :\: \beta_1 \neq \beta_2\)</span> ми використовуємо <span class="math inline">\(F\)</span> статистику:</p>
+<p><span class="math display">\[
+\begin{align}
+  F = \dfrac{\left(\text{RSS}_r - \text{RSS}_u\right)/q}{\text{RSS}_u/(n-k-1)} = \dfrac{\left(\text{R}_r^2 - \text{R}_u^2\right)/q}{(\text{1 - R}_u^2)/(n-k-1)} \sim F_{q,\,n-k-1}
+\end{align}
+\]</span></p>
+<p>де</p>
+<ul>
+<li><p><span class="math inline">\(q = k_u - k_r\)</span> — кількість обмежень і він же ступінь свободи чисельника</p></li>
+<li><p><span class="math inline">\(n\)</span> — кількість спостережень</p></li>
+<li><p><span class="math inline">\(k\)</span> — кількість пояснюючих змінних</p></li>
+<li><p><span class="math inline">\(RSS\)</span> — сума квадратів відхилення</p></li>
+<li><p><span class="math inline">\(R^2\)</span> — коефіцієнт детермінації</p></li>
+<li><p>індекси <span class="math inline">\(r\)</span> та <span class="math inline">\(u\)</span> — обмежена (<em>restricted</em>) та повна (<em>unrestricted</em>) модель, відповідно</p></li>
+</ul>
+<p>Отриманий показник ми порівнюємо з <span class="math inline">\(F\)</span>-розподілом з заданим ступенем значущості <span class="math inline">\(\alpha\)</span> та ступенями свободи <span class="math inline">\(df_1 = q\)</span> та <span class="math inline">\(df_2 = n-k-1\)</span>. Якщо <span class="math inline">\(F_{кр} &lt; F_{розр}\)</span> ми відхиляємо нульову гіпотезу, і навпаки, якщо <span class="math inline">\(F_{кр} &gt; F_{розр}\)</span> ми не можемо відхилити нульову гіпотезу.</p>
+</div>
+<div id="статистична-значущість-рівняння-регресії" class="section level3" number="4.8.2">
+<h3>
+<span class="header-section-number">4.8.2</span> Статистична значущість рівняння регресії<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%BD%D0%B0-%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D1%80%D1%96%D0%B2%D0%BD%D1%8F%D0%BD%D0%BD%D1%8F-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%97"><i class="fas fa-link"></i></a>
+</h3>
+<p>Цей тест дуже важливий у регресійному аналізі і по суті є окремим випадком перевірки обмежень. В даному випадку нульова гіпотеза - про одночасну рівність нулю всіх коефіцієнтів при факторах регресійної моделі (тобто обмежень <span class="math inline">\(k-1\)</span>). В такому випадку обмежена модель - це просто константа, тобто коефіцієнт детермінації обмеженої моделі дорівнює нулю. Гіпотези записуються наступним чином:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \beta_1 = \beta_2 = \dots = \beta_{k-1} = 0\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \beta_j \neq 0\)</span> хоча б для одного <span class="math inline">\(j\)</span></p></li>
+</ul>
+<p>Розрахунок статистики:
+<span class="math display">\[
+\begin{align}
+F = \frac{R^2 / k}{(1-R^2)(n-k-1)} \sim F_{k, \ n-k-1}
+\end{align}
+\]</span></p>
+<p>Відповідно, якщо значення цієї статистики більше критичного значення при цьому рівні значущості, то нульова гіпотеза відкидається, що означає статистичну значущість регресії. В іншому випадку модель є статистично незначущою.</p>
 <p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
 
 </div>
@@ -387,6 +508,15 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 <li><a class="nav-link" href="#%D0%BD%D0%B5%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><span class="header-section-number">4.7.1</span> Неперервна змінна</a></li>
 <li><a class="nav-link" href="#%D0%BD%D0%BE%D0%BC%D1%96%D0%BD%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B0"><span class="header-section-number">4.7.2</span> Номінативна змінна</a></li>
 <li><a class="nav-link" href="#%D0%B2%D0%B7%D0%B0%D1%94%D0%BC%D0%BE%D0%B4%D1%96%D1%8F-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D1%85"><span class="header-section-number">4.7.3</span> Взаємодія змінних</a></li>
+<li><a class="nav-link" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F"><span class="header-section-number">4.7.4</span> Лог-лінійна специфікація</a></li>
+<li><a class="nav-link" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D0%BE%D0%B3%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D1%96%D1%87%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F"><span class="header-section-number">4.7.5</span> Лог-логарифмічна специфікація</a></li>
+<li><a class="nav-link" href="#%D0%BB%D0%BE%D0%B3-%D0%BB%D1%96%D0%BD%D1%96%D0%B9%D0%BD%D0%B0-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F-%D0%B7-%D0%B1%D1%96%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D1%8E-%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%BE%D1%8E"><span class="header-section-number">4.7.6</span> Лог-лінійна специфікація з бінарною змінною</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#f-%D1%82%D0%B5%D1%81%D1%82"><span class="header-section-number">4.8</span> F-тест</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D0%BA%D0%B8-%D0%BE%D0%B1%D0%BC%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%96%D0%B2-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%96"><span class="header-section-number">4.8.1</span> Перевірки обмежень параметрів моделі</a></li>
+<li><a class="nav-link" href="#%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%BD%D0%B0-%D0%B7%D0%BD%D0%B0%D1%87%D1%83%D1%89%D1%96%D1%81%D1%82%D1%8C-%D1%80%D1%96%D0%B2%D0%BD%D1%8F%D0%BD%D0%BD%D1%8F-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%96%D1%97"><span class="header-section-number">4.8.2</span> Статистична значущість рівняння регресії</a></li>
 </ul>
 </li>
 </ul>
@@ -407,7 +537,7 @@ R_{adj}^2 = 1 - (1 - R^2)\left [  \frac{(n-1)}{(n-k-1)} \right ]
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-25.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
