@@ -134,7 +134,7 @@ $$
 Вектор оцінок коефіцієнтів моделі:
 $$
 \hat\beta = \begin{pmatrix}
-\hat\beta_1 \\
+\hat\beta_0 \\
 \hat\beta_1 \\
 \dots \\
 \hat\beta_k

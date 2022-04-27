@@ -622,7 +622,7 @@ t_{\beta_j} = \frac{\hat{\beta_j}}{se(\hat\beta_j)},
 <p>Я залишу поза межами цього підручника доведення відповідних теорем, але якщо комусь буде цікаво ознайомитись, пропоную почитати роботи <span class="citation">(<a href="references.html#ref-wooldridge2019" role="doc-biblioref">Wooldridge 2019</a>; <a href="references.html#ref-zeileis2008" role="doc-biblioref">Kleiber 2006</a>)</span>.</p>
 <p><strong>Дисперсія оцінки параметру моделі</strong> <span class="math inline">\(\hat{\beta_1}\)</span> дорівнює:
 <span class="math display" id="eq:beta1var">\[
-\hat{var}(\hat{\beta_1}) = \frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2},
+\hat{var}(\hat{\beta_1}) = \frac{S^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2},
 \tag{3.25}
 \]</span>
 де
@@ -632,12 +632,12 @@ S^2 = \frac{1}{n-2}\sum\limits^{n}_{i=1}u_i^2
 \]</span>
 Корінь квадратний з <a href="simple_regression.html#eq:sbeta1">(3.26)</a> називається <strong>стандартною помилкою оцінки параметру <span class="math inline">\(\hat{\beta_1}\)</span></strong>:
 <span class="math display" id="eq:sebeta1">\[
-se(\hat{\beta_1}) = \sqrt{\hat{var}(\hat{\beta_1})} = \sqrt{\frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+se(\hat{\beta_1}) = \sqrt{\hat{var}(\hat{\beta_1})} = \sqrt{\frac{S^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2}}
 \tag{3.27}
 \]</span></p>
 <p>Аналогічним чином розраховується <strong>стандартна помилка оцінки параметру <span class="math inline">\(\hat{\beta_0}\)</span></strong>:
 <span class="math display" id="eq:sebeta0">\[
-se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\sum\limits^{n}_{i=1}x_i^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\sum\limits^{n}_{i=1}x_i^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2}}
 \tag{3.28}
 \]</span>
 Тепер ми знаємо, як розрахувати критерій Стьюдента <a href="simple_regression.html#eq:student">(3.24)</a>, який перевіряє значущість <span class="math inline">\(\hat{\beta_j}\)</span> за наступною процедурою:</p>
@@ -674,7 +674,7 @@ se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\
 <p><strong>Довірчий інтервал</strong> (ДІ, <em>confidence interval, CI</em>) — діапазон значень в який потрапляє випадкова величина з певною ймовірністю.</p>
 <p>Довірчий інтервал для оцінок параметрів моделі розраховується за формулою:
 <span class="math display" id="eq:confint">\[
-\hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2} &lt; \beta_j &lt; \hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2}
+\hat{\beta_j} - se(\hat{\beta_j}) \times t_{df}^{\alpha/2} &lt; \beta_j &lt; \hat{\beta_j} + se(\hat{\beta_j}) \times t_{df}^{\alpha/2}
 \tag{3.29}
 \]</span></p>
 <p>Тобто з йомовірністю <span class="math inline">\(1 - \alpha\)</span> інтервал <span class="math inline">\((\hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2}, \hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2})\)</span> буде містити істинні значення параметру моделі.</p>
@@ -895,7 +895,7 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-26.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

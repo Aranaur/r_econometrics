@@ -468,7 +468,7 @@ $$
 
 **Дисперсія оцінки параметру моделі** $\hat{\beta_1}$ дорівнює:
 $$
-\hat{var}(\hat{\beta_1}) = \frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2},
+\hat{var}(\hat{\beta_1}) = \frac{S^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2},
 (\#eq:beta1var)
 $$
 де
@@ -478,13 +478,13 @@ S^2 = \frac{1}{n-2}\sum\limits^{n}_{i=1}u_i^2
 $$
 Корінь квадратний з \@ref(eq:sbeta1) називається **стандартною помилкою оцінки параметру $\hat{\beta_1}$**:
 $$
-se(\hat{\beta_1}) = \sqrt{\hat{var}(\hat{\beta_1})} = \sqrt{\frac{S^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+se(\hat{\beta_1}) = \sqrt{\hat{var}(\hat{\beta_1})} = \sqrt{\frac{S^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2}}
 (\#eq:sebeta1)
 $$
 
 Аналогічним чином розраховується **стандартна помилка оцінки параметру $\hat{\beta_0}$**:
 $$
-se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\sum\limits^{n}_{i=1}x_i^2}{\sum\limits^{n}_{i=1}(x_i - x)^2}}
+se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\sum\limits^{n}_{i=1}x_i^2}{\sum\limits^{n}_{i=1}(x_i - \overline{x})^2}}
 (\#eq:sebeta0)
 $$
 Тепер ми знаємо, як розрахувати критерій Стьюдента \@ref(eq:student), який перевіряє значущість $\hat{\beta_j}$ за наступною процедурою:
@@ -516,7 +516,7 @@ $$
 
 Довірчий інтервал для оцінок параметрів моделі розраховується за формулою:
 $$
-\hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2} < \beta_j < \hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2}
+\hat{\beta_j} - se(\hat{\beta_j}) \times t_{df}^{\alpha/2} < \beta_j < \hat{\beta_j} + se(\hat{\beta_j}) \times t_{df}^{\alpha/2}
 (\#eq:confint)
 $$
 
