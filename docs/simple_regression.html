@@ -677,7 +677,7 @@ se(\hat{\beta_0}) = \sqrt{\hat{var}(\hat{\beta_0})} = \sqrt{\frac{\frac{S^2}{n}\
 \hat{\beta_j} - se(\hat{\beta_j}) \times t_{df}^{\alpha/2} &lt; \beta_j &lt; \hat{\beta_j} + se(\hat{\beta_j}) \times t_{df}^{\alpha/2}
 \tag{3.29}
 \]</span></p>
-<p>Тобто з йомовірністю <span class="math inline">\(1 - \alpha\)</span> інтервал <span class="math inline">\((\hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2}, \hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2})\)</span> буде містити істинні значення параметру моделі.</p>
+<p>Тобто з йомовірністю <span class="math inline">\(1 - \alpha\)</span> інтервал <span class="math inline">\((\hat{\beta_j} - se(\hat{\beta_j})*t_{df}^{\alpha/2}, \hat{\beta_j} + se(\hat{\beta_j})*t_{df}^{\alpha/2})\)</span> буде містити істинні значення параметру моделі.</p>
 <p>Розрахуємо довірчі інтервали до оцінок параметрів моделі з нашого прикладу. В R для цього використовується функція <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code>:</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">male_ols</span><span class="op">)</span>
@@ -895,7 +895,7 @@ Height_kg     1.02405    0.05405   18.95   &lt;2e-16 ***</code></pre>
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-27.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-04-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
