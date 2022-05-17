@@ -67,6 +67,7 @@ theme_axes_math <- theme_void() + theme(
 $\mathop{\text{Var}} \left( u_i \right) = \sigma^2_i$ та $\sigma^2_i \neq \sigma^2_j$ для деяких $i\neq j$
 
 Класична гетероскедастичність залишків виглядає так: дисперсія $u$ збільшується зі збільшенням $x$
+
 ```{R, het-ex1, echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
@@ -79,6 +80,7 @@ theme_axes_math
 ```
 
 Інший випадок гетероскедастичності: дисперсія $u$ збільшується за краях $x$
+
 ```{R, het-ex2 , echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
@@ -91,6 +93,7 @@ theme_axes_math
 ```
 
 Або так: різна дисперсія $u$ в різних групах:
+
 ```{R, het-ex3 , echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
@@ -188,9 +191,9 @@ sse1 <- lm(y ~ x, data = gq_df %>% filter(x < gq_x[1])) %>%
 sse2 <- lm(y ~ x, data = gq_df %>% filter(x > gq_x[2])) %>%
   residuals() %>% raise_to_power(2) %>% sum()
 ggplot(data = gq_df, aes(x = x, y = e)) +
-geom_point(color = "darkslategrey", size = 2.75, alpha = 0.5) +
-labs(x = "x", y = "u") +
-theme_axes_math
+  geom_point(color = "darkslategrey", size = 2.75, alpha = 0.5) +
+  labs(x = "x", y = "u") +
+  theme_axes_math
 ```
 
 2. Поділимо спостереження на групи:
