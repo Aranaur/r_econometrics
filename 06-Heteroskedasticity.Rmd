@@ -2,7 +2,17 @@
 
 ```{r setup-06, echo = FALSE, purl = FALSE, cache = FALSE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.width = '100%', cache = TRUE)
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      collapse = TRUE,
+                      out.width = '100%',
+                      cache = TRUE,
+                      fig.retina = 2,
+                      fig.width = 6,
+                      fig.asp = 2/3,
+                      fig.show = "hold")
+
+
 
 library(pacman)
 p_load(broom, latex2exp, ggplot2, ggthemes, ggforce, viridis, dplyr, magrittr, knitr, parallel)
@@ -20,7 +30,7 @@ theme_empty <- theme_bw() + theme(
 
 theme_axes_math <- theme_void() + theme(
   text = element_text(family = "MathJax_Math"),
-  axis.title = element_text(size = 22),
+  axis.title = element_text(size = 11),
   axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
   axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
   axis.line = element_line(
@@ -57,7 +67,7 @@ theme_axes_math <- theme_void() + theme(
 $\mathop{\text{Var}} \left( u_i \right) = \sigma^2_i$ та $\sigma^2_i \neq \sigma^2_j$ для деяких $i\neq j$
 
 Класична гетероскедастичність залишків виглядає так: дисперсія $u$ збільшується зі збільшенням $x$
-```{R, het-ex1, dev = "svg", echo = F, fig.height = 5.5}
+```{R, het-ex1, echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
   x = runif(1e3, -3, 3),
@@ -69,7 +79,7 @@ theme_axes_math
 ```
 
 Інший випадок гетероскедастичності: дисперсія $u$ збільшується за краях $x$
-```{R, het-ex2 , dev = "svg", echo = F, fig.height = 5.5}
+```{R, het-ex2 , echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
   x = runif(1e3, -3, 3),
@@ -81,7 +91,7 @@ theme_axes_math
 ```
 
 Або так: різна дисперсія $u$ в різних групах:
-```{R, het-ex3 , dev = "svg", echo = F, fig.height = 5.5}
+```{R, het-ex3 , echo = F, fig.height = 4}
 set.seed(12345)
 ggplot(data = tibble(
   g = sample(c(F,T), 1e3, replace = T),
@@ -162,7 +172,7 @@ $$ F_{\left(n^{\star}-k,\, n^{\star}-k\right)} = \dfrac{\text{RSS}_2/(n^\star-k)
 #### Візуальний приклад
 1. Припустимо, що ми побудували модель та отримали наступний розподіл залишків відносно впорядкованої змінної $x$:
 
-```{R, gq1a, echo = F, dev = "svg", fig.height = 4}
+```{R, gq1a, echo = F, fig.height = 4}
 set.seed(12345)
 # Data
 gq_df <- tibble(
@@ -185,7 +195,7 @@ theme_axes_math
 
 2. Поділимо спостереження на групи:
 
-```{R, gq1b, echo = F, dev = "svg", fig.height = 4}
+```{R, gq1b, echo = F, fig.height = 4}
 ggplot(data = gq_df, aes(
   x = x, y = e,
   color = cut(x, c(-Inf, gq_x, Inf)),
@@ -214,7 +224,7 @@ $F_{375,\,375} = \dfrac{\color{#e64173}{\text{SSE}_2 = `r format(round(sse2, 1),
 #### Недолік тесту
 Але в такого підходу є недолік. Якщо наші похибки будуть симетрично змінюватись відносно центру, тест буде приймати нульову гіпотезу:
 
-```{R, gq2, echo = F, dev = "svg", fig.height = 4}
+```{R, gq2, echo = F, fig.height = 4}
 set.seed(12345)
 # Data
 gq2_df <- tibble(
@@ -253,6 +263,179 @@ $F_{375,\,375} = \dfrac{\color{#e64173}{\text{SSE}_2 = `r format(round(sse2b, 1)
 В такому випадку ми не можемо відхилити $H_0$: $\sigma^2_1 = \sigma^2_2$ при цьому гетероскедастичність присутня.
 
 ## Тест Брейша-Пагана
+
+Breusch і Pagan (1981) намагалися вирішити проблему гетероскедастичності за допомогою функціональної форми:
+
+1. Будуємо регресію $y$ від $X = [1, x_1, x_2, \dots, x_k]$.
+
+2. Визначаємо залишки моделі $e$.
+
+3. Будуємо регресію $e^2$ від $X = [1, x_1, x_2, \dots, x_k]$
+
+$$e_i^2 = \alpha_0 + \alpha_1 x_{1i} + \alpha_2 x_{2i} + \dots + \alpha_k x_{ki} + v_i$$.
+
+4. Визначаємо коефіцієнт детермінації $R^2$.
+
+5. Тестуємо статистичну значущість оцінок параметрів моделі, $H_0: \alpha_1 = \alpha_2 = \cdots = \alpha_k = 0$
+
+Розрахунок статистики Брейша-Пагана виконується за формулою:
+
+$$LM = n \times R_e^2$$
+
+де $R_e^2$ коефіцієнт детермінації з моделі регресії $e_i^2 = \alpha_0 + \alpha_1 x_{1i} + \alpha_2 x_{2i} + \dots + \alpha_k x_{ki} + v_i$
+
+LM-статистика асимптотично розподілена $\chi^2_k$.
+
+Відхилення нульової гіпотези передбачає наявність гетероскедастичності.
+
+$\chi^2_k$ розподіл при $\color{#314f4f}{k = 1}$, $\color{#e64173}{k = 2}$, та $\color{orange}{k = 9}$ має вигляд:
+
+```{R, chisq1, echo = F, fig.height = 4}
+ggplot(data = tibble(x = c(0, 20)), aes(x)) +
+  geom_area(
+    stat = "function", fun = dchisq, args = list(df = 2),
+    fill = "darkslategrey", alpha = 0.3
+  ) +
+  stat_function(
+    fun = dchisq, args = list(df = 2), n = 1e3,
+    color = "darkslategrey"
+  ) +
+  geom_area(
+    stat = "function", fun = dchisq, args = list(df = 3),
+    fill = red_pink, alpha = 0.3
+  ) +
+  stat_function(
+    fun = dchisq, args = list(df = 3), n = 1e3,
+    color = red_pink
+  ) +
+  geom_area(
+    stat = "function", fun = dchisq, args = list(df = 9),
+    fill = "orange", alpha = 0.3
+  ) +
+  stat_function(
+    fun = dchisq, args = list(df = 9), n = 1e3,
+    color = "orange"
+  ) +
+  labs(x = "x", y = "f") +
+  theme_axes_math
+```
+
+Імовірність спостереження більш екстремальної тестової статистики $\widehat{\text{LM}}$ під $H_0$:
+
+```{R, chisq2, echo = F, fig.height = 4}
+ggplot(data = tibble(x = c(0, 8)), aes(x)) +
+  geom_area(
+    stat = "function", fun = dchisq, args = list(df = 2),
+    fill = "darkslategrey", alpha = 0.05
+  ) +
+  geom_area(
+    stat = "function", fun = dchisq, args = list(df = 2),
+    fill = red_pink, alpha = 0.85,
+    xlim = c(5, 8)
+  ) +
+  stat_function(
+    fun = dchisq, args = list(df = 2), n = 1e3,
+    color = "darkslategrey"
+  ) +
+  geom_vline(xintercept = 5, color = grey_dark, size = 0.5, linetype = "dotted") +
+  annotate("text", x = 5, y = 1.55 * dchisq(5, df = 2), label = TeX("$\\widehat{LM}$"), family = "MathJax_Main", size = 4) +
+  labs(x = "x", y = "f") +
+  theme_axes_math
+```
+
+У даного підходу є певний нюанс: ми припускаємо досить простий взаємозв'язок між нашими пояснювальними змінними $X$ і дисперсією $\sigma^2_i$. І як результат B-P все ще може упускати прості форми гетероскедастичності.
+
+Тест Брейша-Пагана все ще чутливі до функціональної форми залежності.
+
+```{R, bp1, echo = F}
+set.seed(12345)
+# Data
+bp_df <- tibble(
+  x = runif(1e3, -3, 3),
+  e = rnorm(1e3, 0, sd = 2 + x^2),
+  y = 1 + 3 * x + e
+)
+# Regressions
+lm_bp1 <- lm(residuals(lm(y ~ x, bp_df))^2 ~ 1 + bp_df$x) %>%
+  summary() %$% r.squared %>% multiply_by(1e3)
+lm_bp2 <- lm(residuals(lm(y ~ x, bp_df))^2 ~ 1 + bp_df$x + I(bp_df$x^2)) %>%
+  summary() %$% r.squared %>% multiply_by(1e3)
+# The figure
+ggplot(data = bp_df, aes(x = x, y = e)) +
+  geom_point(size = 2.75, color = "darkslategrey", alpha = 0.5) +
+  labs(x = "x", y = "u") +
+  theme_axes_math
+```
+
+$$
+\begin{aligned}
+  e_i^2 &= \hat{\alpha}_0 + \hat{\alpha}_1 x_{1i} & \widehat{\text{LM}} &= `r round(lm_bp1, 2)` &\mathit{p}\text{-value} \approx `r round(pchisq(lm_bp1, 1, lower.tail = F), 3)` \\
+  e_i^2 &= \hat{\alpha}_0 + \hat{\alpha}_1 x_{1i} \color{#e64173}{+ \hat{\alpha}_2 x^2_{1i}} & \widehat{\text{LM}} &= `r round(lm_bp2, 2)` &\mathit{p}\text{-value} < 0.001
+\end{aligned}
+$$
+
+## Тест Уайта
+До цього ми перевіряли специфічні зв’язки між нашими пояснювальними змінними та дисперсіями разилишків, наприклад,
+
+- $H_0: \sigma_1^2 = \sigma_2^2$ для двох групn $x_j$ (**G-Q**)
+
+- $H_0: \alpha_1 = \cdots = \alpha_k = 0$ для $e_i^2 = \alpha_0 + \alpha_1 x_{1i} + \cdots + \alpha_k x_{ki} + v_i$ (**B-P**)
+
+Проте ми насправді хочемо знати, чи
+
+$$ \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_n^2 $$
+
+Чи не можна просто перевірити цю гіпотезу? Частково...
+
+Для досягнення цієї мети Хел Уайт скористався тим фактом, що ми можемо замінити вимогу гомоскедастичності більш слабким припущенням:
+
+- **Раніше:** $\mathop{\text{Var}} \left( u_i \middle| X \right) = \sigma^2$
+
+- **Зараз:** $u^2$ *не корелює* з пояснювальними змінними (_тобто_,  $x_j$ для всіх $j$), їх квадратами (_тобто_, $x_j^2$), і взаємодіями першого ступеня (_тобто_, $x_j x_h$).
+
+Це нове припущення легше перевірити явно (*підказка:* регресія).
+
+Алгоритм тесту Уайта:
+
+1. Будуємо регресію $y$ від $X = [1, x_1, x_2, \dots, x_k]$. Записуємо залишки $e$.
+
+2. Будуємо регресію квадрату залишків до всіх пояснюючих змінних, їх квадратів та взаємодії, тобто
+
+$$ e^2 = \alpha_0 + \sum_{h=1}^k \alpha_h x_h + \sum_{j=1}^k \alpha_{k+j} x_j^2 + \sum_{\ell = 1}^{k-1} \sum_{m = \ell + 1}^k \alpha_{\ell,m} x_\ell x_m + v_i $$
+
+3. Визначаємо коефіцієнт детермінації $R_e^2$.
+
+4. Розраховуємо статистику для перевірки гіпотез $H_0: \alpha_p = 0$ для всіх $p\neq0$.
+
+Як і увипадку B-P тесту, статистика тесту Уайта:
+
+$$\text{LM} = n \times R_e^2 \qquad \text{H}_0,\, \text{LM} \overset{\text{d}}{\sim} \chi_k^2$$
+
+але тепер $R^2_e$ походить від регресії $e^2$ щодо пояснювальних змінних, їх квадратів та їх взаємодії.
+
+$$ e^2 = \alpha_0 + \underbrace{\sum_{h=1}^k \alpha_h x_h}_{\text{Поясн. змінні}} + \underbrace{\sum_{j=1}^k \alpha_{k+j} x_j^2}_{\text{Квадратна форма}} + \underbrace{\sum_{\ell = 1}^{k-1} \sum_{m = \ell + 1}^k \alpha_{\ell,m} x_\ell x_m}_{\text{Взаємодії}} + v_i $$
+
+**Примітка:** $k$ (для нашого $\chi_k^2$) дорівнює кількості оцінених параметрів у наведеній вище регресії ($\alpha_j$), за винятком $\alpha_0$.
+
+**Практична примітка.** Якщо змінна дорівнює її квадрату (_наприклад_, бінарні змінні), ви не можете включати її. Те саме правило стосується взаємодій.
+
+*Приклад:* Розглянемо модель $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + u$
+
+**Крок 1:** Оцініть модель; отримати залишки $(e)$.
+
+**Крок 2:** Регресія $e^2$ щодо пояснювальних змінних, квадратів і взаємодій.
+
+$$
+\begin{aligned}
+  e^2 =
+  &\alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 + \alpha_3 x_3 + \alpha_4 x_1^2 + \alpha_5 x_2^2 + \alpha_6 x_3^2 \\
+  &+ \alpha_7 x_1 x_2 + \alpha_8 x_1 x_3 + \alpha_9 x_2 x_3 + v
+\end{aligned}
+$$
+
+Запишіть $R^2$ з цього рівняння (назвемо його $R_e^2$).
+
+**Крок 3:** Перевірте $H_0: \alpha_1 = \alpha_2 = \cdots = \alpha_9 = 0$ за допомогою $\text{LM} = n R^2_e \overset{\text{d} }{\sim} \chi_9^2$.
 
 bookdown::render_book("index.Rmd", output_dir = "docs")
 

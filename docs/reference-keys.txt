@@ -140,6 +140,7 @@ heteroskedasticity
 візуальний-приклад
 недолік-тесту
 тест-брейша-пагана
+тест-уайта
 regularization
 time_series
 glm
