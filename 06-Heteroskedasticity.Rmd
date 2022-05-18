@@ -157,7 +157,7 @@ $$ s^2 = \dfrac{\text{RSS}}{n-1} = \dfrac{\sum_i e_i^2}{n-1} $$
 
 3. Будуємо окремі регресії $y$ на $x$ для G1 та G2
 
-4. Запишіть $ESS_1$ і $ESS_2$
+4. Запишіть $RSS_1$ і $RSS_2$
 
 5. Розраховуємо статистику тесту G-Q:
 
@@ -220,7 +220,7 @@ theme_axes_math
 
 3. Розрахуємо статистику
 
-$F_{375,\,375} = \dfrac{\color{#e64173}{\text{SSE}_2 = `r format(round(sse2, 1), nsmall = 0L, big.mark = ",")`}}{\color{#314f4f}{\text{SSE}_1 = `r format(round(sse1, 1), nsmall = 0L, big.mark = ",")`}} \approx `r format(round(sse2/sse1, 1), nsmall = 0L, big.mark = ",")` \implies$ *p*-value $< 0.001$
+$F_{375,\,375} = \dfrac{\color{#e64173}{\text{RSS}_2 = `r format(round(sse2, 1), nsmall = 0L, big.mark = ",")`}}{\color{#314f4f}{\text{RSS}_1 = `r format(round(sse1, 1), nsmall = 0L, big.mark = ",")`}} \approx `r format(round(sse2/sse1, 1), nsmall = 0L, big.mark = ",")` \implies$ *p*-value $< 0.001$
 
 В такому випадку ми відхиляємо $H_0$: $\sigma^2_1 = \sigma^2_2$ і робимо висновок, що є статистично значущі докази гетероскедастичності.
 
@@ -261,7 +261,7 @@ scale_alpha_manual(values = c(0.5, 0.8, 0.6)) +
 theme_axes_math
 ```
 
-$F_{375,\,375} = \dfrac{\color{#e64173}{\text{SSE}_2 = `r format(round(sse2b, 1), nsmall = 0L, big.mark = ",")`}}{\color{#314f4f}{\text{SSE}_1 = `r format(round(sse1b, 1), nsmall = 0L, big.mark = ",")`}} \approx `r format(round(sse2b/sse1b, 1), nsmall = 0L, big.mark = ",")` \implies$ *p*-value $\approx `r round(pf(sse2b/sse1b, 375, 375, lower.tail = F), 3)`$
+$F_{375,\,375} = \dfrac{\color{#e64173}{\text{RSS}_2 = `r format(round(sse2b, 1), nsmall = 0L, big.mark = ",")`}}{\color{#314f4f}{\text{RSS}_1 = `r format(round(sse1b, 1), nsmall = 0L, big.mark = ",")`}} \approx `r format(round(sse2b/sse1b, 1), nsmall = 0L, big.mark = ",")` \implies$ *p*-value $\approx `r round(pf(sse2b/sse1b, 375, 375, lower.tail = F), 3)`$
 
 В такому випадку ми не можемо відхилити $H_0$: $\sigma^2_1 = \sigma^2_2$ при цьому гетероскедастичність присутня.
 
