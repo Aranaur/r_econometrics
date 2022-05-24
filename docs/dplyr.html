@@ -231,12 +231,12 @@
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
 <span class="co">## Rows: 1,704</span>
 <span class="co">## Columns: 6</span>
-<span class="co">## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
-<span class="co">## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
-<span class="co">## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
-<span class="co">## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
-<span class="co">## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
-<span class="co">## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span></code></pre></div>
+<span class="co">## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "Afghan~</span>
+<span class="co">## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, A~</span>
+<span class="co">## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, 2002, 2~</span>
+<span class="co">## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.822, 41.~</span>
+<span class="co">## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12881816,~</span>
+<span class="co">## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, 978.011~</span></code></pre></div>
 <p>Це альтернатива базовій функції <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> для дата фреймів.</p>
 </div>
 <div id="filter" class="section level3" number="2.3.2">
@@ -271,8 +271,8 @@
 <p>В класичному вигляді все виглядає наступним чином:</p>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471 0.8699440 0.9173173</span>
-<span class="co">##  [8] 0.9535709 0.9792468 0.9946649</span></code></pre></div>
+<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471 0.8699440 0.9173173 0.9535709</span>
+<span class="co">##  [9] 0.9792468 0.9946649</span></code></pre></div>
 <p>Погодьтесь, що розібрати такий код досить складно. Тому в діалекті tidyverse використовуються пайпи, <code>%&gt;%</code>, (pipe) — вони передають результат попереднього розрахунку першим аргументов наступної функції. Таким чином попередній код можна переписати наступним чином:</p>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -280,8 +280,8 @@
   <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471 0.8699440 0.9173173</span>
-<span class="co">##  [8] 0.9535709 0.9792468 0.9946649</span></code></pre></div>
+<span class="co">##  [1] 0.3756594 0.5285977 0.6419646 0.7375779 0.8105471 0.8699440 0.9173173 0.9535709</span>
+<span class="co">##  [9] 0.9792468 0.9946649</span></code></pre></div>
 <p>Погодьтесь, що такий код читається значно легше. Для виклику оператора <code>%&gt;%</code> в RStudio використовується комбінація клавіш CTRL + SHIFT + M для Windows і CMD + SHIFT + M для Mac.</p>
 <p>Тож, якщо повернутися до фільтрації <a href="dplyr.html#filter">2.3.2</a>, код можна переписати:</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
@@ -465,9 +465,9 @@
 <span class="co">## # A tibble: 3 x 6</span>
 <span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
 <span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">## 1 Serbia      Europe     1957    61.7  7271135     4981.</span>
-<span class="co">## 2 Afghanistan Asia       1962    32.0 10267083      853.</span>
-<span class="co">## 3 Italy       Europe     1967    71.1 52667100    10022.</span></code></pre></div>
+<span class="co">## 1 Canada      Americas   1972    72.9 22284500    18971.</span>
+<span class="co">## 2 El Salvador Americas   1957    48.6  2355805     3422.</span>
+<span class="co">## 3 Chad        Africa     1987    51.1  5498955      952.</span></code></pre></div>
 <p>Зверніть увагу, що при повторному виконанні попереднього коду ви будете отримувати кожного разу різні підвибірки. Для того щоб отримати відтворюваний результат, необхідно вказати початкове значення генератора випадкових чисел за допомогою функції <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>. Аргументом цієї функції може бути будь-яке ціле число.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
@@ -1207,15 +1207,14 @@
                    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="va">mean</span>, stdev <span class="op">=</span> <span class="va">sd</span>, md <span class="op">=</span> <span class="va">median</span><span class="op">)</span>,
                    .names <span class="op">=</span> <span class="st">"{.fn}_{.col}"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 5 x 10</span>
-<span class="co">##   continent avg_lifeExp stdev_lifeExp md_lifeExp   avg_pop  stdev_pop    md_pop</span>
-<span class="co">##   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">## 1 Africa           48.9          9.15       47.8  9916003.  15490923.  4579311 </span>
-<span class="co">## 2 Americas         64.7          9.35       67.0 24504795.  50979430.  6227510 </span>
-<span class="co">## 3 Asia             60.1         11.9        61.8 77038722. 206885205. 14530830.</span>
-<span class="co">## 4 Europe           71.9          5.43       72.2 17169765.  20519438.  8551125 </span>
-<span class="co">## 5 Oceania          74.3          3.80       73.7  8874672.   6506342.  6403492.</span>
-<span class="co">## # ... with 3 more variables: avg_gdpPercap &lt;dbl&gt;, stdev_gdpPercap &lt;dbl&gt;,</span>
-<span class="co">## #   md_gdpPercap &lt;dbl&gt;</span></code></pre></div>
+<span class="co">##   continent avg_lifeExp stdev_lifeExp md_lifeExp avg_pop stdev_pop md_pop avg_gdpPercap</span>
+<span class="co">##   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">## 1 Africa           48.9          9.15       47.8  9.92e6    1.55e7 4.58e6         2194.</span>
+<span class="co">## 2 Americas         64.7          9.35       67.0  2.45e7    5.10e7 6.23e6         7136.</span>
+<span class="co">## 3 Asia             60.1         11.9        61.8  7.70e7    2.07e8 1.45e7         7902.</span>
+<span class="co">## 4 Europe           71.9          5.43       72.2  1.72e7    2.05e7 8.55e6        14469.</span>
+<span class="co">## 5 Oceania          74.3          3.80       73.7  8.87e6    6.51e6 6.40e6        18622.</span>
+<span class="co">## # ... with 2 more variables: stdev_gdpPercap &lt;dbl&gt;, md_gdpPercap &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="count" class="section level3" number="2.3.11">
 <h3>
@@ -1311,25 +1310,25 @@
 
 <span class="va">fdi</span>
 <span class="co">## # A tibble: 266 x 66</span>
-<span class="co">##    `Country Name` `Country Code` `Indicator Name` `Indicator Code` `1960` `1961`</span>
-<span class="co">##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">##  1 Aruba          ABW            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  2 Africa Easter~ AFE            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  3 Afghanistan    AFG            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  4 Africa Wester~ AFW            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  5 Angola         AGO            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  6 Albania        ALB            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  7 Andorra        AND            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  8 Arab World     ARB            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">##  9 United Arab E~ ARE            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">## 10 Argentina      ARG            Foreign direct ~ BN.KLT.DINV.CD       NA     NA</span>
-<span class="co">## # ... with 256 more rows, and 60 more variables: `1962` &lt;dbl&gt;, `1963` &lt;dbl&gt;,</span>
-<span class="co">## #   `1964` &lt;dbl&gt;, `1965` &lt;dbl&gt;, `1966` &lt;dbl&gt;, `1967` &lt;dbl&gt;, `1968` &lt;dbl&gt;,</span>
-<span class="co">## #   `1969` &lt;dbl&gt;, `1970` &lt;dbl&gt;, `1971` &lt;dbl&gt;, `1972` &lt;dbl&gt;, `1973` &lt;dbl&gt;,</span>
-<span class="co">## #   `1974` &lt;dbl&gt;, `1975` &lt;dbl&gt;, `1976` &lt;dbl&gt;, `1977` &lt;dbl&gt;, `1978` &lt;dbl&gt;,</span>
-<span class="co">## #   `1979` &lt;dbl&gt;, `1980` &lt;dbl&gt;, `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;, `1983` &lt;dbl&gt;,</span>
-<span class="co">## #   `1984` &lt;dbl&gt;, `1985` &lt;dbl&gt;, `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;,</span>
-<span class="co">## #   `1989` &lt;dbl&gt;, `1990` &lt;dbl&gt;, `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, ...</span></code></pre></div>
+<span class="co">##    `Country Name` `Country Code` `Indicator Name` `Indicator Code` `1960` `1961` `1962`</span>
+<span class="co">##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">##  1 Aruba          ABW            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  2 Africa Easter~ AFE            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  3 Afghanistan    AFG            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  4 Africa Wester~ AFW            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  5 Angola         AGO            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  6 Albania        ALB            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  7 Andorra        AND            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  8 Arab World     ARB            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">##  9 United Arab E~ ARE            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">## 10 Argentina      ARG            Foreign direct ~ BN.KLT.DINV.CD       NA     NA     NA</span>
+<span class="co">## # ... with 256 more rows, and 59 more variables: `1963` &lt;dbl&gt;, `1964` &lt;dbl&gt;,</span>
+<span class="co">## #   `1965` &lt;dbl&gt;, `1966` &lt;dbl&gt;, `1967` &lt;dbl&gt;, `1968` &lt;dbl&gt;, `1969` &lt;dbl&gt;,</span>
+<span class="co">## #   `1970` &lt;dbl&gt;, `1971` &lt;dbl&gt;, `1972` &lt;dbl&gt;, `1973` &lt;dbl&gt;, `1974` &lt;dbl&gt;,</span>
+<span class="co">## #   `1975` &lt;dbl&gt;, `1976` &lt;dbl&gt;, `1977` &lt;dbl&gt;, `1978` &lt;dbl&gt;, `1979` &lt;dbl&gt;,</span>
+<span class="co">## #   `1980` &lt;dbl&gt;, `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;, `1983` &lt;dbl&gt;, `1984` &lt;dbl&gt;,</span>
+<span class="co">## #   `1985` &lt;dbl&gt;, `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;,</span>
+<span class="co">## #   `1990` &lt;dbl&gt;, `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;, ...</span></code></pre></div>
 <p>Використаємо функцію <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> для того щоб змінна року була окремим стовпчиком:</p>
 <div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fdi_longer</span> <span class="op">&lt;-</span> <span class="va">fdi</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1387,25 +1386,25 @@
 
 <span class="va">gapminder_wide</span>
 <span class="co">## # A tibble: 142 x 38</span>
-<span class="co">##    country     continent lifeExp_1952 lifeExp_1957 lifeExp_1962 lifeExp_1967</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;            &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia              28.8         30.3         32.0         34.0</span>
-<span class="co">##  2 Albania     Europe            55.2         59.3         64.8         66.2</span>
-<span class="co">##  3 Algeria     Africa            43.1         45.7         48.3         51.4</span>
-<span class="co">##  4 Angola      Africa            30.0         32.0         34           36.0</span>
-<span class="co">##  5 Argentina   Americas          62.5         64.4         65.1         65.6</span>
-<span class="co">##  6 Australia   Oceania           69.1         70.3         70.9         71.1</span>
-<span class="co">##  7 Austria     Europe            66.8         67.5         69.5         70.1</span>
-<span class="co">##  8 Bahrain     Asia              50.9         53.8         56.9         59.9</span>
-<span class="co">##  9 Bangladesh  Asia              37.5         39.3         41.2         43.5</span>
-<span class="co">## 10 Belgium     Europe            68           69.2         70.2         70.9</span>
-<span class="co">## # ... with 132 more rows, and 32 more variables: lifeExp_1972 &lt;dbl&gt;,</span>
-<span class="co">## #   lifeExp_1977 &lt;dbl&gt;, lifeExp_1982 &lt;dbl&gt;, lifeExp_1987 &lt;dbl&gt;,</span>
-<span class="co">## #   lifeExp_1992 &lt;dbl&gt;, lifeExp_1997 &lt;dbl&gt;, lifeExp_2002 &lt;dbl&gt;,</span>
-<span class="co">## #   lifeExp_2007 &lt;dbl&gt;, pop_1952 &lt;int&gt;, pop_1957 &lt;int&gt;, pop_1962 &lt;int&gt;,</span>
-<span class="co">## #   pop_1967 &lt;int&gt;, pop_1972 &lt;int&gt;, pop_1977 &lt;int&gt;, pop_1982 &lt;int&gt;,</span>
-<span class="co">## #   pop_1987 &lt;int&gt;, pop_1992 &lt;int&gt;, pop_1997 &lt;int&gt;, pop_2002 &lt;int&gt;,</span>
-<span class="co">## #   pop_2007 &lt;int&gt;, gdpPercap_1952 &lt;dbl&gt;, gdpPercap_1957 &lt;dbl&gt;, ...</span></code></pre></div>
+<span class="co">##    country   continent lifeExp_1952 lifeExp_1957 lifeExp_1962 lifeExp_1967 lifeExp_1972</span>
+<span class="co">##    &lt;fct&gt;     &lt;fct&gt;            &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanis~ Asia              28.8         30.3         32.0         34.0         36.1</span>
+<span class="co">##  2 Albania   Europe            55.2         59.3         64.8         66.2         67.7</span>
+<span class="co">##  3 Algeria   Africa            43.1         45.7         48.3         51.4         54.5</span>
+<span class="co">##  4 Angola    Africa            30.0         32.0         34           36.0         37.9</span>
+<span class="co">##  5 Argentina Americas          62.5         64.4         65.1         65.6         67.1</span>
+<span class="co">##  6 Australia Oceania           69.1         70.3         70.9         71.1         71.9</span>
+<span class="co">##  7 Austria   Europe            66.8         67.5         69.5         70.1         70.6</span>
+<span class="co">##  8 Bahrain   Asia              50.9         53.8         56.9         59.9         63.3</span>
+<span class="co">##  9 Banglade~ Asia              37.5         39.3         41.2         43.5         45.3</span>
+<span class="co">## 10 Belgium   Europe            68           69.2         70.2         70.9         71.4</span>
+<span class="co">## # ... with 132 more rows, and 31 more variables: lifeExp_1977 &lt;dbl&gt;,</span>
+<span class="co">## #   lifeExp_1982 &lt;dbl&gt;, lifeExp_1987 &lt;dbl&gt;, lifeExp_1992 &lt;dbl&gt;, lifeExp_1997 &lt;dbl&gt;,</span>
+<span class="co">## #   lifeExp_2002 &lt;dbl&gt;, lifeExp_2007 &lt;dbl&gt;, pop_1952 &lt;int&gt;, pop_1957 &lt;int&gt;,</span>
+<span class="co">## #   pop_1962 &lt;int&gt;, pop_1967 &lt;int&gt;, pop_1972 &lt;int&gt;, pop_1977 &lt;int&gt;, pop_1982 &lt;int&gt;,</span>
+<span class="co">## #   pop_1987 &lt;int&gt;, pop_1992 &lt;int&gt;, pop_1997 &lt;int&gt;, pop_2002 &lt;int&gt;, pop_2007 &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap_1952 &lt;dbl&gt;, gdpPercap_1957 &lt;dbl&gt;, gdpPercap_1962 &lt;dbl&gt;,</span>
+<span class="co">## #   gdpPercap_1967 &lt;dbl&gt;, gdpPercap_1972 &lt;dbl&gt;, gdpPercap_1977 &lt;dbl&gt;, ...</span></code></pre></div>
 <p>В переважній більшості випадків вам знадобиться довгий формат даних. Але при потребі зберігання великих файлів - краще зберігати у широкому форматі, оскільки це збереже місце на диску.</p>
 <p>Збережемо результати широкого і довго формату набору даних <code>gapminder</code> та перевіремо їх розмір:</p>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
@@ -1470,7 +1469,7 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-05-23.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

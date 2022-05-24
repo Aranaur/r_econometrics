@@ -41,6 +41,20 @@ theme_axes_math <- theme_void() + theme(
   plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
   legend.position = "none"
 )
+
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
 ```
 
 ## Огляд явища гетероскедастичності
@@ -440,13 +454,90 @@ $$
 
 **Крок 3:** Перевірте $H_0: \alpha_1 = \alpha_2 = \cdots = \alpha_9 = 0$ за допомогою $\text{LM} = n R^2_e \overset{\text{d} }{\sim} \chi_9^2$.
 
-bookdown::render_book("index.Rmd", output_dir = "docs")
+## Приклади проведення тестів
+
+```{r data-load}
+library(tidyverse)
+library(broom)
+library(Ecdat)
+
+test_tbl <- Caschool %>% 
+  select(test_score = testscr, ratio = str, income = avginc) %>% 
+  as_tibble()
+
+head(test_tbl, 2)
+```
+
+$$ \left(\text{Test score}\right)_i = \beta_0 + \beta_1 \text{Ratio}_{i} + \beta_2 \text{Income}_{i} + u_i $$
+```{r lm-model}
+est_model <- lm(test_score ~ ratio + income, data = test_tbl)
+tidy(est_model)
+```
+
+Візуалізація залишків
+```{R, ex gq2}
+test_tbl$e <- residuals(est_model)
+```
+
+```{R, gq3, echo = F, dev = "svg", fig.height = 4.25}
+library(latex2exp)
+# Plot residuals against income
+plot1 <- ggplot(data = test_tbl, aes(x = income, y = e)) +
+  geom_point(size = 2.5, alpha = 0.5, color = "#e64173") +
+  labs(x = "Income", y = TeX("\\textit{e}")) +
+  theme_axes_serif
+# Plot residuals against student-teacher ratio
+plot2 <- ggplot(data = test_tbl, aes(x = ratio, y = e)) +
+  geom_point(size = 2.5, alpha = 0.5, color = "darkslategrey") +
+  labs(x = "Student-to-teacher ratio", y = TeX("\\textit{e}")) +
+  theme_axes_serif
+# The grid
+gridExtra::grid.arrange(plot1, plot2, nrow = 1)
+```
+
+### Goldfeld-Quandt
+```{R, ex-gq5}
+test_tbl <- arrange(test_tbl, income)
+
+est_model1 <- lm(test_score ~ ratio + income, data = head(test_tbl, 158))
+est_model2 <- lm(test_score ~ ratio + income, data = tail(test_tbl, 158))
+
+e_model1 <- residuals(est_model1)
+e_model2 <- residuals(est_model2)
+
+(sse_model1 <- sum(e_model1^2))
+(sse_model2 <- sum(e_model2^2))
+
+(f_gq <- sse_model2/sse_model1)
+
+pf(q = f_gq, df1 = 158-3, df2 = 158-3, lower.tail = F)
+```
+
+Висновок: 
+
+$F \approx `r round(f_gq, 2)`$
+
+*p*-value $\approx `r round(pf(q = f_gq, df1 = 158-3, df2 = 158-3, lower.tail = F), 5)`$
+
+Не відхиляємо нульову гіпотезу.
+
+Розрахуємо за допомогою готових функцій:
+```{r}
+library(lmtest)
+
+gqtest(arr_est_model, data = test_tbl, fraction = 104)
+```
+
+Результати збігаються!
 
 
-Що робити? Більш ефективним буде підхід за котрого ми надаємо вагу спостереження обернено пропорційно їх дисперсії $u$. 
+<!-- bookdown::render_book("index.Rmd", output_dir = "docs") -->
 
-  - менша вага спостереженням з високим значенням дисперсії $u$.
-  
-  - більша вага спостереженням з низькими значенням дисперсії $u$.
 
-Це і є основна ідея зваженого методу найменших квадратів (WLS, ЗМНК)
+<!-- Що робити? Більш ефективним буде підхід за котрого ми надаємо вагу спостереження обернено пропорційно їх дисперсії $u$.  -->
+
+<!--   - менша вага спостереженням з високим значенням дисперсії $u$. -->
+
+<!--   - більша вага спостереженням з низькими значенням дисперсії $u$. -->
+
+<!-- Це і є основна ідея зваженого методу найменших квадратів (WLS, ЗМНК) -->

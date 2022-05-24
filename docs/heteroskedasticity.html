@@ -259,14 +259,86 @@
 \]</span></p>
 <p>Запишіть <span class="math inline">\(R^2\)</span> з цього рівняння (назвемо його <span class="math inline">\(R_e^2\)</span>).</p>
 <p><strong>Крок 3:</strong> Перевірте <span class="math inline">\(H_0: \alpha_1 = \alpha_2 = \cdots = \alpha_9 = 0\)</span> за допомогою <span class="math inline">\(\text{LM} = n R^2_e \overset{\text{d} }{\sim} \chi_9^2\)</span>.</p>
-<p>bookdown::render_book(“index.Rmd,” output_dir = “docs”)</p>
-<p>Що робити? Більш ефективним буде підхід за котрого ми надаємо вагу спостереження обернено пропорційно їх дисперсії <span class="math inline">\(u\)</span>.</p>
-<ul>
-<li><p>менша вага спостереженням з високим значенням дисперсії <span class="math inline">\(u\)</span>.</p></li>
-<li><p>більша вага спостереженням з низькими значенням дисперсії <span class="math inline">\(u\)</span>.</p></li>
-</ul>
-<p>Це і є основна ідея зваженого методу найменших квадратів (WLS, ЗМНК)</p>
+</div>
+<div id="приклади-проведення-тестів" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Приклади проведення тестів<a class="anchor" aria-label="anchor" href="#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%B8-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D1%96%D0%B2"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">Ecdat</a></span><span class="op">)</span>
 
+<span class="va">test_tbl</span> <span class="op">&lt;-</span> <span class="va">Caschool</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>test_score <span class="op">=</span> <span class="va">testscr</span>, ratio <span class="op">=</span> <span class="va">str</span>, income <span class="op">=</span> <span class="va">avginc</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_tbl</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   test_score ratio income</span>
+<span class="co">##        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">## 1       691.  17.9  22.7 </span>
+<span class="co">## 2       661.  21.5   9.82</span></code></pre></div>
+<p><span class="math display">\[ \left(\text{Test score}\right)_i = \beta_0 + \beta_1 \text{Ratio}_{i} + \beta_2 \text{Income}_{i} + u_i \]</span></p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">est_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">test_score</span> <span class="op">~</span> <span class="va">ratio</span> <span class="op">+</span> <span class="va">income</span>, data <span class="op">=</span> <span class="va">test_tbl</span><span class="op">)</span>
+<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">est_model</span><span class="op">)</span>
+<span class="co">## # A tibble: 3 x 5</span>
+<span class="co">##   term        estimate std.error statistic   p.value</span>
+<span class="co">##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 (Intercept)  639.       7.45       85.7  5.70e-267</span>
+<span class="co">## 2 ratio         -0.649    0.354      -1.83 6.79e-  2</span>
+<span class="co">## 3 income         1.84     0.0928     19.8  4.38e- 62</span></code></pre></div>
+<p>Візуалізація залишків</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_tbl</span><span class="op">$</span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">est_model</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="r_econometrics_files/figure-html/gq3-1.svg" width="100%"></div>
+<div id="goldfeld-quandt" class="section level3" number="6.5.1">
+<h3>
+<span class="header-section-number">6.5.1</span> Goldfeld-Quandt<a class="anchor" aria-label="anchor" href="#goldfeld-quandt"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">test_tbl</span>, <span class="va">income</span><span class="op">)</span>
+
+<span class="va">est_model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">test_score</span> <span class="op">~</span> <span class="va">ratio</span> <span class="op">+</span> <span class="va">income</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_tbl</span>, <span class="fl">158</span><span class="op">)</span><span class="op">)</span>
+<span class="va">est_model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">test_score</span> <span class="op">~</span> <span class="va">ratio</span> <span class="op">+</span> <span class="va">income</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">test_tbl</span>, <span class="fl">158</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">e_model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">est_model1</span><span class="op">)</span>
+<span class="va">e_model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">est_model2</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">sse_model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">e_model1</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] 29537.83</span>
+<span class="op">(</span><span class="va">sse_model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">e_model2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] 19305.01</span>
+
+<span class="op">(</span><span class="va">f_gq</span> <span class="op">&lt;-</span> <span class="va">sse_model2</span><span class="op">/</span><span class="va">sse_model1</span><span class="op">)</span>
+<span class="co">## [1] 0.6535688</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">f_gq</span>, df1 <span class="op">=</span> <span class="fl">158</span><span class="op">-</span><span class="fl">3</span>, df2 <span class="op">=</span> <span class="fl">158</span><span class="op">-</span><span class="fl">3</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+<span class="co">## [1] 0.9957733</span></code></pre></div>
+<p>Висновок:</p>
+<p><span class="math inline">\(F \approx 0.65\)</span></p>
+<p><em>p</em>-value <span class="math inline">\(\approx 0.99577\)</span></p>
+<p>Не відхиляємо нульову гіпотезу.</p>
+<p>Розрахуємо за допомогою готових функцій:</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/gqtest.html">gqtest</a></span><span class="op">(</span><span class="va">arr_est_model</span>, data <span class="op">=</span> <span class="va">test_tbl</span>, fraction <span class="op">=</span> <span class="fl">104</span><span class="op">)</span>
+<span class="co">## </span>
+<span class="co">##  Goldfeld-Quandt test</span>
+<span class="co">## </span>
+<span class="co">## data:  arr_est_model</span>
+<span class="co">## GQ = 0.65007, df1 = 155, df2 = 155, p-value = 0.9962</span>
+<span class="co">## alternative hypothesis: variance increases from segment 1 to 2</span></code></pre></div>
+<p>Результати збігаються!</p>
+<!-- bookdown::render_book("index.Rmd", output_dir = "docs") -->
+<!-- Що робити? Більш ефективним буде підхід за котрого ми надаємо вагу спостереження обернено пропорційно їх дисперсії $u$.  -->
+<!--   - менша вага спостереженням з високим значенням дисперсії $u$. -->
+<!--   - більша вага спостереженням з низькими значенням дисперсії $u$. -->
+<!-- Це і є основна ідея зваженого методу найменших квадратів (WLS, ЗМНК) -->
+
+</div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -282,6 +354,9 @@
 </li>
 <li><a class="nav-link" href="#%D1%82%D0%B5%D1%81%D1%82-%D0%B1%D1%80%D0%B5%D0%B9%D1%88%D0%B0-%D0%BF%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0"><span class="header-section-number">6.3</span> Тест Брейша-Пагана</a></li>
 <li><a class="nav-link" href="#%D1%82%D0%B5%D1%81%D1%82-%D1%83%D0%B0%D0%B9%D1%82%D0%B0"><span class="header-section-number">6.4</span> Тест Уайта</a></li>
+<li>
+<a class="nav-link" href="#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%B8-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D1%96%D0%B2"><span class="header-section-number">6.5</span> Приклади проведення тестів</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#goldfeld-quandt"><span class="header-section-number">6.5.1</span> Goldfeld-Quandt</a></li></ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -300,7 +375,7 @@
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong><span style="font-size: 14px">ОСНОВИ ЕКОНОМЕТРИКИ В R
-</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-05-23.</p>
+</span></strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

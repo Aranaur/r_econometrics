@@ -141,6 +141,8 @@ heteroskedasticity
 недолік-тесту
 тест-брейша-пагана
 тест-уайта
+приклади-проведення-тестів
+goldfeld-quandt
 regularization
 time_series
 glm
